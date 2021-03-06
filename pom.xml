@@ -12,6 +12,12 @@
     <organization>
         <name>Mike</name>
     </organization>
+    
+    <scm>
+        <url>https://github.com/mllopis11/java-bootstrap</url>
+        <connection>scm:git:git://github.com/mllopis11/java-bootstrap.git</connection>
+        <developerConnection>scm:git:git@github.com:mllopis11/java-bootstrap.git</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
