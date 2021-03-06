@@ -1,4 +1,4 @@
-# Bootstrap for Java projects
+# Bootstrap for Java Projects
 
 Utility library for the most common operations used in java projects.
 
