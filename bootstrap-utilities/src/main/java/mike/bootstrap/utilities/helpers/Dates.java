@@ -1,7 +1,6 @@
 package mike.bootstrap.utilities.helpers;
 
 import java.nio.file.attribute.FileTime;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -10,6 +9,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Date converter/formatter helpers
@@ -82,8 +82,8 @@ public class Dates {
     }
     
     /**
-     * @return current ZonedDateTime as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter.ISO_OFFSET_DATE_TIME
+     * @return current ZonedDateTime as {@link DateTimeFormatter#ISO_OFFSET_DATE_TIME}
+     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
      */
     public static String zNow() {
         return Dates.zNow(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
@@ -160,8 +160,8 @@ public class Dates {
 
     /**
      * @param date a date
-     * @return the given Date as 'yyyy-MM-ddTHH:mm:ss+HHmm'
-     * @see #ISO_DTTM_OFFSET
+     * @return the given Date as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
+     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
      */
     public static String format(Date date) {
         return Dates.format(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
@@ -178,8 +178,8 @@ public class Dates {
 
     /**
      * @param epochMillis epoch in milliseconds
-     * @return the given Epoch as 'yyyy-MM-ddTHH:mm:ss+HHmm'
-     * @see #ISO_DTTM_NANO_OFFSET
+     * @return the given Epoch as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
+     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
      */
     public static String format(long epochMillis) {
         return Dates.format(epochMillis, DateTimeFormatter.ISO_OFFSET_DATE_TIME);

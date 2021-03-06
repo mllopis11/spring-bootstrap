@@ -1,0 +1,10 @@
+my.first.prop=one
+my.second.prop=${my.first.prop}, two
+my.third.prop=${my.first.prop}, ${my.first.prop}, three
+
+my.tab.number[1]=${my.value.one}
+my.tab.number[2]=25
+my.tab.number[3]=3000
+
+my.value.one=${my.system.value.one}
+my.value.unresolved=${unresolved.value}
