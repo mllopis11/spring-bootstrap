@@ -14,11 +14,6 @@
         <name>Mike</name>
     </organization>
 
-    <scm>
-        <url>https://github.com/mllopis11/java-bootstrap</url>
-        <tag>HEAD</tag>
-    </scm>
-
     <properties>
         <!-- Maven plugins -->
         <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
