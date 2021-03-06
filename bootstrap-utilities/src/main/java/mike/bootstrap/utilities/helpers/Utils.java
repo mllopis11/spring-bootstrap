@@ -4,6 +4,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * General utility methods
+ * 
+ * @author Mike (2021-02)
+ * @since 1.8
+ */
 public class Utils {
 
 	/**
