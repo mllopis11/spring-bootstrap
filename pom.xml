@@ -6,6 +6,7 @@
   
     <groupId>mike.bootstrap</groupId>
     <artifactId>bootstrap-builder</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <description>Bootstrap project builder</description>
     <packaging>pom</packaging>
 
@@ -25,7 +26,7 @@
     
     <modules>
         <module>bootstrap-dependencies</module>
-        <module>bootstrap-parent</module>
+        <module>bootstrap-builder</module>
         <module>bootstrap-utilities</module>
     </modules>
 
@@ -38,7 +39,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <autoVersionSubModule>true</autoVersionSubModule>
-                    <tagNameFormat>bootstrap-@{version}</target>
+                    <tagNameFormat>bootstrap-@{version}</tagNameFormat>
                     <arguments>-Dmaven.javadoc.skip=true</arguments>
                 </configuration>
             </plugin>
