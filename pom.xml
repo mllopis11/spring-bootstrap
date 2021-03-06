@@ -27,7 +27,6 @@
         <module>bootstrap-dependencies</module>
         <module>bootstrap-parent</module>
         <module>bootstrap-utilities</module>
-        <module>bootstrap-springboot</module>
     </modules>
 
     <build>
@@ -42,40 +41,6 @@
                     <tagNameFormat>bootstrap-@{version}</target>
                     <arguments>-Dmaven.javadoc.skip=true</arguments>
                 </configuration>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <escapeString>\</escapeString>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- For JUnit5 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
