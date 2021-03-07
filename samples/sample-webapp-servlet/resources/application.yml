@@ -1,0 +1,18 @@
+spring:
+  main:
+    log-startup-info: true
+  application:
+    name: sample-webapp-servlet
+    
+    
+server:
+  address: localhost
+  port: 9100
+  servlet:
+    context-path: /samples/webapp-servlet/api
+    
+logging:
+  level:
+    mike.bootstrap: INFO
+    mike.bootstrap.samples: DEBUG
+    web: INFO
