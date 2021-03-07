@@ -28,7 +28,7 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
 	@Override
 	public void initialize(ConfigurableApplicationContext applicationContext) {
         ConfigurableEnvironment env = applicationContext.getEnvironment();
-		
+
 		/* *** Check server address *** */
         Optional<String> url = this.checkServerAddresses(env);
         
@@ -47,8 +47,13 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
 
         log.info(AppInfo.banner());
         log.info(AppInfo.starter());
-        log.debug(SysInfo.platform());
-
+        
+        boolean logStartupInfo = env.getProperty("spring.main.log-startup-info", Boolean.class);
+        
+        if ( logStartupInfo) {
+        	log.info(SysInfo.platform());
+		}
+        
         log.info("Application started in: {}", SysInfo.USER_DIR);
         log.info("Configuration loaded from: {}", env.getProperty("spring.config.location", "default"));
         log.info("Application context: node={}, webApplication={}, profiles={}", 
