@@ -3,6 +3,7 @@ package mike.bootstrap.springboot.application;
 import java.util.List;
 import java.util.Properties;
 
+import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -85,6 +86,7 @@ class ApplicationBootstrap {
         /* *** Build Spring Application *** */
 		SpringApplication application = new SpringApplicationBuilder(clazz)
 			.logStartupInfo(true)
+			.bannerMode(Mode.OFF)
 			.properties(configuration)
 			.initializers(new ApplicationBootstrapInitializer())
 			.web(appType)
