@@ -28,6 +28,7 @@
     
     <modules>
         <module>../bootstrap-utilities</module>
+        <module>../bootstrap-springboot</module>
     </modules>
     
     <dependencies>

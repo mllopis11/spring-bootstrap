@@ -13,10 +13,13 @@
 
     <artifactId>bootstrap-parent</artifactId>
     <name>${project.artifactId}</name>
-    <description>Commons parent project</description>
+    <description>Parent to build projects</description>
     <packaging>pom</packaging>
 
     <properties>
+        <application.name>Bootstrap</application.name>
+        <module.name>Bootstrap-Parent</module.name>
+        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Compilers -->
@@ -28,7 +31,6 @@
     </properties>
 
     <dependencies>
-        <!-- Logger -->
         <dependency>
             <groupId>mike.bootstrap</groupId>
             <artifactId>bootstrap-springboot</artifactId>
@@ -42,56 +44,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                            <goal>build-info</goal>
-                        </goals>
-
-                        <configuration>
-                            <additionalProperties>
-                                <application.name>${application.name}</application.name>
-                                <module.name>${module.name}</module.name>
-                                <organization.name>${project.organization.name}</organization.name>
-                            </additionalProperties>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <escapeString>\</escapeString>
-                    <encoding>UTF-8</encoding>
-                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- For JUnit5 -->
