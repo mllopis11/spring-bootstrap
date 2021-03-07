@@ -10,15 +10,15 @@
         <relativePath>../bootstrap-builder</relativePath>
     </parent>
     
-    <artifactId>builder-springboot</artifactId>
+    <artifactId>bootstrap-springboot</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
     <description>SprinBoot application bootstrap</description>
     
     <dependencies>
         <dependency>
-            <groupId>mike.builder</groupId>
-            <artifactId>builder-utilities</artifactId>
+            <groupId>mike.bootstrap</groupId>
+            <artifactId>bootstrap-utilities</artifactId>
         </dependency>
 
         <!-- SpringBoot -->
