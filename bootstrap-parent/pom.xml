@@ -26,7 +26,7 @@
 
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     </properties>
-    
+
     <dependencies>
         <!-- Logger -->
         <dependency>
@@ -51,27 +51,26 @@
             </plugin>
 
             <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                                <goal>build-info</goal>
-                            </goals>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
+                        </goals>
 
-                            <configuration>
-                                <additionalProperties>
-                                    <application.name>${application.name}</application.name>
-                                    <module.name>${module.name}</module.name>
-                                    <organization.name>${project.organization.name}</organization.name>
-                                </additionalProperties>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-          
+                        <configuration>
+                            <additionalProperties>
+                                <application.name>${application.name}</application.name>
+                                <module.name>${module.name}</module.name>
+                                <organization.name>${project.organization.name}</organization.name>
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
