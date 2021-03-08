@@ -118,7 +118,7 @@
                 <artifactId>problem-spring-web-starter</artifactId>
                 <version>${zalando.problem.version}</version>
             </dependency>
-
+            
             <!-- Loggers -->
             <dependency>
                 <groupId>org.slf4j</groupId>
