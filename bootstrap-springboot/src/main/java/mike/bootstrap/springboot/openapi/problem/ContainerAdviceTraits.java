@@ -1,4 +1,4 @@
-package mike.samples.webapp.container.problems;
+package mike.bootstrap.springboot.openapi.problem;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,6 +6,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.zalando.problem.Problem;
 import org.zalando.problem.Status;
 import org.zalando.problem.spring.web.advice.AdviceTrait;
+import org.zalando.problem.spring.web.advice.validation.ValidationAdviceTrait;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
 import mike.bootstrap.utilities.exceptions.ApplicationException;
@@ -13,7 +14,7 @@ import mike.bootstrap.utilities.exceptions.ResourceAlreadyExistException;
 import mike.bootstrap.utilities.exceptions.ResourceNotAvailableException;
 import mike.bootstrap.utilities.exceptions.ResourceNotFoundException;
 
-public interface ContainerAdviceTraits extends AdviceTrait {
+public interface ContainerAdviceTraits extends AdviceTrait, ValidationAdviceTrait  {
 
 	@ExceptionHandler
 	default ResponseEntity<Problem> handleResourceNotFound(

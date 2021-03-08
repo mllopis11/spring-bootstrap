@@ -1,6 +1,7 @@
 package mike.bootstrap.utilities.exceptions;
 
 /**
+ * The resource is not available at the time it was requested.
  * 
  * @author Mike (2021-03)
  */

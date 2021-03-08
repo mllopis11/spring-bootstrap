@@ -67,6 +67,12 @@
                 <artifactId>bootstrap-springboot</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            
+            <dependency>
+                <groupId>mike.bootstrap</groupId>
+                <artifactId>bootstrap-starter-web-servlet</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- Java -->
             <dependency>

@@ -30,13 +30,6 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>mike.bootstrap</groupId>
-            <artifactId>bootstrap-springboot</artifactId>
-        </dependency>
-    </dependencies>
-
     <build>
         <finalName>${project.name}-${project.version}</finalName>
 

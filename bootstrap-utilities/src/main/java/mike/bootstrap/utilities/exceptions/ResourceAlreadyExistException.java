@@ -1,6 +1,7 @@
 package mike.bootstrap.utilities.exceptions;
 
 /**
+ * The resource already exists. 
  * 
  * @author Mike (2021-03)
  */

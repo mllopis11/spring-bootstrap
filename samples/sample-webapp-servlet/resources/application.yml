@@ -15,3 +15,12 @@ logging:
     mike.bootstrap: DEBUG
     mike.bootstrap.samples: DEBUG
     web: INFO
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    display-request-duration: true
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+    doc-expansion: list

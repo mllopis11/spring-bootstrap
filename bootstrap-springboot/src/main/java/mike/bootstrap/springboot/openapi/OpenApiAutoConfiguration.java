@@ -16,6 +16,8 @@ import org.zalando.problem.violations.ConstraintViolationProblem;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
 
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import mike.bootstrap.springboot.openapi.problem.DefaultProblemConstraintJsonSerializer;
 import mike.bootstrap.springboot.openapi.problem.DefaultProblemJsonSerializer;
@@ -30,9 +32,23 @@ class OpenApiAutoConfiguration {
 	 * @return customized openApi info with the current version of the application. 
 	 */
 	@Bean
-	public OpenApiCustomiser openApiCustomizer(Optional<List<Map.Entry<String, ApiResponse>>> responsesToRegister) {
+	public OpenApiCustomiser openApiCustomizer(
+			OpenApiDocProperties documentation,
+			Optional<List<Map.Entry<String, ApiResponse>>> responsesToRegister) {
+		
 		return openApi -> { 
 			openApi.getInfo().setVersion(AppInfo.version());
+
+			openApi.getInfo().setContact(
+					new Contact()
+						.name(documentation.getContactName())
+						.email(documentation.getContactEmail())
+						.url(documentation.getContactUrl()));
+			
+			openApi.getInfo().setLicense(
+					new License()
+						.name(documentation.getLicenseName())
+						.url(documentation.getLicenseUrl()));
 			
 			responsesToRegister
 				.ifPresent( responses -> responses

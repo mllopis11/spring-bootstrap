@@ -27,7 +27,6 @@ public class DefaultProblemConstraintJsonSerializer extends JsonSerializer<Const
 		
 		jsonGenerator.writeStartObject();
 		jsonGenerator.writeStringField("title", problem.getTitle());
-		jsonGenerator.writeStringField("type", problem.getType().toString());
 		jsonGenerator.writeNumberField("status", problem.getStatus().getStatusCode());
 		
 		jsonGenerator.writeArrayFieldStart("violations");

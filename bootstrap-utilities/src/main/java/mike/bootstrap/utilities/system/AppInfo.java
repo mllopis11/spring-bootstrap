@@ -1,6 +1,7 @@
 package mike.bootstrap.utilities.system;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.stream.Stream;
 
@@ -47,6 +48,9 @@ public class AppInfo {
     
     /* ***** Populate variables ***** */
     static {
+    	
+    	// Set JVM Locale to English
+    	Locale.setDefault(Locale.ENGLISH);
         
     	node = Sanitizer.LOWERCASE.apply(System.getProperty(KW_APP_NODE, "local"), '-');
     	runtimeBaseDirectory = System.getProperty(KW_APP_RUNDIR, String.format("./run/%s", node));

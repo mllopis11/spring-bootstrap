@@ -27,6 +27,7 @@
     <modules>
         <module>./bootstrap-dependencies</module>
         <module>./bootstrap-builder</module>
+        <module>./bootstrap-starters</module>
         <module>./bootstrap-parent</module>
         <module>./samples</module>
     </modules>

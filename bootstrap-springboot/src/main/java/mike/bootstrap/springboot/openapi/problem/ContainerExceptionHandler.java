@@ -1,4 +1,4 @@
-package mike.samples.webapp.container.problems;
+package mike.bootstrap.springboot.openapi.problem;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ControllerAdvice;
