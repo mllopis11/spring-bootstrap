@@ -218,6 +218,14 @@ public class Dates {
     }
     
     /**
+     * @param long Number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     * @return the given epoch converted
+     */
+    public static LocalDateTime toLocalDateTime(long millis) {
+        return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+    
+    /**
      * @param date a date
      * @return the given date converted
      */
@@ -231,6 +239,30 @@ public class Dates {
      */
     public static ZonedDateTime toZonedDateTime(FileTime fileTime) {
         return fileTime.toInstant().atZone(ZoneId.systemDefault());
+    }
+    
+    /**
+     * @param long Number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     * @return the given date converted
+     */
+    public static ZonedDateTime toZonedDateTime(long millis) {
+        return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault());
+    }
+    
+    /**
+     * @param localDateTime A local date-time
+     * @return the number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     */
+    public static long toEpochMillis(LocalDateTime localDateTime) {
+    	return Dates.toEpochMillis(localDateTime.atZone(ZoneId.systemDefault()));
+    }
+    
+    /**
+     * @param zonedDateTime A zoned date-time
+     * @return the number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     */
+    public static long toEpochMillis(ZonedDateTime zonedDateTime) {
+    	return zonedDateTime.toEpochSecond() * 1000;
     }
     
     /**
