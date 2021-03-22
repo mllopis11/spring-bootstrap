@@ -219,7 +219,7 @@ public class Dates {
     }
     
     /**
-     * @return the EPOCH local datetime (1970-01-01T00:00:00Z)
+     * @return the EPOCH local datetime (1970-01-01T01:00:00Z)
      */
     public static LocalDateTime toLocalDateTimeEpoch() {
         return LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
@@ -242,7 +242,7 @@ public class Dates {
     }
     
     /**
-     * @param long Number of milliseconds from the epoch of 1970-01-01T00:00:00Z
+     * @param long Number of milliseconds from the epoch of 1970-01-01T01:00:00Z
      * @return the given date converted
      */
     public static ZonedDateTime toZonedDateTime(long millis) {
@@ -250,7 +250,7 @@ public class Dates {
     }
     
     /**
-     * @return the EPOCH zoned datetime (1970-01-01T00:00:00Z)
+     * @return the EPOCH zoned datetime (1970-01-01T01:00:00Z)
      */
     public static ZonedDateTime toZonedDateTimeEpoch() {
         return Instant.EPOCH.atZone(ZoneId.systemDefault());
@@ -264,7 +264,7 @@ public class Dates {
     }
     
     /**
-     * @return SQL Timestamp from instant EPOCH (1970-01-01T00:00:00Z).
+     * @return SQL Timestamp from instant EPOCH (1970-01-01T01:00:00Z).
      */
     public static Timestamp timestampEpoch() {
     	return Timestamp.from(Instant.EPOCH);
@@ -272,7 +272,7 @@ public class Dates {
     
     /**
      * @param localDateTime A local date-time
-     * @return the number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     * @return the number of milliseconds from the epoch of 1970-01-01T01:00:00Z 
      */
     public static long toEpochMillis(LocalDateTime localDateTime) {
     	return Dates.toEpochMillis(localDateTime.atZone(ZoneId.systemDefault()));
@@ -280,7 +280,7 @@ public class Dates {
     
     /**
      * @param zonedDateTime A zoned date-time
-     * @return the number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     * @return the number of milliseconds from the epoch of 1970-01-01T01:00:00Z 
      */
     public static long toEpochMillis(ZonedDateTime zonedDateTime) {
     	return zonedDateTime.toEpochSecond() * 1000;

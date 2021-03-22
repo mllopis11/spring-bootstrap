@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.nio.file.attribute.FileTime;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -67,10 +68,10 @@ class DatesTest {
     
     @Test
     void toXxxDateEpoch_should_return_epoch_date_object() {
-    	LocalDateTime localDateTimeEpoch = LocalDateTime.of(1970, 1, 1, 0, 0, 0);
+    	LocalDateTime localDateTimeEpoch = LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
     	
-    	assertThat(Dates.toZonedDateTimeEpoch()).isEqualTo(ZonedDateTime.of(localDateTimeEpoch, ZoneId.systemDefault()));
     	assertThat(Dates.toLocalDateTimeEpoch()).isEqualTo(localDateTimeEpoch);
+    	assertThat(Dates.toZonedDateTimeEpoch()).isEqualTo(ZonedDateTime.of(localDateTimeEpoch, ZoneId.systemDefault()));
     	assertThat(Dates.timestampEpoch()).isEqualTo(Timestamp.valueOf(localDateTimeEpoch));
     }
     
