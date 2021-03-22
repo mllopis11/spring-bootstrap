@@ -98,13 +98,6 @@ public class Dates {
     }
 
     /**
-     * @return SQL Timestamp from instant now.
-     */
-    public static Timestamp timestamp() {
-    	return Timestamp.from(Instant.now());
-    }
-    
-    /**
      * @param localDateTime local date time
      * @return the given LocalDateTime as {@link DateTimeFormatter.ISO_LOCAL_DATE_TIME}
      * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME
@@ -226,6 +219,13 @@ public class Dates {
     }
     
     /**
+     * @return the EPOCH local datetime (1970-01-01T00:00:00Z)
+     */
+    public static LocalDateTime toLocalDateTimeEpoch() {
+        return LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
+    }
+    
+    /**
      * @param date a date
      * @return the given date converted
      */
@@ -242,11 +242,32 @@ public class Dates {
     }
     
     /**
-     * @param long Number of milliseconds from the epoch of 1970-01-01T00:00:00Z 
+     * @param long Number of milliseconds from the epoch of 1970-01-01T00:00:00Z
      * @return the given date converted
      */
     public static ZonedDateTime toZonedDateTime(long millis) {
         return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault());
+    }
+    
+    /**
+     * @return the EPOCH zoned datetime (1970-01-01T00:00:00Z)
+     */
+    public static ZonedDateTime toZonedDateTimeEpoch() {
+        return Instant.EPOCH.atZone(ZoneId.systemDefault());
+    }
+    
+    /**
+     * @return SQL Timestamp from instant now.
+     */
+    public static Timestamp timestamp() {
+    	return Timestamp.from(Instant.now());
+    }
+    
+    /**
+     * @return SQL Timestamp from instant EPOCH (1970-01-01T00:00:00Z).
+     */
+    public static Timestamp timestampEpoch() {
+    	return Timestamp.from(Instant.EPOCH);
     }
     
     /**
