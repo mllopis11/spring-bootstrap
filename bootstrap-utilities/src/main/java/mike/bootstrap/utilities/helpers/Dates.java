@@ -19,9 +19,9 @@ import java.util.Date;
 public class Dates {
 
 	/**
-	 * ZonedDateTimeFormatter as '2020-10-04T15:34:56.345+0100'
+	 * ZonedDateTimeFormatter as '2020-10-04T15:34:56.345+01:00'
 	 */
-	public static final DateTimeFormatter ISO_DTTM_NANO_OFFSET = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+	public static final DateTimeFormatter ISO_DTTM_NANO_OFFSET = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX");
 	
 	/**
 	 * DateTimeFormatter as '2020-10-04 15:34:56.345'
@@ -82,11 +82,11 @@ public class Dates {
     }
     
     /**
-     * @return current ZonedDateTime as {@link DateTimeFormatter#ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
+     * @return current ZonedDateTime as {@link Dates#ISO_DTTM_NANO_OFFSET}
+     * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String zNow() {
-        return Dates.zNow(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return Dates.zNow(ISO_DTTM_NANO_OFFSET);
     }
     
     /**
@@ -117,11 +117,11 @@ public class Dates {
     
     /**
      * @param zonedDateTime zoned date time
-     * @return the given ZonedDateTime as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
+     * @return the given ZonedDateTime as {@link Dates.ISO_DTTM_NANO_OFFSET}
+     * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(ZonedDateTime zonedDateTime) {
-        return Dates.format(zonedDateTime, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return Dates.format(zonedDateTime, ISO_DTTM_NANO_OFFSET);
     }
     
     /**
@@ -135,11 +135,11 @@ public class Dates {
 
     /**
      * @param fileTime file time
-     * @return the given FileTime as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
+     * @return the given FileTime as {@link Dates.ISO_DTTM_NANO_OFFSET}
+     * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(FileTime fileTime) {
-    	return Dates.format(fileTime, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    	return Dates.format(fileTime, Dates.ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -153,11 +153,11 @@ public class Dates {
 
     /**
      * @param date a date
-     * @return the given Date as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
+     * @return the given Date as {@link Dates.ISO_DTTM_NANO_OFFSET}
+     * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(Date date) {
-        return Dates.format(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return Dates.format(date, Dates.ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -171,11 +171,11 @@ public class Dates {
 
     /**
      * @param epochMillis epoch in milliseconds
-     * @return the given Epoch as {@link DateTimeFormatter.ISO_OFFSET_DATE_TIME}
-     * @see DateTimeFormatter#ISO_OFFSET_DATE_TIME
+     * @return the given Epoch as {@link Dates.ISO_DTTM_NANO_OFFSET}
+     * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(long epochMillis) {
-        return Dates.format(epochMillis, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return Dates.format(epochMillis, Dates.ISO_DTTM_NANO_OFFSET);
     }
     
     /**
