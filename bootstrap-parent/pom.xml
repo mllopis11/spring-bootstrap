@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>bootstrap-parent</artifactId>
-    <name>${project.artifactId}</name>
     <description>Parent to build projects</description>
     <packaging>pom</packaging>
 
@@ -29,10 +28,31 @@
 
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>mike.bootstrap</groupId>
+                <artifactId>bootstrap-utilities</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mike.bootstrap</groupId>
+                <artifactId>bootstrap-springboot</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>mike.bootstrap</groupId>
+            <artifactId>bootstrap-springboot</artifactId>
+        </dependency> 
+    </dependencies>
 
     <build>
-        <finalName>${project.name}-${project.version}</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

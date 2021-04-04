@@ -20,9 +20,19 @@
     </properties>
 
     <dependencies>
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
-            <groupId>mike.bootstrap</groupId>
-            <artifactId>bootstrap-starter-web-servlet</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web-starter</artifactId>
         </dependency>
     </dependencies>
 </project>
