@@ -17,13 +17,29 @@ Projects | Descriptions
 [bootstrap-dependencies](./bootstrap-dependencies) | Dependencies management versions
 [bootstrap-parent](./bootstrap-parent) | Bootstrap Parent POM 
 
-## Maven local repository installation
+## Maven
+
+### Local repository installation
 
 ```bash
 $ git clone https://github.com/mllopis11/java-bootstrap.git
 $ cd java-bootstrap
 $ mvn clean install
 ```
+
+### Release (Batch Mode)
+
+```bash
+$ # Set the next development version if needed (do not set for auto versioning)
+$ nextSnapshotVersion=2.0-SNAPSHOT
+$ relPrepare="mvn -B release:prepare"
+$ [ ! -z ${nextSnapshotVersion} ] && relPrepare="${relPrepare} -DdevelopmentVersion=${nextSnapshotVersion}"
+$ $(relPrepare) || exit 1
+$
+$ # Perform the release
+$ mvn -B release:perform
+```
+
 
 ## Software Installation
 
