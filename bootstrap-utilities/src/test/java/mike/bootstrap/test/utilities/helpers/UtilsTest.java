@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import mike.bootstrap.utilities.helpers.Timer;
 import mike.bootstrap.utilities.helpers.Utils;
 
 @DisplayName("Helpers::Utils")
@@ -15,7 +16,7 @@ class UtilsTest {
 
 	@BeforeAll
 	static void init() {
-		Utils.pause(1);
+		Timer.pause(1);
 	}
 	
 	@Test
@@ -43,11 +44,11 @@ class UtilsTest {
     
     @Test
     void method_toInteger_should_return_default_value_when_not_integer() {
-    	assertThat(Utils.toInteger(null)).isEqualTo(0);
+    	assertThat(Utils.toInteger(null)).isZero();
     	assertThat(Utils.toInteger(null, -1)).isEqualTo(-1);
-    	assertThat(Utils.toInteger(" ")).isEqualTo(0);
+    	assertThat(Utils.toInteger(" ")).isZero();
     	assertThat(Utils.toInteger(" ", -1)).isEqualTo(-1);
-    	assertThat(Utils.toInteger("2900000000")).isEqualTo(0);
+    	assertThat(Utils.toInteger("2900000000")).isZero();
     	assertThat(Utils.toInteger("2900000000", Integer.MAX_VALUE)).isEqualTo(Integer.MAX_VALUE);
     }
     
@@ -62,9 +63,9 @@ class UtilsTest {
     @Test
     void method_toLong_should_return_default_value_when_not_long() {
     	
-    	assertThat(Utils.toLong(null)).isEqualTo(0);
+    	assertThat(Utils.toLong(null)).isZero();
     	assertThat(Utils.toLong(null, -1)).isEqualTo(-1);
-    	assertThat(Utils.toLong(" ")).isEqualTo(0);
+    	assertThat(Utils.toLong(" ")).isZero();
     	assertThat(Utils.toLong(" ", -1)).isEqualTo(-1);
     	assertThat(Utils.toLong("12345678909876543210")).isEqualTo(0);
     	assertThat(Utils.toLong("12345678909876543210", Long.MAX_VALUE)).isEqualTo(Long.MAX_VALUE);

@@ -1,7 +1,5 @@
 package mike.bootstrap.utilities.helpers;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -31,14 +29,6 @@ public class Utils {
     	return StringUtils.repeat(ch, size);
     }
     
-    /**
-     * @param seconds seconds to sleep
-     */
-    public static void pause(int seconds) {
-        try { TimeUnit.SECONDS.sleep(seconds); } 
-        catch (InterruptedException e) { /* Ignored */}
-    }
-
     /**
      * @param port               network port
      * @param includeSystemPorts include the system port range (between 0 and 1023). Default is false.

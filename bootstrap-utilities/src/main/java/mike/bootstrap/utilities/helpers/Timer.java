@@ -158,7 +158,14 @@ public class Timer {
 	/**
 	 * @param seconds number of seconds to sleep
 	 */
-	public void pause(int seconds) {
+	public void sleep(int seconds) {
+		Timer.pause(seconds);
+	}
+	
+	/**
+	 * @param seconds number of seconds to sleep
+	 */
+	public static void pause(int seconds) {
 		try {
 			TimeUnit.SECONDS.sleep(seconds);
 		} catch (InterruptedException ie) {
