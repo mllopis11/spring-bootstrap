@@ -22,25 +22,32 @@ Projects | Descriptions
 ### Local repository installation
 
 ```bash
-$ git clone https://github.com/mllopis11/java-bootstrap.git
+$ git clone https://github.com/mllopis11/java-bootstrap.git [--branch <branchname>]
 $ cd java-bootstrap
 $ mvn clean install
 ```
 
 ### Release (Batch Mode)
 
+1) Set the next development version if needed
+
 ```bash
 $ # Set the next development version if needed (do not set for auto versioning)
 $ nextSnapshotVersion=2.0-SNAPSHOT
-$ relPrepare="mvn -B release:prepare"
-$ [ ! -z ${nextSnapshotVersion} ] && relPrepare="${relPrepare} -DdevelopmentVersion=${nextSnapshotVersion}"
-$ $(relPrepare) || exit 1
-$
-$ # Perform the release
+```
+
+2) (Optional) Execute dry-run to verify the release then clean
+
+```bash
+$ mvn -B release:prepare -DdryRun=true [-DdevelopmentVersion=${nextSnapshotVersion}]
+# Manual check
+$ mvn release:clean
+```
+
+3) Perform the Release
+
+```bash
+$ mvn -B release:prepare [-DdevelopmentVersion=${nextSnapshotVersion}]
 $ mvn -B release:perform
 ```
 
-
-## Software Installation
-
-_ToDo_
