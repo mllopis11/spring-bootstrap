@@ -66,7 +66,7 @@ public class CompanyService {
 		
 		log.info("update: {}", form);
 		
-		Company company = this.findByName(form.getName())
+		var company = this.findByName(form.getName())
 					.map( c -> new Company(form.getName(), form.getDescription()))
 					.orElseThrow(() -> new CompanyNotFoundException(form.getName()));
 				

@@ -182,13 +182,13 @@ public class SysInfo {
     public static void hostAddressAlreadyBound(String hostname, String port) {
 
         String myHost = Utils.trim(hostname);
-        int myPort = Utils.toInteger(port, 0);
+        var myPort = Utils.toInteger(port, 0);
                 
         if ( myHost.isBlank() || Utils.isPortNotValid(myPort) ) {
             throw new ApplicationErrorException("bindHostAddress: invalid hostname or port argument");
         }
         
-        try (ServerSocket socket = new ServerSocket(myPort, 0, InetAddress.getByName(hostname)); ) {
+        try (var socket = new ServerSocket(myPort, 0, InetAddress.getByName(hostname)); ) {
             // Nothing to do here: Address is free
         } catch( IOException ioe) {
             throw new ApplicationErrorException(

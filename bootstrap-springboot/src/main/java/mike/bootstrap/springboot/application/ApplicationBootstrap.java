@@ -104,7 +104,7 @@ class ApplicationBootstrap {
      */
     private static Properties parseCommandLineArguments(List<String> options) {
 
-    	Properties configuration = new Properties();
+    	var configuration = new Properties();
     	
         for ( String opt : options ) {
 

@@ -16,7 +16,7 @@ class ApplicationDefaultConfiguration {
 	
 	@Bean
 	public LocaleResolver localeResolver() {
-		Locale fixedLocale = Locale.ENGLISH;
+		var fixedLocale = Locale.ENGLISH;
 		
 		log.info("Application fixed locale: {}", fixedLocale.getDisplayName());
 		

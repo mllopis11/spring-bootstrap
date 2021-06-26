@@ -15,7 +15,7 @@ import io.swagger.v3.core.util.Yaml;
 public class DefaultProblemJsonSerializer extends JsonSerializer<DefaultProblem>{
 
 	public DefaultProblemJsonSerializer() {
-		SimpleModule module = new SimpleModule();
+		var module = new SimpleModule();
 		module.addSerializer(DefaultProblem.class, this);
 		Json.mapper().registerModule(module);
 		Yaml.mapper().registerModule(module);

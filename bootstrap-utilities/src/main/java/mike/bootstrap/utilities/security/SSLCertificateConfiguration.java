@@ -69,11 +69,10 @@ public class SSLCertificateConfiguration {
      */
     public static void configure(Path file) {
         try {
-            Resource resource = new Resource(file);
+            var resource = new Resource(file);
             
             if ( resource.found() ) {
-                Properties properties = resource.getProperties();
-                SSLCertificateConfiguration.configure(properties);
+                SSLCertificateConfiguration.configure(resource.getProperties());
             }
         } catch (IOException ioe) {
             throw new UncheckedIOException("SSL configuration exception", ioe);
@@ -108,7 +107,7 @@ public class SSLCertificateConfiguration {
     public static void setHttpsProtocols() {
     	
 		try {
-			SSLContext sslCtx = SSLContext.getInstance(KW_HTTPS_PROTOCOL_DEFAULT);
+			var sslCtx = SSLContext.getInstance(KW_HTTPS_PROTOCOL_DEFAULT);
 			SSLContext.setDefault(sslCtx);
 		} catch (NoSuchAlgorithmException e) {
 			throw new ApplicationErrorException("SSL configuration HTTPs protocol: ", KW_HTTPS_PROTOCOL_DEFAULT);
@@ -125,7 +124,7 @@ public class SSLCertificateConfiguration {
         String store = Utils.trim(trustStore);
 
         if ( ! store.isEmpty() ) {
-        	Path absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
+        	var absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
         	
         	if ( Files.isReadable(absoluteStorePath) ) {
         		System.setProperty(KW_TRUSTSTORE, PathUtils.toUnixPath(absoluteStorePath));

@@ -2,7 +2,6 @@ package mike.bootstrap.utilities.helpers;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -61,14 +60,14 @@ public enum ByteUnit {
     public static long from(String sizeWithUnit) {
         String sizeUnit = Utils.trim(sizeWithUnit).toLowerCase();
         
-        Matcher matcher = sizePattern.matcher(sizeUnit);
+        var matcher = sizePattern.matcher(sizeUnit);
         
         if ( ! matcher.matches() ) {
             throw new IllegalArgumentException(
                     String.format("'%s' does not match pattern '%s'", sizeWithUnit, sizePattern));
         }
         
-        final long sValue = Long.parseLong(matcher.group(1));
+        var sValue = Long.parseLong(matcher.group(1));
         String sUnit = matcher.group(2).endsWith("b") ? matcher.group(2) : matcher.group(2) + "b";
        
         return UNITS.stream()

@@ -1,6 +1,5 @@
 package mike.bootstrap.springboot.application;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -24,7 +23,7 @@ public interface ContainerBootstrapReady extends ApplicationListener<Application
 	
 	@Override
 	default void onApplicationEvent(ApplicationReadyEvent event) {
-		final Logger log = LoggerFactory.getLogger(ContainerBootstrapReady.class);
+		final var log = LoggerFactory.getLogger(ContainerBootstrapReady.class);
 
 		log.info("{} (node: {}) application up and ready at {}", AppInfo.module(), AppInfo.node(), Dates.zNow());
 

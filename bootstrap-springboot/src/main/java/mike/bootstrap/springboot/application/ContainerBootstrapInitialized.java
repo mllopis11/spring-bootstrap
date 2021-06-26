@@ -1,6 +1,5 @@
 package mike.bootstrap.springboot.application;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -25,7 +24,7 @@ public interface ContainerBootstrapInitialized extends ApplicationListener<Conte
 	@Override
     default void onApplicationEvent(ContextRefreshedEvent event) {
 		
-        final Logger logger = LoggerFactory.getLogger(ContainerBootstrapInitialized.class);
+        final var logger = LoggerFactory.getLogger(ContainerBootstrapInitialized.class);
         
         logger.info("{} (node: {}) context initialized and ready at {}", AppInfo.module(), AppInfo.node(), Dates.zNow());
         

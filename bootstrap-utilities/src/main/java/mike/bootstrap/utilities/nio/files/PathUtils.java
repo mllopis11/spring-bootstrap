@@ -29,7 +29,7 @@ private PathUtils() {}
      * @return the directory of the file
      */
     public static String dirname(final Path path) {
-        Path dir = path.getParent();
+        var dir = path.getParent();
         return dir != null ?  dir.toString() : "";
     }
 

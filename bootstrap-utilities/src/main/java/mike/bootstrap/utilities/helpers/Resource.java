@@ -36,7 +36,7 @@ public class Resource {
     		throw new IllegalArgumentException("no such filename provided (blank)");
     	}
     	
-    	Path path = Path.of(name);
+    	var path = Path.of(name);
     	this.fileSystem = Files.isReadable(path);
  
     	if ( fileSystem ) {
@@ -123,10 +123,10 @@ public class Resource {
      */
     public Properties getProperties() throws IOException {
     	
-        Properties properties = new Properties();
+        var properties = new Properties();
 
         if ( this.found() ) {
-            try ( InputStream is = this.getInputStream(); ) {
+            try ( var is = this.getInputStream(); ) {
                 properties.load(is);
             }
         }

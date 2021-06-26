@@ -16,7 +16,7 @@ import io.swagger.v3.core.util.Yaml;
 public class DefaultProblemConstraintJsonSerializer extends JsonSerializer<ConstraintViolationProblem>{
 
 	public DefaultProblemConstraintJsonSerializer() {
-		SimpleModule module = new SimpleModule();
+		var module = new SimpleModule();
 		module.addSerializer(ConstraintViolationProblem.class, this);
 		Json.mapper().registerModule(module);
 		Yaml.mapper().registerModule(module);

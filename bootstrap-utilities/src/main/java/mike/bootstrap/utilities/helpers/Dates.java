@@ -98,6 +98,24 @@ public class Dates {
     }
 
     /**
+     * @param localDate local date
+     * @return the given LocalDate as {@link DateTimeFormatter.ISO_LOCAL_DATE}
+     * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME
+     */
+    public static String format(LocalDate localDate) {
+        return Dates.format(localDate, DateTimeFormatter.ISO_LOCAL_DATE);
+    }
+
+    /**
+     * @param localDateTime local date
+     * @param formatter     desired format
+     * @return the given LocalDate with the given format
+     */
+    public static String format(LocalDate localDate, DateTimeFormatter formatter) {
+        return localDate.format(formatter);
+    }
+    
+    /**
      * @param localDateTime local date time
      * @return the given LocalDateTime as {@link DateTimeFormatter.ISO_LOCAL_DATE_TIME}
      * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME

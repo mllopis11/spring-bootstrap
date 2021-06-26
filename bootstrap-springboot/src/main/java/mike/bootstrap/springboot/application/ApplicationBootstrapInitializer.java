@@ -38,7 +38,14 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
 		/* ***** Display startup header ***** */
         this.startup(env, url);
 
-        this.finalize(env);
+        /* ***** Finalize setup ***** */
+        String runtimeDirectory = AppInfo.runtimeDirectory();
+        
+        if ( ! env.getProperty(AppInfo.KW_APP_RUNDIR, "").isEmpty() ) {
+            System.setProperty(AppInfo.KW_APP_RUNDIR, env.getProperty(AppInfo.KW_APP_RUNDIR, runtimeDirectory));
+        }
+        
+        log.info("Runtime root directory: {}", runtimeDirectory);
 	}
 	
 	private void startup(ConfigurableEnvironment env, Optional<String> url) {
@@ -67,16 +74,6 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
         		SSLCertificateConfiguration.getHttpsProtocols());
 	}
 	
-	private void finalize(ConfigurableEnvironment env) {
-		String runtimeDirectory = AppInfo.runtimeDirectory();
-        
-        if ( ! env.getProperty(AppInfo.KW_APP_RUNDIR, "").isEmpty() ) {
-            System.setProperty(AppInfo.KW_APP_RUNDIR, env.getProperty(AppInfo.KW_APP_RUNDIR, runtimeDirectory));
-        }
-        
-        log.info("Runtime root directory: {}", runtimeDirectory);
-	}
-
 	/**
      * Check if the host address is already bound
      * <p>

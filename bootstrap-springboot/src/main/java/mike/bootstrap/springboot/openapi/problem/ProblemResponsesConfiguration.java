@@ -20,7 +20,6 @@ import org.zalando.problem.StatusType;
 
 import io.swagger.v3.core.converter.AnnotatedType;
 import io.swagger.v3.core.converter.ModelConverters;
-import io.swagger.v3.core.converter.ResolvedSchema;
 import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.MediaType;
@@ -75,10 +74,10 @@ class ProblemResponsesConfiguration {
 		
 		springDocConfigProperties.setRemoveBrokenReferenceDefinitions(false);
 		
-		ResolvedSchema problemSchema = ModelConverters.getInstance()
+		var problemSchema = ModelConverters.getInstance()
 				.resolveAsResolvedSchema(new AnnotatedType(Problem.class));
 		
-		ResolvedSchema statusTypeSchema = ModelConverters.getInstance()
+		var statusTypeSchema = ModelConverters.getInstance()
 				.resolveAsResolvedSchema(new AnnotatedType(StatusType.class));
 		
 		return openApi -> {

@@ -2,7 +2,6 @@ package mike.bootstrap.utilities.system;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.stream.Stream;
 
 import mike.bootstrap.utilities.helpers.Dates;
@@ -66,7 +65,7 @@ public class AppInfo {
         	.findFirst()
         	.ifPresentOrElse( res -> { 
         		try {
-        			Properties infos = res.getProperties();
+        			var infos = res.getProperties();
             		release = infos.getProperty("build.time", release);
                     name = infos.getProperty("build.application.name", name);
                     module = infos.getProperty("build.module.name", module);
