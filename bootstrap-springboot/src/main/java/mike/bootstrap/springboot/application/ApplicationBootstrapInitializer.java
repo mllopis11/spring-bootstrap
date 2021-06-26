@@ -55,7 +55,7 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
         log.info(AppInfo.banner());
         log.info(AppInfo.starter());
         
-        boolean logStartupInfo = env.getProperty("spring.main.log-startup-info", Boolean.class);
+        boolean logStartupInfo = env.getProperty("spring.main.log-startup-info", Boolean.class, false);
         
         if ( logStartupInfo) {
         	log.info(SysInfo.platform());
