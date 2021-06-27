@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sample-basic-appt</artifactId>
+    <artifactId>sample-basic-app</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
     <description>Simple Basic Application</description>
