@@ -1,5 +1,7 @@
 package mike.bootstrap.springboot.openapi;
 
+import org.springdoc.core.Constants;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -7,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:openapi-doc.properties")
 @ConfigurationProperties(prefix = "springdoc.info")
+@ConditionalOnProperty(name = Constants.SPRINGDOC_ENABLED, matchIfMissing = false)
 class OpenApiDocProperties {
 
 	private String contactName;

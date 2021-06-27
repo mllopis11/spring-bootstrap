@@ -25,7 +25,7 @@ import mike.bootstrap.utilities.system.AppInfo;
 
 @Configuration
 @ConditionalOnClass(Constants.class)
-@ConditionalOnProperty(name = Constants.SPRINGDOC_ENABLED, matchIfMissing = true)
+@ConditionalOnProperty(name = Constants.SPRINGDOC_ENABLED, matchIfMissing = false)
 class OpenApiAutoConfiguration {
 
 	/**
