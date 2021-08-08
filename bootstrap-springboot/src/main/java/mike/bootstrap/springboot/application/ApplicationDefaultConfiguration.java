@@ -20,7 +20,7 @@ class ApplicationDefaultConfiguration {
 	public LocaleResolver localeResolver() {
 		var fixedLocale = Locale.ENGLISH;
 		
-		log.info("Application fixed locale: {}", fixedLocale.getDisplayName());
+		log.info("Application locale (fixed): {}", fixedLocale.getDisplayName());
 		
 		return new FixedLocaleResolver(fixedLocale);
 	}
