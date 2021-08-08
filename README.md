@@ -13,12 +13,12 @@ Components | Versions
 
 Projects | Descriptions
 -------- | ------------
-[bootstrap-dependencies](./bootstrap-dependencies) | Dependencies management versions
-[bootstrap-builder](./bootstrap-builder) | Spring-Bootstrap project builder  
-[bootstrap-parent](./bootstrap-parent) | Bootstrap Parent POM (bootstrap-springboot dependency automatically included)
-[bootstrap-springboot](./bootstrap-springboot) | Spring boot application core implementation
-[bootstrap-utilities](./bootstrap-utilities) | Helper classes (independent from springboot)
-[samples](./sample) | Implementation examples
+bootstrap-dependencies | Dependencies management versions
+bootstrap-builder | Spring-Bootstrap project builder  
+bootstrap-parent | Bootstrap Parent POM (bootstrap-springboot dependency automatically included)
+bootstrap-springboot | Spring boot application core implementation
+bootstrap-utilities | Helper classes (independent from springboot)
+samples | Implementation examples
 
 ## Maven
 
