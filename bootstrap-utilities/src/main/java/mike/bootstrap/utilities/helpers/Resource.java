@@ -1,14 +1,20 @@
 package mike.bootstrap.utilities.helpers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Stream;
 
 /**
  * Resource (Path, URL, URI) helper.
@@ -114,6 +120,28 @@ public class Resource {
             return Files.newInputStream(Path.of(name));
         } else {
             return url.openStream();
+        }
+    }
+    
+    /**
+     * @return return all lines with default charset UTF_8.
+     * @throws IOException if any IO errors occurs
+     */
+    public List<String> getContent() throws IOException {
+        return this.getContent(StandardCharsets.UTF_8);
+    }
+    
+    /**
+     * @return return all lines.
+     * @throws IOException if any IO errors occurs
+     */
+    public List<String> getContent(Charset charset) throws IOException {
+        
+        try ( var is = this.getInputStream(); 
+                var isr = new InputStreamReader(is, charset);
+                var reader = new BufferedReader(isr);
+                Stream<String> lines = reader.lines() ) {
+            return lines.toList();
         }
     }
     
