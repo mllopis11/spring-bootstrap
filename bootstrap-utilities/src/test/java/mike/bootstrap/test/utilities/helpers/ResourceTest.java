@@ -72,4 +72,18 @@ class ResourceTest {
 		assertThat(resource.getURL()).isNotNull();
 		assertThat(resource.getProperties()).isNotEmpty();
 	}
+	
+	@Test
+	void should_return_resource_content_when_classpath_resource() throws IOException {
+	    
+	    String name = "data/my-test-properties.txt";
+        
+        Resource resource = new Resource(name);
+        
+        assertThat(resource.found()).isTrue();
+        assertThat(resource.getName()).isEqualTo(name);
+        assertThat(resource.getURL()).isNotNull();
+        assertThat(resource.getURI()).isNotNull();
+        assertThat(resource.getContent()).isNotEmpty().hasSize(8);
+	}
 }

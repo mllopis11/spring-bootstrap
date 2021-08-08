@@ -124,7 +124,7 @@ public class Resource {
     }
     
     /**
-     * @return return all lines with default charset UTF_8.
+     * @return return all non blank lines with default charset UTF_8.
      * @throws IOException if any IO errors occurs
      */
     public List<String> getContent() throws IOException {
@@ -132,7 +132,7 @@ public class Resource {
     }
     
     /**
-     * @return return all lines.
+     * @return return all non blank lines 
      * @throws IOException if any IO errors occurs
      */
     public List<String> getContent(Charset charset) throws IOException {
@@ -140,7 +140,7 @@ public class Resource {
         try ( var is = this.getInputStream(); 
                 var isr = new InputStreamReader(is, charset);
                 var reader = new BufferedReader(isr);
-                Stream<String> lines = reader.lines() ) {
+                Stream<String> lines = reader.lines().filter(l -> ! l.isBlank()) ) {
             return lines.toList();
         }
     }

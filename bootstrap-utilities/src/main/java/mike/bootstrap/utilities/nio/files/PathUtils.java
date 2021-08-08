@@ -18,7 +18,7 @@ private PathUtils() {}
 	
 	/**
      * @param  path  filename
-     * @return the directory of the file
+     * @return the directory of the file or an empty String if no directory is present.
      */
     public static String dirname(final String path) {
         return PathUtils.dirname(Path.of(path));
@@ -26,7 +26,7 @@ private PathUtils() {}
 
     /**
      * @param  path  filename
-     * @return the directory of the file
+     * @return the directory of the file or an empty String if no directory is present.
      */
     public static String dirname(final Path path) {
         var dir = path.getParent();
