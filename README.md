@@ -10,19 +10,22 @@ Components | Versions
 
 **Notes:** 
 - Prefer installation thru the archive (ZIP or Tarball) instead of Windows installer. By this way, you can control where the software are installed and do not pollute the windows registry.
-- See the Software installation paragraph later in this Readme.
 
 Projects | Descriptions
 -------- | ------------
 [bootstrap-dependencies](./bootstrap-dependencies) | Dependencies management versions
-[bootstrap-parent](./bootstrap-parent) | Bootstrap Parent POM 
+[bootstrap-builder](./bootstrap-builder) | Spring-Bootstrap project builder  
+[bootstrap-parent](./bootstrap-parent) | Bootstrap Parent POM (bootstrap-springboot dependency automatically included)
+[bootstrap-springboot](./bootstrap-springboot) | Spring boot application core implementation
+[bootstrap-utilities](./bootstrap-utilities) | Helper classes (independent from springboot)
+[samples](./sample) | Implementation examples
 
 ## Maven
 
 ### Local repository installation
 
 ```bash
-$ git clone https://github.com/mllopis11/java-bootstrap.git [--branch <branchname>]
+$ git clone https://github.com/mllopis11/spring-bootstrap.git [--branch <branchname>]
 $ cd java-bootstrap
 $ mvn clean install
 ```
