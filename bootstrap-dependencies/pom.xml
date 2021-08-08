@@ -29,23 +29,23 @@
         <javax.validation.version>2.0.1.Final</javax.validation.version>
 
         <!-- Loggers -->
-        <slf4j.version>1.7.30</slf4j.version>
-        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <logback.version>1.2.5</logback.version>
 
         <!-- Spring Release Train -->
-        <spring-boot.version>2.5.2</spring-boot.version>
+        <spring-boot.version>2.5.3</spring-boot.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
 
-        <springdoc.openapi.version>1.5.9</springdoc.openapi.version>
+        <springdoc.openapi.version>1.5.10</springdoc.openapi.version>
         <springdoc.openapi.plugin.version>1.1</springdoc.openapi.plugin.version>
 
         <zalando.problem.version>0.26.2</zalando.problem.version>
 
         <!-- Utilities (Apache) -->
         <apache-text.version>1.9</apache-text.version>
-        <apache-compress.version>1.20</apache-compress.version>
-        <commons-io.version>2.8.0</commons-io.version>
-        <apache.tika.version>1.25</apache.tika.version>
+        <apache-compress.version>1.21</apache-compress.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <apache.tika.version>2.0.0</apache.tika.version>
 
         <!-- Tests -->
         <junit-jupiter.version>5.7.2</junit-jupiter.version>
@@ -66,7 +66,7 @@
                 <artifactId>bootstrap-springboot</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
-            
+
             <!-- Java -->
             <dependency>
                 <groupId>javax.inject</groupId>
@@ -117,7 +117,7 @@
                 <artifactId>problem-spring-web-starter</artifactId>
                 <version>${zalando.problem.version}</version>
             </dependency>
-            
+
             <!-- Loggers -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -148,6 +148,12 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${apache.tika.version}</version>
             </dependency>
 
             <!-- Tests -->
