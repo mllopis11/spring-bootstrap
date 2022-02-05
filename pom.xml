@@ -19,8 +19,8 @@
 
     <scm>
         <url>https://github.com/mllopis11/spring-bootstrap</url>
-        <connection>scm:git:https://github.com/mllopis11/spring-bootstrap.git</connection>
-        <developerConnection>scm:git:https://github.com/mllopis11/spring-bootstrap.git</developerConnection>
+        <connection>scm:git:git://github.com/mllopis11/spring-bootstrap.git</connection>
+        <developerConnection>scm:git:git@github.com:mllopis11/spring-bootstrap.git</developerConnection>
     </scm>
 
     <modules>
