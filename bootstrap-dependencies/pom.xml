@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>mike.bootstrap</groupId>
     <artifactId>bootstrap-dependencies</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <description>Bootstrap dependencies</description>
     <packaging>pom</packaging>
 
@@ -56,13 +56,13 @@
             <dependency>
                 <groupId>mike.bootstrap</groupId>
                 <artifactId>bootstrap-utilities</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0</version>
             </dependency>
 
             <dependency>
                 <groupId>mike.bootstrap</groupId>
                 <artifactId>bootstrap-springboot</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0</version>
             </dependency>
 
             <!-- Java -->
