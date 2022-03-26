@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,15 +14,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
         <project.scm.id>my-scm-server</project.scm.id>
-        <project.scm.url>git@github.com:mllopis11/spring-bootstrap</project.scm.url>
     </properties>
 
     <scm>
-        <url>${project.scm.url}</url>
-        <connection>scm:git:${project.scm.url}.git</connection>
-        <developerConnection>scm:git:${project.scm.url}.git</developerConnection>
+        <url>git@github.com:mllopis11/spring-bootstrap</url>
+        <connection>scm:git:git@github.com:mllopis11/spring-bootstrap.git</connection>
+        <developerConnection>scm:git:git@github.com:mllopis11/spring-bootstrap.git</developerConnection>
     </scm>
 
     <modules>
