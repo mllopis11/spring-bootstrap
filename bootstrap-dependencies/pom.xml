@@ -31,10 +31,10 @@
         <logback.version>1.2.10</logback.version>
 
         <!-- Spring Release Train -->
-        <spring-boot.version>2.6.3</spring-boot.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-boot.version>2.6.5</spring-boot.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
 
-        <springdoc.openapi.version>1.6.5</springdoc.openapi.version>
+        <springdoc.openapi.version>1.6.6</springdoc.openapi.version>
         <springdoc.openapi.maven.plugin.version>1.3</springdoc.openapi.maven.plugin.version>
 
         <zalando.problem.version>0.27.0</zalando.problem.version>
@@ -43,7 +43,7 @@
         <apache-text.version>1.9</apache-text.version>
         <apache-compress.version>1.21</apache-compress.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <apache.tika.version>2.2.1</apache.tika.version>
+        <apache.tika.version>2.3.0</apache.tika.version>
 
         <!-- Tests -->
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
