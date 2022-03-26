@@ -4,7 +4,7 @@ Utility library for the most common operations used in java projects.
 
 Components | Versions
 ---------- | --------
-[JDK](https://adoptopenjdk.net) | 15+
+[JDK](https://adoptopenjdk.net) | 17
 [Maven](https://maven.apache.org) | 3.6.3 or higher
 [GIT for Windows](https://gitforwindows.org) | Git Tooling (bash on windows)
 
