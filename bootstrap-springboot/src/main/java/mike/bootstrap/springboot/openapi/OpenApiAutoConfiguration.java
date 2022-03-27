@@ -28,43 +28,43 @@ import mike.bootstrap.utilities.system.AppInfo;
 @ConditionalOnProperty(name = Constants.SPRINGDOC_ENABLED, matchIfMissing = false)
 class OpenApiAutoConfiguration {
 
-	/**
-	 * @return customized openApi info with the current version of the application. 
-	 */
-	@Bean
-	public OpenApiCustomiser openApiCustomizer(
-			OpenApiDocProperties documentation,
-			Optional<List<Map.Entry<String, ApiResponse>>> responsesToRegister) {
-		
-		return openApi -> { 
-			openApi.getInfo().setVersion(AppInfo.version());
+    /**
+     * @return customized openApi info with the current version of the application.
+     */
+    @Bean
+    public OpenApiCustomiser openApiCustomizer(OpenApiDocProperties documentation,
+	    Optional<List<Map.Entry<String, ApiResponse>>> responsesToRegister) {
 
-			openApi.getInfo().setContact(
-					new Contact()
-						.name(documentation.getContactName())
-						.email(documentation.getContactEmail())
-						.url(documentation.getContactUrl()));
-			
-			openApi.getInfo().setLicense(
-					new License()
-						.name(documentation.getLicenseName())
-						.url(documentation.getLicenseUrl()));
-			
-			responsesToRegister
-				.ifPresent( responses -> responses
-						.forEach(entry -> openApi.getComponents().addResponses(entry.getKey(), entry.getValue())));
-		};
-	}
-	
-	@Bean
-	@ConditionalOnClass(Problem.class)
-	public JsonSerializer<DefaultProblem> problemDefaultJsonSerializer() {
-		return new DefaultProblemJsonSerializer();
-	}
-	
-	@Bean
-	@ConditionalOnClass(ConstraintViolationProblem.class)
-	public JsonSerializer<ConstraintViolationProblem> problemConstraintDefaultJsonSerializer() {
-		return new DefaultProblemConstraintJsonSerializer();
-	}
+	return openApi -> {
+	    openApi.getInfo().setVersion(AppInfo.version());
+
+	    openApi.getInfo()
+	    	.setContact(
+		    new Contact()
+	    		.name(documentation.getContactName())
+	    		.email(documentation.getContactEmail())
+	    		.url(documentation.getContactUrl()));
+
+	    openApi.getInfo()
+	    	.setLicense(
+		    new License()
+		    	.name(documentation.getLicenseName())
+		    	.url(documentation.getLicenseUrl()));
+
+	    responsesToRegister.ifPresent(responses -> responses
+		    .forEach(entry -> openApi.getComponents().addResponses(entry.getKey(), entry.getValue())));
+	};
+    }
+
+    @Bean
+    @ConditionalOnClass(Problem.class)
+    public JsonSerializer<DefaultProblem> problemDefaultJsonSerializer() {
+	return new DefaultProblemJsonSerializer();
+    }
+
+    @Bean
+    @ConditionalOnClass(ConstraintViolationProblem.class)
+    public JsonSerializer<ConstraintViolationProblem> problemConstraintDefaultJsonSerializer() {
+	return new DefaultProblemConstraintJsonSerializer();
+    }
 }

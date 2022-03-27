@@ -8,9 +8,10 @@ import mike.bootstrap.utilities.helpers.Dates;
 import mike.bootstrap.utilities.system.AppInfo;
 
 /**
- * Interface to implement when the spring context has been initialized to configure the
- * application resources.<br>
- * Overrides the method {@link ContainerBootstrapInitialized#onContainerInitialized()} to perform additional configuration.
+ * Interface to implement when the spring context has been initialized to
+ * configure the application resources.<br>
+ * Overrides the method {@link ContainerBootstrapInitialized#onContainerInitialized()} to perform
+ * additional configuration.
  * 
  * @author Mike (2021-02)
  *
@@ -18,16 +19,17 @@ import mike.bootstrap.utilities.system.AppInfo;
 public interface ContainerBootstrapInitialized extends ApplicationListener<ContextRefreshedEvent> {
 
     default void onContainerInitialized() {
-		// TODO additional configuration here
-	}
-	
-	@Override
+	// Additional configuration here
+    }
+
+    @Override
     default void onApplicationEvent(ContextRefreshedEvent event) {
-		
-        final var logger = LoggerFactory.getLogger(ContainerBootstrapInitialized.class);
-        
-        logger.info("{} (node: {}) context initialized and ready at {}", AppInfo.module(), AppInfo.node(), Dates.zNow());
-        
-        this.onContainerInitialized();
+
+	final var logger = LoggerFactory.getLogger(ContainerBootstrapInitialized.class);
+
+	logger.info("{} (node: {}) context initialized and ready at {}", AppInfo.module(), AppInfo.node(),
+		Dates.zNow());
+
+	this.onContainerInitialized();
     }
 }

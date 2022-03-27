@@ -13,15 +13,15 @@ import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 @Configuration
 @ConditionalOnClass(LocaleResolver.class)
 class ApplicationDefaultConfiguration {
-	
-	private static final Logger log = LoggerFactory.getLogger(ApplicationDefaultConfiguration.class);
-	
-	@Bean
-	public LocaleResolver localeResolver() {
-		var fixedLocale = Locale.ENGLISH;
-		
-		log.info("Application locale (fixed): {}", fixedLocale.getDisplayName());
-		
-		return new FixedLocaleResolver(fixedLocale);
-	}
+
+    private static final Logger log = LoggerFactory.getLogger(ApplicationDefaultConfiguration.class);
+
+    @Bean
+    public LocaleResolver localeResolver() {
+	var fixedLocale = Locale.ENGLISH;
+
+	log.info("Application locale (fixed): {}", fixedLocale.getDisplayName());
+
+	return new FixedLocaleResolver(fixedLocale);
+    }
 }
