@@ -109,7 +109,7 @@ private PathUtils() {}
      */
     public static String toUnixPath(Path path) {
     	if ( SysInfo.isWindows() ) {
-    		return path.toString().replaceAll("\\+", "/");
+    		return path.toString().replace("\\", "/");
     	}
     	
     	return path.toString();
