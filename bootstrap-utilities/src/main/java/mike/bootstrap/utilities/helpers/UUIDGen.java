@@ -11,31 +11,31 @@ import java.util.UUID;
  */
 public class UUIDGen {
 
-	/**
-	 * Contructor (prevent any instantiation)
-	 */
+    /**
+     * Contructor (prevent any instantiation)
+     */
     private UUIDGen() {}
-    
+
     /**
      * Get UUID type 4 (Secure Random UUID).
      * <p>
-     * The Java implementation is SecureRandom, which uses an unpredictable value 
-     * as the seed to generate random numbers to reduce the chance of collisions.
+     * The Java implementation is SecureRandom, which uses an unpredictable value as
+     * the seed to generate random numbers to reduce the chance of collisions.
      * 
      * @return a random UUID.
      * @see UUID#randomUUID
      */
     public static String uuidV4() {
-        return UUID.randomUUID().toString();
+	return UUID.randomUUID().toString();
     }
-    
+
     /**
      * Get short UUID type 4 (Secure Random UUID).
      * 
      * @return the first symbol of the random UUID
      */
     public static String uuidV4Short() {
-        return UUIDGen.first(UUIDGen.uuidV4());
+	return UUIDGen.first(UUIDGen.uuidV4());
     }
 
     /**
@@ -44,9 +44,9 @@ public class UUIDGen {
      * @return a random UUID without dash.
      */
     public static String uuidV4Stripped() {
-        return UUIDGen.strip(UUIDGen.uuidV4());
+	return UUIDGen.strip(UUIDGen.uuidV4());
     }
-    
+
     /**
      * Get UUID type 3 base on the provided name with namespace.
      *
@@ -54,24 +54,24 @@ public class UUIDGen {
      * @return the source name UUID.
      */
     public static String uuidV3(String name) {
-        return UUIDGen.uuidV3("", name);
+	return UUIDGen.uuidV3("", name);
     }
-    
+
     /**
      * Get UUID type 3 based on the provided namespace and source name.
      * <p>
      * This method will return the same UUID for the same name and namespace.
      * 
      * @param namespace a name space identifier (DNS, URL ...)
-     * @param name source name (filename, object identifier ...)
+     * @param name      source name (filename, object identifier ...)
      * @return the source name UUID.
      */
     public static String uuidV3(String namespace, String name) {
-        String source = namespace + name;
-        byte[] bytes = source.getBytes(StandardCharsets.UTF_8);
-        return UUID.nameUUIDFromBytes(bytes).toString();
+	String source = namespace + name;
+	byte[] bytes = source.getBytes(StandardCharsets.UTF_8);
+	return UUID.nameUUIDFromBytes(bytes).toString();
     }
-    
+
     /**
      * Remove dash from the UUID.
      * 
@@ -79,9 +79,9 @@ public class UUIDGen {
      * @return the UUID without dash.
      */
     public static String strip(String uuid) {
-        return uuid.replace("-", "");
+	return uuid.replace("-", "");
     }
-    
+
     /**
      * Remove dash from the UUID.
      * 
@@ -89,6 +89,6 @@ public class UUIDGen {
      * @return the first item of the UUID.
      */
     public static String first(String uuid) {
-        return uuid.split("-", 2)[0];
+	return uuid.split("-", 2)[0];
     }
 }

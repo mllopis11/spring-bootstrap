@@ -15,7 +15,7 @@ import mike.bootstrap.utilities.helpers.ByteUnit;
 @DisplayName("Helpers::ByteUnit")
 class ByteUnitTest {
 
-	@BeforeAll
+    @BeforeAll
     static void init() {
         /* Locale for decimal representation */
         Locale.setDefault(Locale.US);

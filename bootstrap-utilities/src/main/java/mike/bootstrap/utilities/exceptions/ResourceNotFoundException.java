@@ -1,28 +1,28 @@
 package mike.bootstrap.utilities.exceptions;
 
 /**
- * The resource does not exists. 
+ * The resource does not exists.
  * 
  * @author Mike (2021-03)
  */
 public class ResourceNotFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = -7246889878412038163L;
+    private static final long serialVersionUID = -7246889878412038163L;
 
-	/**
+    /**
      * @param message understandable contextual message
      * @param args    optional message arguments
      */
     public ResourceNotFoundException(String message, Object... args) {
-        super(String.format(message, args));
+	super(String.format(message, args));
     }
-    
+
     /**
      * @param throwable root cause of the exception
      * @param message   understandable contextual message
      * @param args      optional message arguments
      */
     public ResourceNotFoundException(Throwable throwable, String message, Object... args) {
-        super(String.format(message, args), throwable);
+	super(String.format(message, args), throwable);
     }
 }
