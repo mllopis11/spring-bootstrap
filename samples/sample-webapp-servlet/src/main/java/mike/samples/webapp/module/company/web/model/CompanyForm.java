@@ -9,34 +9,34 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Company form")
 public class CompanyForm {
 
-	@NotBlank
-	@Size(min = 2, max = 20)
-	@Pattern(regexp = "[\\w\\-]+")
-	private String name;
-	
-	@NotBlank
-	@Size(min = 5, max = 50)
-	@Pattern(regexp = "[\\w\\s\\-]+")
-	private String description;
+    @NotBlank
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "[\\w\\-]+")
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @NotBlank
+    @Size(min = 5, max = 50)
+    @Pattern(regexp = "[\\w\\s\\-]+")
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+	return description;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("CompanyForm [name=%s, description=%s]", name, description);
-	}
+    public void setDescription(String description) {
+	this.description = description;
+    }
+
+    @Override
+    public String toString() {
+	return String.format("CompanyForm [name=%s, description=%s]", name, description);
+    }
 }
