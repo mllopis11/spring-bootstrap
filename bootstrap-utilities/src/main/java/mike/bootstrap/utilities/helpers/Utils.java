@@ -36,7 +36,7 @@ public class Utils {
      * @return true the port number is valid
      */
     public static boolean isPortValid(int port, boolean... includeSystemPorts) {
-	boolean include = includeSystemPorts.length > 0 ? includeSystemPorts[0] : Boolean.FALSE;
+	var include = includeSystemPorts.length > 0 ? includeSystemPorts[0] : Boolean.FALSE;
 	return port >= (include ? 0 : 1024) && port <= 65535;
     }
 
@@ -59,7 +59,7 @@ public class Utils {
      * @return the argument value or an empty string if not set
      */
     public static String getArgv(String arg, String... defValue) {
-	String[] items = arg != null ? arg.split("=", 2) : new String[] {};
+	var items = arg != null ? arg.split("=", 2) : new String[] {};
 	return items.length == 2 && !items[0].isBlank() && !items[1].isBlank() ? items[1].trim()
 		: Utils.defautValue(defValue);
     }
@@ -74,7 +74,7 @@ public class Utils {
      * @see Utils#toInteger(String, int...)
      */
     public static int getArgv(String arg, int defValue) {
-	String str = Utils.getArgv(arg);
+	var str = Utils.getArgv(arg);
 	return Utils.toInteger(str, defValue);
     }
 
@@ -84,8 +84,20 @@ public class Utils {
      * @return value with any leading and trailing whitespace or empty string if
      *         null
      */
+    @Deprecated
     public static String trim(String value, String... defValue) {
-	String str = value != null ? value.trim() : "";
+	var str = value != null ? value.trim() : "";
+	return !str.isEmpty() ? str : Utils.defautValue(defValue);
+    }
+    
+    /**
+     * @param value    value to strip
+     * @param defValue default value if value is null
+     * @return value with any leading and trailing whitespace or empty string if
+     *         null
+     */
+    public static String strip(String value, String... defValue) {
+	var str = value != null ? value.strip() : "";
 	return !str.isEmpty() ? str : Utils.defautValue(defValue);
     }
 
@@ -99,7 +111,7 @@ public class Utils {
      */
     public static int toInteger(String value, int... defValue) {
 	try {
-	    return Integer.parseInt(Utils.trim(value));
+	    return Integer.parseInt(Utils.strip(value));
 	} catch (NumberFormatException nfe) {
 	    return defValue.length > 0 ? defValue[0] : 0;
 	}
@@ -115,7 +127,7 @@ public class Utils {
      */
     public static long toLong(String value, long... defValue) {
 	try {
-	    return Long.parseLong(Utils.trim(value));
+	    return Long.parseLong(Utils.strip(value));
 	} catch (NumberFormatException nfe) {
 	    return defValue.length > 0 ? defValue[0] : 0;
 	}

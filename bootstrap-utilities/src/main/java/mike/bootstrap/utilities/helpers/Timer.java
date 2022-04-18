@@ -169,7 +169,7 @@ public class Timer {
 	try {
 	    TimeUnit.SECONDS.sleep(seconds);
 	} catch (InterruptedException ie) {
-	    /* Ignored */
+	    Thread.currentThread().interrupt();
 	}
     }
 }

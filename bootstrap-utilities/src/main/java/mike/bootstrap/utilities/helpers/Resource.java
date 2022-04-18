@@ -36,7 +36,7 @@ public class Resource {
      */
     public Resource(String target) {
 
-	this.target = Utils.trim(target);
+	this.target = Utils.strip(target);
 
 	if (this.target.isEmpty()) {
 	    throw new IllegalArgumentException("no such filename provided (blank)");

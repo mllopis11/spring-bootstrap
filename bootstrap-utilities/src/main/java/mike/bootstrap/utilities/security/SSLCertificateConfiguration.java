@@ -52,7 +52,7 @@ public class SSLCertificateConfiguration {
      *                              file
      */
     public static void configure() {
-	String filename = System.getProperty(KW_JVM_PROP_NAME, KW_DEFAULT_CERTIFICATES_CONFIG);
+	var filename = System.getProperty(KW_JVM_PROP_NAME, KW_DEFAULT_CERTIFICATES_CONFIG);
 	SSLCertificateConfiguration.configure(filename);
     }
 
@@ -129,7 +129,7 @@ public class SSLCertificateConfiguration {
      * @throws ApplicationErrorException if truststore file is not readable
      */
     public static void setTrustStore(String trustStore) {
-	String store = Utils.trim(trustStore);
+	var store = Utils.strip(trustStore);
 
 	if (!store.isEmpty()) {
 	    var absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
@@ -157,7 +157,7 @@ public class SSLCertificateConfiguration {
      * @param trustStorePassword trust store password
      */
     public static void setTrustStorePassword(String trustStorePassword) {
-	String pass = Utils.trim(trustStorePassword);
+	var pass = Utils.strip(trustStorePassword);
 
 	if (!pass.isEmpty()) {
 	    System.setProperty(KW_TRUSTSTORE_SECRET, pass);

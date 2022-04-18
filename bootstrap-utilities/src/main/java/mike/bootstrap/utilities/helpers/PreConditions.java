@@ -66,12 +66,12 @@ public class PreConditions {
 	
 	PreConditions.notNull(obj, varName);
 	
-	if ( obj instanceof Collection<?> collection) {
-	    PreConditions.test(!collection.isEmpty(), "collection '%s is empty" , varName);
-	} else if ( obj instanceof Map<?, ?> map) {
-	    PreConditions.test(!map.isEmpty(), "collection (map) '%s is empty" , varName);
-	} else if (obj instanceof String string) {
-	    PreConditions.test(!string.isEmpty(), "variable '%s is empty" , varName);
+	if (obj instanceof String string) {
+	    PreConditions.test(!string.isEmpty(), "variable '%s' is empty" , varName);
+	} else if (obj instanceof Collection<?> collection) {
+	    PreConditions.test(!collection.isEmpty(), "collection '%s' is empty" , varName);
+	} else if (obj instanceof Map<?, ?> map) {
+	    PreConditions.test(!map.isEmpty(), "collection (map) '%s' is empty" , varName);
 	} else {
 	    throw new UnsupportedOperationException(
 		    String.format("object type not supported: type=%s, var=%s", obj.getClass().getName(), varName));

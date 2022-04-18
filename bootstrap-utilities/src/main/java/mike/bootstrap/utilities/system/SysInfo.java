@@ -181,7 +181,7 @@ public class SysInfo {
      */
     public static void hostAddressAlreadyBound(String hostname, String port) {
 
-	String myHost = Utils.trim(hostname);
+	String myHost = Utils.strip(hostname);
 	var myPort = Utils.toInteger(port, 0);
 
 	if (myHost.isBlank() || Utils.isPortNotValid(myPort)) {

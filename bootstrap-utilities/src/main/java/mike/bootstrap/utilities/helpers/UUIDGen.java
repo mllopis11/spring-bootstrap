@@ -67,8 +67,8 @@ public class UUIDGen {
      * @return the source name UUID.
      */
     public static String uuidV3(String namespace, String name) {
-	String source = namespace + name;
-	byte[] bytes = source.getBytes(StandardCharsets.UTF_8);
+	var source = namespace + name;
+	var bytes = source.getBytes(StandardCharsets.UTF_8);
 	return UUID.nameUUIDFromBytes(bytes).toString();
     }
 

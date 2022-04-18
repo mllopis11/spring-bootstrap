@@ -61,14 +61,14 @@ class DatesTest {
     	assertThat(Dates.toLocalDateTime(new Date())).isNotNull();
     	assertThat(Dates.toZonedDateTime(new Date())).isNotNull();
         
-        FileTime fileTime = FileTime.from(zonedDateTime.toInstant());
+        var fileTime = FileTime.from(zonedDateTime.toInstant());
         assertThat(Dates.toLocalDateTime(fileTime)).isNotNull();
     	assertThat(Dates.toZonedDateTime(fileTime)).isNotNull();
     }
     
     @Test
     void toXxxDateEpoch_should_return_epoch_date_object() {
-    	LocalDateTime localDateTimeEpoch = LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
+	var localDateTimeEpoch = LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
     	
     	assertThat(Dates.toLocalDateTimeEpoch()).isEqualTo(localDateTimeEpoch);
     	assertThat(Dates.toZonedDateTimeEpoch()).isEqualTo(ZonedDateTime.of(localDateTimeEpoch, ZoneId.systemDefault()));
@@ -83,7 +83,7 @@ class DatesTest {
 
     @Test
     void format_ZonedDateTime_should_return_formatted_date() {
-    	String zonedDateTimeFormatted = Dates.format(zonedDateTime);
+	var zonedDateTimeFormatted = Dates.format(zonedDateTime);
     	
     	assertThat(zonedDateTimeFormatted)
     		.isNotEmpty()
@@ -91,14 +91,14 @@ class DatesTest {
         
     	assertThat(Dates.format(zonedDateTime, defaultDateTimeFormatter)).isNotEmpty();
         
-        ZonedDateTime summerZonedDateTime = ZonedDateTime.of(2020, 10, 04, 15, 9, 34, 345000000, ZoneId.systemDefault());
+    	var summerZonedDateTime = ZonedDateTime.of(2020, 10, 04, 15, 9, 34, 345000000, ZoneId.systemDefault());
         
         assertThat(Dates.format(summerZonedDateTime)).isEqualTo("2020-10-04T15:09:34.345+02:00");        
     }
     
     @Test
     void format_FileTime_should_return_formatted_date() {
-        FileTime fileTime = FileTime.from(zonedDateTime.toInstant());
+	var fileTime = FileTime.from(zonedDateTime.toInstant());
 
         assertThat(Dates.format(fileTime)).isNotEmpty();
     	assertThat(Dates.format(fileTime, defaultDateTimeFormatter)).isNotEmpty();
@@ -106,7 +106,7 @@ class DatesTest {
     
     @Test
     void format_Date_should_return_formatted_date() {
-        Date date = new Date();
+	var date = new Date();
         assertThat(Dates.format(date)).isNotEmpty();
         assertThat(Dates.format(date, defaultDateTimeFormatter)).isNotEmpty();
         assertThat(Dates.format(date, defaultDateFormatter)).isNotEmpty();

@@ -23,7 +23,7 @@ class PathUtilsTest {
         "my_file.txt, "} )
     void should_return_directory_name_when_filename(String fullFilename, String expectedDirname) {
         
-        var expectedDirPath = Path.of(Utils.trim(expectedDirname));
+        var expectedDirPath = Path.of(Utils.strip(expectedDirname));
         
         var dirname = PathUtils.dirname(fullFilename);
         
