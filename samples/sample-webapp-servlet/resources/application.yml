@@ -17,6 +17,8 @@ logging:
     web: INFO
 
 springdoc:
+  api-docs:
+    enabled: true
   swagger-ui:
     enabled: true
     display-request-duration: true

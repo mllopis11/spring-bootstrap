@@ -10,13 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class CompanyForm {
 
     @NotBlank
-    @Size(min = 2, max = 20)
-    @Pattern(regexp = "[\\w\\-]+")
+    @Pattern(regexp = "[\\w\\-]{2,20}")
     private String name;
 
     @NotBlank
     @Size(min = 5, max = 50)
-    @Pattern(regexp = "[\\w\\s\\-]+")
+    @Pattern(regexp = "[\\w\\s\\-]{2,20}")
     private String description;
 
     public String getName() {
