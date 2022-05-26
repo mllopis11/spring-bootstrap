@@ -23,18 +23,17 @@ import mike.bootstrap.utilities.system.SysInfo;
  */
 class ApplicationBootstrap {
 
-    private ApplicationBootstrap() {
-    }
+    private ApplicationBootstrap() {}
 
     /**
-     * Configure SpringBoot Application as a standalone application.
+     * Configure SpringBoot Application as a Batch application.
      * 
      * @param clazz the bean sources (the main class most of the time)
      * @param args  application arguments
      * @return org.springframework.boot#SpringApplication
      */
-    public static SpringApplication standalone(Class<?> clazz, String[] args) {
-	return ApplicationBootstrap.configure(clazz, args, WebApplicationType.NONE);
+    public static SpringApplication batch(Class<?> clazz, String[] args) {
+        return ApplicationBootstrap.configure(clazz, args, WebApplicationType.NONE);
     }
 
     /**
@@ -45,18 +44,18 @@ class ApplicationBootstrap {
      * @return org.springframework.boot#SpringApplication
      */
     public static SpringApplication servlet(Class<?> clazz, String[] args) {
-	return ApplicationBootstrap.configure(clazz, args, WebApplicationType.SERVLET);
+        return ApplicationBootstrap.configure(clazz, args, WebApplicationType.SERVLET);
     }
 
     /**
-     * Configure SpringBoot Application as a MVC Web application.
+     * Configure SpringBoot Application as a Reactive Web application.
      * 
      * @param clazz the bean sources (the main class most of the time)
      * @param args  application arguments
      * @return org.springframework.boot#SpringApplication
      */
     public static SpringApplication reactive(Class<?> clazz, String[] args) {
-	return ApplicationBootstrap.configure(clazz, args, WebApplicationType.REACTIVE);
+        return ApplicationBootstrap.configure(clazz, args, WebApplicationType.REACTIVE);
     }
 
     /**
@@ -69,33 +68,33 @@ class ApplicationBootstrap {
      */
     private static SpringApplication configure(Class<?> clazz, String[] args, WebApplicationType appType) {
 
-	List<String> options = args != null ? List.of(args) : List.of();
+        List<String> options = args != null ? List.of(args) : List.of();
 
-	Print.out(AppInfo.banner());
-	Print.out("Application starting with args: %s", options);
+        Print.out(AppInfo.banner());
+        Print.out("Application starting with args: %s", options);
 
-	if (clazz == null) {
-	    throw new IllegalArgumentException("Bootstrap::configure: no such class");
-	}
+        if (clazz == null) {
+            throw new IllegalArgumentException("Bootstrap::configure: no such class");
+        }
 
-	SysInfo.setMainClass(clazz);
+        SysInfo.setMainClass(clazz);
 
-	Properties configuration = parseCommandLineArguments(options);
+        Properties configuration = parseCommandLineArguments(options);
 
-	/* *** SSL Auto-Configuration *** */
-	SSLCertificateConfiguration.configure();
+        /* *** SSL Auto-Configuration *** */
+        SSLCertificateConfiguration.configure();
 
-	/* *** Build Spring Application *** */
-	SpringApplication application = new SpringApplicationBuilder(clazz)
-		.logStartupInfo(true).bannerMode(Mode.OFF)
-		.properties(configuration)
-		.initializers(new ApplicationBootstrapInitializer())
-		.web(appType)
-		.build();
+        /* *** Build Spring Application *** */
+        SpringApplication application = new SpringApplicationBuilder(clazz)
+                .logStartupInfo(true).bannerMode(Mode.OFF)
+                .properties(configuration)
+                .initializers(new ApplicationBootstrapInitializer())
+                .web(appType)
+                .build();
 
-	System.setProperty(AppInfo.KW_APP_WEBAPP, String.valueOf(appType != WebApplicationType.NONE));
+        System.setProperty(AppInfo.KW_APP_WEBAPP, String.valueOf(appType != WebApplicationType.NONE));
 
-	return application;
+        return application;
     }
 
     /**
@@ -105,22 +104,22 @@ class ApplicationBootstrap {
      */
     private static Properties parseCommandLineArguments(List<String> options) {
 
-	var configuration = new Properties();
+        var configuration = new Properties();
 
-	for (String opt : options) {
+        for (String opt : options) {
 
-	    if (opt.startsWith("--node=")) {
-		String node = Utils.getArgv(opt);
-		configuration.setProperty(AppInfo.KW_APP_NODE, node);
-		System.setProperty(AppInfo.KW_APP_NODE, node);
-	    }
-	}
+            if (opt.startsWith("--node=")) {
+                String node = Utils.getArgv(opt);
+                configuration.setProperty(AppInfo.KW_APP_NODE, node);
+                System.setProperty(AppInfo.KW_APP_NODE, node);
+            }
+        }
 
-	if (configuration.getProperty(AppInfo.KW_APP_NODE, "").isEmpty()) {
-	    Print.fatal("Bootstrap::commandLine: no such argument: --node");
-	    System.exit(1);
-	}
+        if (configuration.getProperty(AppInfo.KW_APP_NODE, "").isEmpty()) {
+            Print.fatal("Bootstrap::commandLine: no such argument: --node");
+            System.exit(1);
+        }
 
-	return configuration;
+        return configuration;
     }
 }

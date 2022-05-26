@@ -11,11 +11,11 @@ public class Application {
 
     private Application() {}
 
-    public static void standalone(Class<?> clazz, String[] args) {
-	ApplicationBootstrap.standalone(clazz, args).run(args);
+    public static void batch(Class<?> clazz, String[] args) {
+        ApplicationBootstrap.batch(clazz, args).run(args);
     }
 
     public static void servlet(Class<?> clazz, String[] args) {
-	ApplicationBootstrap.servlet(clazz, args).run(args);
+        ApplicationBootstrap.servlet(clazz, args).run(args);
     }
 }

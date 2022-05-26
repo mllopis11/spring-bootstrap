@@ -10,7 +10,7 @@ import mike.bootstrap.springboot.application.Application;
 public class SampleBasicApplication {
 
     public static void main(String[] args) {
-	Application.standalone(SampleBasicApplication.class, args);
+	Application.batch(SampleBasicApplication.class, args);
     }
 
 }
