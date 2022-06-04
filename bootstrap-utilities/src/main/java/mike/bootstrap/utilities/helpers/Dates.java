@@ -31,8 +31,7 @@ public class Dates {
     /**
      * Private constructor (Prevent any instantiation)
      */
-    private Dates() {
-    }
+    private Dates() {}
 
     /**
      * @return current LocalDateTime as

@@ -16,7 +16,7 @@ class UtilsTest {
 
 	@BeforeAll
 	static void init() {
-		Timer.pause(1);
+		Timer.sleep(1);
 	}
 	
 	@Test

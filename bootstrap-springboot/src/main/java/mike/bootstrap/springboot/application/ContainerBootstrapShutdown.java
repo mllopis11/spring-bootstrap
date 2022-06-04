@@ -37,7 +37,7 @@ public interface ContainerBootstrapShutdown extends DisposableBean {
 
 	this.onContainerShutdown();
 
-	String elapsed = tm.toSeconds();
+	String elapsed = tm.elapsToSeconds();
 	log.info("{} (node: {}) shutdown applicative components completed in {}", AppInfo.module(), AppInfo.node(),
 		elapsed);
     }

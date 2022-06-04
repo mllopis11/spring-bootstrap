@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.nio.file.attribute.FileTime;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -21,9 +22,10 @@ import mike.bootstrap.utilities.helpers.Dates;
 @DisplayName("Helpers::Dates")
 class DatesTest {
 
-	private static LocalDateTime localDateTime = LocalDateTime.of(2019, 3, 15, 15, 9, 34);
+    private static LocalDate localDate = LocalDate.of(2019, 3, 15);
+    private static LocalDateTime localDateTime = LocalDateTime.of(2019, 3, 15, 15, 9, 34);
     private static ZonedDateTime zonedDateTime = ZonedDateTime.of(2019, 3, 15, 15, 9, 34, 345000000, ZoneId.systemDefault());
-    private static DateTimeFormatter defaultDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+    private static DateTimeFormatter defaultDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private static DateTimeFormatter defaultDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     
     @Test
@@ -76,9 +78,19 @@ class DatesTest {
     }
     
     @Test
+    void format_LocalDate_should_return_formatted_date() {
+	assertThat(Dates.format(localDate)).isNotEmpty().isEqualTo("2019-03-15");
+	assertThat(Dates.format(localDate, defaultDateFormatter))
+		.isNotEmpty()
+		.isEqualTo("15-03-2019");
+    }
+    
+    @Test
     void format_LocalDateTime_should_return_formatted_date() {
     	assertThat(Dates.format(localDateTime)).isNotEmpty();
-    	assertThat(Dates.format(localDateTime, defaultDateTimeFormatter)).isNotEmpty();
+    	assertThat(Dates.format(localDateTime, defaultDateTimeFormatter))
+    		.isNotEmpty()
+    		.isEqualTo("15-03-2019 15:09");
     }
 
     @Test

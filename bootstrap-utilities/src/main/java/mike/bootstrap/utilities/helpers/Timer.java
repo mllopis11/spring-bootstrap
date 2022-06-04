@@ -12,164 +12,143 @@ import java.util.concurrent.TimeUnit;
  */
 public class Timer {
 
-    private static final String SECONDS_FORMAT = "%.03f second(s)";
-
+private static final String SECONDS_FORMAT = "%.03f second(s)";
+    
     private Instant startTime = Instant.now();
-    private Instant splitTime = startTime;
-    private Duration elapsedTime = Duration.ofMillis(0);
-    private Duration splittedTime = Duration.ofMillis(0);
     private boolean stopped = false;
-
+    private Duration elapsDuration = Duration.ofMillis(0);
+    private Instant checkPoint = startTime;
+    private Duration checkPointDuration = Duration.ofMillis(0);
+    
+    /**
+     * Perform a sleep.
+     * 
+     * @param seconds number of seconds to sleep
+     * @see TimeUnit#sleep(long)
+     */
+    public static void sleep(int seconds) {
+	try {
+	    TimeUnit.SECONDS.sleep(seconds);
+	} catch (InterruptedException ie) {
+	    Thread.currentThread().interrupt();
+	}
+    }
+    
     /**
      * Reset the timer to the current time
      */
     public void reset() {
-	startTime = Instant.now();
-	splitTime = startTime;
-	elapsedTime = Duration.ofMillis(0);
-	splittedTime = Duration.ofMillis(0);
+	this.startTime = Instant.now();
+	this.stopped = false;
+	this.elapsDuration = Duration.ofMillis(0);
+	this.checkPoint = this.startTime;
+	this.checkPointDuration = Duration.ofMillis(0);
     }
 
     /**
-     * Stop the timer
+     * @return true if the timer is stopped (i.e. the method {@link Timer#stop()} has been invoked) 
+     */
+    public boolean isStopped() {
+	return this.stopped;
+    }
+
+    /**
+     * Stop the timer.
      * 
-     * @return elapsed duration in milliseconds
+     * @return elapsed duration
      */
     public Duration stop() {
 	elaps();
 	split();
-	stopped = true;
-	return elapsedTime;
+	this.stopped = true;
+	return this.elapsDuration;
     }
-
+    
     /**
      * @return Timer start time
      */
     public Instant startTime() {
-	return startTime;
+	return this.startTime;
     }
-
+    
     /**
-     * @return Elapsed duration
+     * @return Timer end time (start
      */
-    public Duration elaps() {
-	if (!stopped) {
-	    elapsedTime = Duration.between(startTime, Instant.now());
-	}
-
-	return elapsedTime;
+    public Instant endTime() {
+	return this.startTime().plus(this.elaps());
     }
-
-    /**
-     * @return Elapsed duration since the last checkpoint
-     */
-    public Duration split() {
-	if (!stopped)
-	    splittedTime = Duration.between(splitTime, Instant.now());
-
-	return splittedTime;
-    }
-
+    
     /**
      * Reset the last checkpoint
      */
     public void checkPoint() {
-	splitTime = Instant.now();
+	this.checkPoint = Instant.now();
     }
-
+    
     /**
-     * @return elapsed time in seconds.
+     * @return Elapsed duration since the last checkpoint
      */
-    public double seconds(Duration time) {
-	return time.toMillis() / 1000.;
+    public Duration split() {
+	if ( ! this.isStopped() ) {
+	    this.checkPointDuration = Duration.between(this.checkPoint, Instant.now());
+	}
+	
+	return checkPointDuration;
     }
-
-    /**
-     * @return total elapsed time in seconds.
-     */
-    public double seconds() {
-	return elaps().toMillis() / 1000.;
-    }
-
-    /**
-     * @return total elapsed time formatted as: 0.000 second(s)
-     */
-    public String toSeconds() {
-	return String.format(SECONDS_FORMAT, this.seconds());
-    }
-
-    /**
-     * @return time formatted as: 0.000 second(s)
-     */
-    public String toSeconds(Duration time) {
-	return String.format(SECONDS_FORMAT, this.seconds(time));
-    }
-
+    
     /**
      * @return Split duration formatted as: 0.000 second(s)
      */
     public String splitToSeconds() {
-	return String.format(SECONDS_FORMAT, this.seconds(split()));
+	return String.format(SECONDS_FORMAT, this.toSeconds(this.split()));
     }
-
+    
     /**
-     * @return Split duration (format: hh:mm:ss:ms)
+     * @return Cuurent elapsed duration
      */
-    public String splitTime() {
-	return this.elapsTime(split().toMillis());
+    public Duration elaps() {
+	if ( ! this.isStopped() ) {
+	    this.elapsDuration = Duration.between(this.startTime, Instant.now());
+	}
+	
+	return this.elapsDuration;
     }
-
+    
+    /**
+     * @return current elapsed time formatted as: 0.000 second(s)
+     */
+    public String elapsToSeconds() {
+	return String.format(SECONDS_FORMAT, this.toSeconds(this.elaps()));
+    }
+    
     /**
      * @return elapsed time (format: hh:mm:ss:ms)
      */
     public String elapsTime() {
-	return this.elapsTime(elaps().toMillis());
-    }
-
-    /**
-     * @param millis duration in milliseconds
-     * @return elapsed time (format: hh:mm:ss:ms)
-     */
-    public String elapsTime(long millis) {
-	return String.format("%02d:%02d:%02d.%03d", TimeUnit.MILLISECONDS.toHours(millis) % TimeUnit.DAYS.toHours(1),
+	var millis = this.elaps().toMillis();
+	return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis) % TimeUnit.DAYS.toHours(1),
 		TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
-		TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1),
-		millis % TimeUnit.SECONDS.toMillis(1));
+		TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
     }
 
     /**
      * @return elapsed time (format: days, hours, min., sec.)
      */
     public String upTime() {
-	return this.upTime(elaps().toMillis());
-    }
-
-    /**
-     * @param millis duration in milliseconds
-     * @return elapsed time (format: days, hours, min., sec.)
-     */
-    public String upTime(long millis) {
-	return String.format("%d day(s), %02d hour(s), %02d min., %02d sec.", TimeUnit.MILLISECONDS.toDays(millis),
+	var millis = this.elaps().toMillis();
+	
+	return String.format("%d day(s), %d hour(s), %d min., %d sec.", TimeUnit.MILLISECONDS.toDays(millis),
 		TimeUnit.MILLISECONDS.toHours(millis) % TimeUnit.DAYS.toHours(1),
 		TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
 		TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
     }
-
+    
+    /* ****************************** PRIVATE METHODS ****************************** */
+    
     /**
-     * @param seconds number of seconds to sleep
+     * @return elapsed time in seconds.
      */
-    public void sleep(int seconds) {
-	Timer.pause(seconds);
-    }
-
-    /**
-     * @param seconds number of seconds to sleep
-     */
-    public static void pause(int seconds) {
-	try {
-	    TimeUnit.SECONDS.sleep(seconds);
-	} catch (InterruptedException ie) {
-	    Thread.currentThread().interrupt();
-	}
+    private double toSeconds(Duration time) {
+	return time.toMillis() / 1000.;
     }
 }
