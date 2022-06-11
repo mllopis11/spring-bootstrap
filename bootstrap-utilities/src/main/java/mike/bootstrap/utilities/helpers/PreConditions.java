@@ -32,12 +32,13 @@ public class PreConditions {
      * The object must not be null.
      * 
      * @param obj     object to assert
-     * @param varName variable name to display within the error message
+     * @param message exception message used if the test fails
+     * @param args    optional exception message arguments 
      * @return the original object if conditions have been met.
      * @See {@link PreConditions#test(boolean, String, Object...)}
      */
-    public static <T> T notNull(T obj, String varName) {
-	PreConditions.test(obj != null, "variable '%s' not set (null)", varName);
+    public static <T> T notNull(T obj, String message, Object... args) {
+	PreConditions.test(obj != null, message, args);
 	return obj; 
     }
     
@@ -45,12 +46,13 @@ public class PreConditions {
      * The string value must not be null and must contain at least one non-whitespace character.
      * 
      * @param val     value to assert
-     * @param varName variable name to display within the error message
+     * @param message exception message used if the test fails
+     * @param args    optional exception message arguments 
      * @return the original value if conditions have been met.
      * @See {@link PreConditions#test(boolean, String, Object...)}
      */
-    public static String notBlank(String val, String varName) {
-	PreConditions.test(val != null && ! val.isBlank(), "variable '%s' is null or blank", varName);
+    public static String notBlank(String val, String message, Object... args) {
+	PreConditions.test(val != null && ! val.isBlank(), message, args);
 	return val;
     }
     
@@ -58,23 +60,24 @@ public class PreConditions {
      * The object (String, Map or Collection) must not be null nor empty.
      * 
      * @param obj     object to assert
-     * @param varName variable name to display within the error message
+     * @param message exception message used if the test fails
+     * @param args    optional exception message arguments 
      * @return the original object if conditions have been met.
      * @throws UnsupportedOperationException if object type is not supported. 
      */
-    public static <T> T notEmpty(T obj, String varName) {
+    public static <T> T notEmpty(T obj, String message, Object... args) {
 	
-	PreConditions.notNull(obj, varName);
+	PreConditions.notNull(obj, message, args);
 	
 	if (obj instanceof String string) {
-	    PreConditions.test(!string.isEmpty(), "variable '%s' is empty" , varName);
+	    PreConditions.test(!string.isEmpty(), message, args);
 	} else if (obj instanceof Collection<?> collection) {
-	    PreConditions.test(!collection.isEmpty(), "collection '%s' is empty" , varName);
+	    PreConditions.test(!collection.isEmpty(), message, args);
 	} else if (obj instanceof Map<?, ?> map) {
-	    PreConditions.test(!map.isEmpty(), "collection (map) '%s' is empty" , varName);
+	    PreConditions.test(!map.isEmpty(), message, args);
 	} else {
 	    throw new UnsupportedOperationException(
-		    String.format("object type not supported: type=%s, var=%s", obj.getClass().getName(), varName));
+		    String.format("object type not supported: type=%s", obj.getClass().getName()));
 	}
 	
 	return obj;

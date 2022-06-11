@@ -17,10 +17,15 @@ import mike.bootstrap.utilities.helpers.PreConditions;
 @DisplayName("Helpers::PreConditions")
 class PreConditionsTest {
 
+    private static final String STR_ERR_MSG_NOT_BLANK = "variable 'myVar' not set (null or blank)";
+    private static final String STR_ERR_MSG_NOT_NULL = "variable 'myVar' not set (null)";
+    private static final String STR_ERR_MSG_EMPTY = "variable 'myVar' is empty";
+    private static final String STR_ERR_COLLECTION_EMPTY = "collection 'myCollection' is empty";
+    
     @ParameterizedTest
     @ValueSource(strings = { "Foo", " Bar  " })
     void notBlank_should_return_tested_value_when_value(String val) {	
-	var rv = PreConditions.notBlank(val, "myVar");
+	var rv = PreConditions.notBlank(val, STR_ERR_MSG_NOT_BLANK);
 	assertThat(rv).isEqualTo(val);
     }
     
@@ -29,7 +34,7 @@ class PreConditionsTest {
     @ValueSource(strings = "  ")
     void notBlank_should_throw_illegalArgumentException_when_value(String val) {
 	assertThatIllegalArgumentException()
-		.isThrownBy(() -> PreConditions.notBlank(val, "myVar"))
+		.isThrownBy(() -> PreConditions.notBlank(val, STR_ERR_MSG_NOT_BLANK))
 		.withMessageContainingAll("variable", "myVar", "null", "blank");
     }
     
@@ -38,32 +43,32 @@ class PreConditionsTest {
 	String val = null;
 	
 	assertThatIllegalArgumentException()
-		.isThrownBy(() -> PreConditions.notNull(val, "myVar"))
+		.isThrownBy(() -> PreConditions.notNull(val, STR_ERR_MSG_NOT_NULL))
 		.withMessageContainingAll("variable", "myVar", "null");
     }
     
     @Test
     void notNull_should_return_tested_object_when_object_not_null() {
-	var rv = PreConditions.notNull("", "myVar");
+	var rv = PreConditions.notNull("", STR_ERR_MSG_NOT_NULL);
 	assertThat(rv).isEmpty();
     }
     
     @Test
     void notEmpty_should_return_tested_object_when_string_not_null_or_empty() {
-	var rv = PreConditions.notEmpty("foo", "myVar");
+	var rv = PreConditions.notEmpty("foo", STR_ERR_MSG_EMPTY);
 	assertThat(rv).isEqualTo("foo");
     }
     
     @Test
     void notEmpty_should_return_tested_object_when_collection_not_null_or_empty() {
 
-	var setVar = PreConditions.notEmpty(Set.of("foo", "bar"), "myVar");
+	var setVar = PreConditions.notEmpty(Set.of("foo", "bar"), STR_ERR_COLLECTION_EMPTY);
 	assertThat(setVar).isNotNull().isInstanceOf(Set.class).isNotEmpty();
 	
-	var listVar = PreConditions.notEmpty(List.of("foo", "bar"), "myVar");
+	var listVar = PreConditions.notEmpty(List.of("foo", "bar"), STR_ERR_COLLECTION_EMPTY);
 	assertThat(listVar).isNotNull().isInstanceOf(List.class).isNotEmpty();
 	
-	var mapVar = PreConditions.notEmpty(Map.of("foo", "fooVal", "bar", "barVal"), "myVar");
+	var mapVar = PreConditions.notEmpty(Map.of("foo", "fooVal", "bar", "barVal"), STR_ERR_COLLECTION_EMPTY);
 	assertThat(mapVar).isNotNull().isInstanceOf(Map.class).isNotEmpty();
     }
     
@@ -71,23 +76,23 @@ class PreConditionsTest {
     void notEmpty_should_throw_illegalArgumentException_when_object_null_or_empty() {
 
 	assertThatIllegalArgumentException()
-		.isThrownBy(() -> PreConditions.notEmpty("", "myVar"))
+		.isThrownBy(() -> PreConditions.notEmpty("", STR_ERR_MSG_EMPTY))
 		.withMessageContainingAll("variable", "myVar", "empty");
 	
 	assertThatIllegalArgumentException()
-		.isThrownBy(() -> PreConditions.notEmpty(Set.of(), "myVar"))
-		.withMessageContainingAll("collection", "myVar", "empty");
+		.isThrownBy(() -> PreConditions.notEmpty(Set.of(), STR_ERR_COLLECTION_EMPTY))
+		.withMessageContainingAll("collection", "myCollection", "empty");
 	
 	assertThatIllegalArgumentException()
-		.isThrownBy(() -> PreConditions.notEmpty(Map.of(), "myVar"))
-		.withMessageContainingAll("collection", "myVar", "empty");
+		.isThrownBy(() -> PreConditions.notEmpty(Map.of(), STR_ERR_COLLECTION_EMPTY))
+		.withMessageContainingAll("collection", "myCollection", "empty");
     }
     
     @Test
     void notEmpty_should_UnsupportedOperationException_when_invalid_object_type() {
 
 	assertThatExceptionOfType(UnsupportedOperationException.class)
-		.isThrownBy(() -> PreConditions.notEmpty(0, "myVar"))
+		.isThrownBy(() -> PreConditions.notEmpty(0, "variable '%s' is Zero", "myVar"))
 		.withMessageContaining("object type not supported");
     }
 }
