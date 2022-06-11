@@ -1,4 +1,4 @@
-package mike.bootstrap.test.utilities.helpers;
+package mike.bootstrap.test.utilities.nio;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import mike.bootstrap.utilities.helpers.Utils;
 import mike.bootstrap.utilities.nio.files.PathUtils;
 
-@DisplayName("Helpers::PathUtils")
+@DisplayName("Nio::PathUtils")
 class PathUtilsTest {
 
     @ParameterizedTest
