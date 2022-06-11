@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import mike.bootstrap.utilities.helpers.Sanitizer;
+import mike.bootstrap.utilities.helpers.StringSanitizer;
 
 @DisplayName("Helpers::Sanitizer")
-class SanitizerTest {
+class StringSanitizerTest {
 
 	@Test
 	void should_return_sanitized_string_when_lowercase() {
@@ -19,7 +19,7 @@ class SanitizerTest {
 		
 		Stream.of(null, '-', '_').forEach( c -> {
 			String expected = c == null ? expectedBase : expectedBase.replace("my", "my" + c);
-			assertThat(Sanitizer.LOWERCASE.apply(input, c)).isEqualTo(expected);
+			assertThat(StringSanitizer.LOWERCASE.apply(input, c)).isEqualTo(expected);
 		});
 	}
 	
@@ -30,7 +30,7 @@ class SanitizerTest {
 		
 		Stream.of(null, '-', '_').forEach( c -> {
 			String expected = c == null ? expectedBase : expectedBase.replace("MY", "MY" + c);
-			assertThat(Sanitizer.UPPERCASE.apply(input, c)).isEqualTo(expected);
+			assertThat(StringSanitizer.UPPERCASE.apply(input, c)).isEqualTo(expected);
 		});
 	}
 	
@@ -41,7 +41,7 @@ class SanitizerTest {
 		
 		Stream.of(null, '-', '_').forEach( c -> {
 			String expected = c == null ? expectedBase : expectedBase.replace("My", "My" + c);
-			assertThat(Sanitizer.NOOP.apply(input, c)).isEqualTo(expected);
+			assertThat(StringSanitizer.SPACE.apply(input, c)).isEqualTo(expected);
 		});
 	}
 }

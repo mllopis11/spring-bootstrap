@@ -79,18 +79,6 @@ public class Utils {
     }
 
     /**
-     * @param value    value to trim
-     * @param defValue default value if value is null
-     * @return value with any leading and trailing whitespace or empty string if
-     *         null
-     */
-    @Deprecated
-    public static String trim(String value, String... defValue) {
-	var str = value != null ? value.trim() : "";
-	return !str.isEmpty() ? str : Utils.defautValue(defValue);
-    }
-    
-    /**
      * @param value    value to strip
      * @param defValue default value if value is null
      * @return value with any leading and trailing whitespace or empty string if

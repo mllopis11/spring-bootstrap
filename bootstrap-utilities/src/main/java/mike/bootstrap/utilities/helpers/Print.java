@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Print {
 
-    private static boolean timestamp = false;
+    private static boolean enabled = false;
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     private Print() {
@@ -19,8 +19,8 @@ public class Print {
     /**
      * Toggle timestamp on message
      */
-    public static void timestamp() {
-	timestamp = !timestamp;
+    public static void timestamp(boolean enabled) {
+	Print.enabled = enabled;
     }
 
     /**
@@ -30,6 +30,7 @@ public class Print {
      */
     public static void timestamp(DateTimeFormatter format) {
 	dtf = format;
+	Print.enabled = true;
     }
 
     /**
@@ -39,10 +40,7 @@ public class Print {
      * @param format timestamp format
      */
     public static void timestamp(String format) {
-	try {
-	    dtf = DateTimeFormatter.ofPattern(format);
-	} catch (IllegalArgumentException e) {
-	    /* Ignore: keep default format */ }
+	Print.timestamp(DateTimeFormatter.ofPattern(format));
     }
 
     /**
@@ -147,6 +145,6 @@ public class Print {
      * @return message prefix
      */
     private static String prefix(String level) {
-	return timestamp ? dtf.format(ZonedDateTime.now()) + " - " + level : level;
+	return enabled ? dtf.format(ZonedDateTime.now()) + " - " + level : level;
     }
 }

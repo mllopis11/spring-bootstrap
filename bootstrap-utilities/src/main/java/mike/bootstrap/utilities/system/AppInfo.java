@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import mike.bootstrap.utilities.helpers.Dates;
 import mike.bootstrap.utilities.helpers.Print;
 import mike.bootstrap.utilities.helpers.Resource;
-import mike.bootstrap.utilities.helpers.Sanitizer;
+import mike.bootstrap.utilities.helpers.StringSanitizer;
 import mike.bootstrap.utilities.helpers.Timer;
 
 /**
@@ -52,7 +52,7 @@ public class AppInfo {
 	// Set JVM Locale to English
 	Locale.setDefault(Locale.ENGLISH);
 
-	node = Sanitizer.LOWERCASE.apply(System.getProperty(KW_APP_NODE, "local"), '-');
+	node = StringSanitizer.LOWERCASE.apply(System.getProperty(KW_APP_NODE, "local"), '-');
 	runtimeBaseDirectory = System.getProperty(KW_APP_RUNDIR, String.format("./run/%s", node));
 
 	/*

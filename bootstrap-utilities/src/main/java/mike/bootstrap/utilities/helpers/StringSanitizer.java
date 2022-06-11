@@ -12,15 +12,15 @@ import java.util.function.BiFunction;
  * @author Mike (2021-02)
  *
  */
-public enum Sanitizer implements BiFunction<String, Character, String> {
+public enum StringSanitizer implements BiFunction<String, Character, String> {
 
     LOWERCASE((v, u) -> whitespace(v, u).toLowerCase()), 
     UPPERCASE((v, u) -> whitespace(v, u).toUpperCase()),
-    NOOP(Sanitizer::whitespace);
+    SPACE(StringSanitizer::whitespace);
 
     private final BiFunction<String, Character, String> fn;
 
-    private Sanitizer(BiFunction<String, Character, String> fn) {
+    private StringSanitizer(BiFunction<String, Character, String> fn) {
 	this.fn = fn;
     }
 

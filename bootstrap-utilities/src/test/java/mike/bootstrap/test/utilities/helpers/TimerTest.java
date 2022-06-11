@@ -6,10 +6,12 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import mike.bootstrap.utilities.helpers.Timer;
 
+@DisplayName("Helpers::Timer")
 class TimerTest {
 
     private static final Pattern ELAPSED_PATTERN = Pattern.compile("[0-9]\\.[0-9]{3} second\\(s\\)");
