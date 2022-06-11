@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import mike.bootstrap.utilities.helpers.Dates;
 import mike.bootstrap.utilities.helpers.Print;
-import mike.bootstrap.utilities.helpers.Resource;
 import mike.bootstrap.utilities.helpers.StringSanitizer;
 import mike.bootstrap.utilities.helpers.Timer;
+import mike.bootstrap.utilities.nio.files.Resource;
 
 /**
  * Provide general information the application (name, version, runtime-directory ...)

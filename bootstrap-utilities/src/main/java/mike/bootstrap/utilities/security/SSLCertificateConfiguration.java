@@ -11,9 +11,9 @@ import java.util.Properties;
 import javax.net.ssl.SSLContext;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
-import mike.bootstrap.utilities.helpers.Resource;
 import mike.bootstrap.utilities.helpers.Utils;
 import mike.bootstrap.utilities.nio.files.PathUtils;
+import mike.bootstrap.utilities.nio.files.Resource;
 
 /**
  * SSL certificates auto configuration

@@ -1,4 +1,4 @@
-package mike.bootstrap.test.utilities.helpers;
+package mike.bootstrap.test.utilities.nio;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import mike.bootstrap.utilities.helpers.Resource;
+import mike.bootstrap.utilities.nio.files.Resource;
 
 @DisplayName("Helpers::Resource")
 class ResourceTest {
