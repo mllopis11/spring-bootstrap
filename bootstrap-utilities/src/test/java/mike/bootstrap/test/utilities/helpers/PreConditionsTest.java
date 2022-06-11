@@ -24,8 +24,8 @@ class PreConditionsTest {
     
     @ParameterizedTest
     @ValueSource(strings = { "Foo", " Bar  " })
-    void notBlank_should_return_tested_value_when_value(String val) {	
-	var rv = PreConditions.notBlank(val, STR_ERR_MSG_NOT_BLANK);
+    void notBlank_should_return_tested_value_when_value(String val) {
+	var rv = PreConditions.notBlank(val);
 	assertThat(rv).isEqualTo(val);
     }
     
@@ -33,6 +33,10 @@ class PreConditionsTest {
     @NullAndEmptySource
     @ValueSource(strings = "  ")
     void notBlank_should_throw_illegalArgumentException_when_value(String val) {
+	assertThatIllegalArgumentException()
+		.isThrownBy(() -> PreConditions.notBlank(val))
+		.withMessageContainingAll("string value not set", "null", "blank", "empty");
+	
 	assertThatIllegalArgumentException()
 		.isThrownBy(() -> PreConditions.notBlank(val, STR_ERR_MSG_NOT_BLANK))
 		.withMessageContainingAll("variable", "myVar", "null", "blank");
@@ -43,13 +47,17 @@ class PreConditionsTest {
 	String val = null;
 	
 	assertThatIllegalArgumentException()
+		.isThrownBy(() -> PreConditions.notNull(val))
+		.withMessageContainingAll("object required (null)");
+	
+	assertThatIllegalArgumentException()
 		.isThrownBy(() -> PreConditions.notNull(val, STR_ERR_MSG_NOT_NULL))
 		.withMessageContainingAll("variable", "myVar", "null");
     }
     
     @Test
     void notNull_should_return_tested_object_when_object_not_null() {
-	var rv = PreConditions.notNull("", STR_ERR_MSG_NOT_NULL);
+	var rv = PreConditions.notNull("");
 	assertThat(rv).isEmpty();
     }
     
@@ -62,13 +70,13 @@ class PreConditionsTest {
     @Test
     void notEmpty_should_return_tested_object_when_collection_not_null_or_empty() {
 
-	var setVar = PreConditions.notEmpty(Set.of("foo", "bar"), STR_ERR_COLLECTION_EMPTY);
+	var setVar = PreConditions.notEmpty(Set.of("foo", "bar"));
 	assertThat(setVar).isNotNull().isInstanceOf(Set.class).isNotEmpty();
 	
-	var listVar = PreConditions.notEmpty(List.of("foo", "bar"), STR_ERR_COLLECTION_EMPTY);
+	var listVar = PreConditions.notEmpty(List.of("foo", "bar"));
 	assertThat(listVar).isNotNull().isInstanceOf(List.class).isNotEmpty();
 	
-	var mapVar = PreConditions.notEmpty(Map.of("foo", "fooVal", "bar", "barVal"), STR_ERR_COLLECTION_EMPTY);
+	var mapVar = PreConditions.notEmpty(Map.of("foo", "fooVal", "bar", "barVal"));
 	assertThat(mapVar).isNotNull().isInstanceOf(Map.class).isNotEmpty();
     }
     

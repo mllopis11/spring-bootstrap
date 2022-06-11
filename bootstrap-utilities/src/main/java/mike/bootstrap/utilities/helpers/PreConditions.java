@@ -31,6 +31,17 @@ public class PreConditions {
     /**
      * The object must not be null.
      * 
+     * @param obj object to assert
+     * @return the original object if object is not null.
+     * @See {@link PreConditions#notNull(Object, String, Object...)}
+     */
+    public static <T> T notNull(T obj) {
+	return notNull(obj, "object required (null)");
+    }
+    
+    /**
+     * The object must not be null.
+     * 
      * @param obj     object to assert
      * @param message exception message used if the test fails
      * @param args    optional exception message arguments 
@@ -45,15 +56,37 @@ public class PreConditions {
     /**
      * The string value must not be null and must contain at least one non-whitespace character.
      * 
-     * @param val     value to assert
+     * @param str value to assert
+     * @return the original string  if conditions have been met.
+     * @See {@link PreConditions#notBlank(String, String, Object...)}
+     */
+    public static String notBlank(String str) {
+	return notBlank(str, "string value not set (null, blank or empty)");
+    }
+    
+    /**
+     * The string value must not be null and must contain at least one non-whitespace character.
+     * 
+     * @param str     value to assert
      * @param message exception message used if the test fails
      * @param args    optional exception message arguments 
      * @return the original value if conditions have been met.
      * @See {@link PreConditions#test(boolean, String, Object...)}
      */
-    public static String notBlank(String val, String message, Object... args) {
-	PreConditions.test(val != null && ! val.isBlank(), message, args);
-	return val;
+    public static String notBlank(String str, String message, Object... args) {
+	PreConditions.test(str != null && ! str.isBlank(), message, args);
+	return str;
+    }
+    
+    /**
+     * The object (String, Map or Collection) must not be null nor empty.
+     * 
+     * @param obj  object to assert
+     * @return the original object if conditions have been met.
+     * @See {@link PreConditions#notEmpty(boolean, String, Object...)}
+     */
+    public static <T> T notEmpty(T obj) {
+	return notEmpty(obj, "object is null or empty");
     }
     
     /**
