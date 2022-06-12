@@ -58,8 +58,8 @@ class UtilsTest {
     void method_defaultValue_should_return_expected_object() {
 	long len = 254;
 	
-	assertThat(Utils.defaultValue(len, 0L)).isEqualTo(len);
-	assertThat(Utils.defaultValue(null, 0L)).isZero();
-	assertThatIllegalArgumentException().isThrownBy(() -> Utils.defaultValue(null, null));
+	assertThat(Utils.nullAs(len, 0L)).isEqualTo(len);
+	assertThat(Utils.nullAs(null, 0L)).isZero();
+	assertThatIllegalArgumentException().isThrownBy(() -> Utils.nullAs(null, null));
     }
 }

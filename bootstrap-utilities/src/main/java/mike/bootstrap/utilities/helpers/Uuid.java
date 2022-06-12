@@ -9,12 +9,12 @@ import java.util.UUID;
  * @author Mike (2021-02)
  *
  */
-public class UUIDGen {
+public class Uuid {
 
     /**
      * Contructor (prevent any instantiation)
      */
-    private UUIDGen() {}
+    private Uuid() {}
 
     /**
      * Get UUID type 4 (Secure Random UUID).
@@ -35,7 +35,7 @@ public class UUIDGen {
      * @return the first symbol of the random UUID
      */
     public static String uuidV4Short() {
-	return UUIDGen.first(UUIDGen.uuidV4());
+	return Uuid.first(Uuid.uuidV4());
     }
 
     /**
@@ -44,7 +44,7 @@ public class UUIDGen {
      * @return a random UUID without dash.
      */
     public static String uuidV4Stripped() {
-	return UUIDGen.strip(UUIDGen.uuidV4());
+	return Uuid.strip(Uuid.uuidV4());
     }
 
     /**
@@ -54,7 +54,7 @@ public class UUIDGen {
      * @return the source name UUID.
      */
     public static String uuidV3(String name) {
-	return UUIDGen.uuidV3("", name);
+	return Uuid.uuidV3("", name);
     }
 
     /**

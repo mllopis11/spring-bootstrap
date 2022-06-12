@@ -2,6 +2,8 @@ package mike.bootstrap.utilities.helpers;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 public interface Strings {
 
     public static final String EMPTY = "";
@@ -10,18 +12,27 @@ public interface Strings {
     public static final Pattern REGEX_LINE_FEED = Pattern.compile("\\r?\\n");
 
     /**
+     * @param value    The original value (may be null)
+     * @param defValue Optional default value if original is null (default: empty string)
+     * @return The resulting {@code String} or the default value if present.
+     */
+    public static String nullAs(String value, String... defValue) {
+	return value != null ? value : Strings.defaultValue(defValue);
+    }
+    
+    /**
      * Remove all leading and trailing white space.
      * 
      * @param str      String to strip (may be null)
      * @param defValue Optional default value if original is null (default: empty
      *                 string)
-     * @return The resulting {@code String} without leading and trailing whitespace
-     *         or empty string if null
+     * @return The resulting {@code String} without leading and trailing whitespace 
+     *         or the default value if present.
      * @see String#strip()
      */
     public static String strip(String str, String... defValue) {
 	var val = str != null ? str.strip() : EMPTY;
-	return !val.isEmpty() ? val : Strings.defautValue(defValue);
+	return !val.isEmpty() ? val : Strings.defaultValue(defValue);
     }
 
     /**
@@ -81,10 +92,35 @@ public interface Strings {
      * @return string value instance
      */
     public static String sanitize(String value, Pattern pattern, String... replacement) {
-	var rc = Strings.defautValue(replacement);
+	var rc = Strings.defaultValue(replacement);
 	return pattern.matcher(value).replaceAll(rc);
     }
 
+    /**
+     * Gets a substring from the specified String avoiding exceptions.
+     * 
+     * @param value  the original value (may be null)
+     * @param offset the substring offset
+     * @return the resulting value.
+     * @see Strings#offset(String, int, int)
+     */
+    public static String offset(String value, Offset offset) {
+	return StringUtils.substring(value, offset.startAt(), offset.endAt());
+    }
+    
+    /**
+     * Gets a substring from the specified String avoiding exceptions.
+     * 
+     * @param value   the original value (may be null)
+     * @param startAt the position to start from (min.: 0)
+     * @param endAt   the position to end at (exclusive, min. 1)
+     * @return the resulting value.
+     * @see StringUtils#substring(String, int, int)
+     */
+    public static String offset(String value, int startAt, int endAt) {
+	return StringUtils.substring(value, startAt, endAt);
+    }
+    
     /**
      * Extract value from key/value pair (i.e.: key=value)
      * 
@@ -99,7 +135,7 @@ public interface Strings {
     public static String getArgv(String arg, String... defValue) {
 	var items = arg != null ? arg.split("=", 2) : new String[] {};
 	return items.length == 2 && !items[0].isBlank() && !items[1].isBlank() ? items[1].strip()
-		: Strings.defautValue(defValue);
+		: Strings.defaultValue(defValue);
     }
 
     /**
@@ -152,7 +188,7 @@ public interface Strings {
      * @param defValue optional default value
      * @return return the default value if present otherwise an empty value
      */
-    public static String defautValue(String... defValue) {
+    public static String defaultValue(String... defValue) {
 	return defValue.length > 0 && defValue[0] != null ? defValue[0] : EMPTY;
     }
 }

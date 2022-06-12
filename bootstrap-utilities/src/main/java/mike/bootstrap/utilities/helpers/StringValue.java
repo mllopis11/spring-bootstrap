@@ -23,7 +23,7 @@ public class StringValue {
      * @see StringValue#of(String, String...)
      */
     private StringValue(String value, String... defValue) {
-	this.value = value != null ? value : Strings.defautValue(defValue);
+	this.value = Strings.nullAs(value, defValue);
     }
     
     /**

@@ -46,12 +46,11 @@ public class Utils {
 	return value >= min && value <= max;
     }
     
-    public static <T> T defaultValue(T object, T defObject) {
+    public static <T> T nullAs(T object, T defObject) {
 	if ( defObject != null ) {
 	    return object != null ? object : defObject;
 	} else {
 	    throw new IllegalArgumentException("Utils: no such default object");
 	}
-	
     }
 }

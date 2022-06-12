@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import mike.bootstrap.utilities.helpers.UUIDGen;
+import mike.bootstrap.utilities.helpers.Uuid;
 
 @DisplayName("Helpers::UUIDGen")
-class UUIDGenTest {
+class UuidGenTest {
 
 	/* Predefined namespace UUID */
     private static final String NAMESPACE_DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
@@ -26,8 +26,8 @@ class UUIDGenTest {
         
         String regex = UUID_REGEX.replace("%version%", "3");
                 
-        assertThat(UUIDGen.uuidV3(value)).matches(regex);
-        assertThat(UUIDGen.uuidV3(NAMESPACE_DNS, value)).matches(regex);
+        assertThat(Uuid.uuidV3(value)).matches(regex);
+        assertThat(Uuid.uuidV3(NAMESPACE_DNS, value)).matches(regex);
     }
     
     @Test
@@ -36,11 +36,11 @@ class UUIDGenTest {
         String regex = UUID_REGEX.replace("%version%", "3");
         String name = "my_filename.txt";
         
-        String uuid = UUIDGen.uuidV3(name);
-        String uuid_ns = UUIDGen.uuidV3(NAMESPACE_DNS, name);
+        String uuid = Uuid.uuidV3(name);
+        String uuid_ns = Uuid.uuidV3(NAMESPACE_DNS, name);
         
-        assertThat(UUIDGen.uuidV3(name)).matches(regex).isEqualTo(uuid);
-        assertThat(UUIDGen.uuidV3(NAMESPACE_DNS, name)).matches(regex).isEqualTo(uuid_ns);
+        assertThat(Uuid.uuidV3(name)).matches(regex).isEqualTo(uuid);
+        assertThat(Uuid.uuidV3(NAMESPACE_DNS, name)).matches(regex).isEqualTo(uuid_ns);
     }
     
     @Test
@@ -49,9 +49,9 @@ class UUIDGenTest {
         String regex = UUID_REGEX.replace("%version%", "4");
         String regex_stripped = UUID_REGEX_STRIPPED.replace("%version%", "4");
         
-        assertThat(UUIDGen.uuidV4()).matches(regex);
-        assertThat(UUIDGen.uuidV4Short()).isNotBlank().hasSize(8).matches("[a-z0-9]{8}");
-        assertThat(UUIDGen.uuidV4Stripped()).matches(regex_stripped);
+        assertThat(Uuid.uuidV4()).matches(regex);
+        assertThat(Uuid.uuidV4Short()).isNotBlank().hasSize(8).matches("[a-z0-9]{8}");
+        assertThat(Uuid.uuidV4Stripped()).matches(regex_stripped);
     }
     
     static Stream<String> uuidV3Values() {
