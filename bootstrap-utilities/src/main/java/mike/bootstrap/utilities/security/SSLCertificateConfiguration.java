@@ -11,7 +11,7 @@ import java.util.Properties;
 import javax.net.ssl.SSLContext;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
-import mike.bootstrap.utilities.helpers.Utils;
+import mike.bootstrap.utilities.helpers.Strings;
 import mike.bootstrap.utilities.nio.files.PathUtils;
 import mike.bootstrap.utilities.nio.files.Resource;
 
@@ -129,7 +129,7 @@ public class SSLCertificateConfiguration {
      * @throws ApplicationErrorException if truststore file is not readable
      */
     public static void setTrustStore(String trustStore) {
-	var store = Utils.strip(trustStore);
+	var store = Strings.strip(trustStore);
 
 	if (!store.isEmpty()) {
 	    var absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
@@ -157,7 +157,7 @@ public class SSLCertificateConfiguration {
      * @param trustStorePassword trust store password
      */
     public static void setTrustStorePassword(String trustStorePassword) {
-	var pass = Utils.strip(trustStorePassword);
+	var pass = Strings.strip(trustStorePassword);
 
 	if (!pass.isEmpty()) {
 	    System.setProperty(KW_TRUSTSTORE_SECRET, pass);

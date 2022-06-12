@@ -9,7 +9,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import mike.bootstrap.utilities.helpers.Print;
-import mike.bootstrap.utilities.helpers.Utils;
+import mike.bootstrap.utilities.helpers.Strings;
 import mike.bootstrap.utilities.security.SSLCertificateConfiguration;
 import mike.bootstrap.utilities.system.AppInfo;
 import mike.bootstrap.utilities.system.SysInfo;
@@ -109,7 +109,7 @@ class ApplicationBootstrap {
         for (String opt : options) {
 
             if (opt.startsWith("--node=")) {
-                String node = Utils.getArgv(opt);
+                String node = Strings.getArgv(opt);
                 configuration.setProperty(AppInfo.KW_APP_NODE, node);
                 System.setProperty(AppInfo.KW_APP_NODE, node);
             }

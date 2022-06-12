@@ -3,6 +3,7 @@ package mike.bootstrap.springboot.application;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContextInitializer;
@@ -11,7 +12,6 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
 import mike.bootstrap.utilities.helpers.Print;
-import mike.bootstrap.utilities.helpers.Utils;
 import mike.bootstrap.utilities.security.SSLCertificateConfiguration;
 import mike.bootstrap.utilities.system.AppInfo;
 import mike.bootstrap.utilities.system.SysInfo;
@@ -50,7 +50,7 @@ class ApplicationBootstrapInitializer implements ApplicationContextInitializer<C
 
     private void startup(ConfigurableEnvironment env, Optional<String> url) {
 
-	log.info(Utils.lineOf('#'));
+	log.info(StringUtils.repeat('#', 80));
 
 	log.info(AppInfo.banner());
 	log.info(AppInfo.starter());

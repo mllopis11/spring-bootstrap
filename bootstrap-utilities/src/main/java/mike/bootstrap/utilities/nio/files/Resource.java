@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Stream;
 
-import mike.bootstrap.utilities.helpers.Utils;
+import mike.bootstrap.utilities.helpers.Strings;
 
 /**
  * Resource (Path, URL, URI) helper.
@@ -38,7 +38,7 @@ public class Resource {
      */
     public Resource(String target) {
 
-	this.target = Utils.strip(target);
+	this.target = Strings.strip(target);
 
 	if (this.target.isEmpty()) {
 	    throw new IllegalArgumentException("no such filename provided (blank)");

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import mike.bootstrap.utilities.helpers.Utils;
+import mike.bootstrap.utilities.helpers.Strings;
 import mike.bootstrap.utilities.nio.files.PathUtils;
 
 @DisplayName("Nio::PathUtils")
@@ -23,7 +23,7 @@ class PathUtilsTest {
         "my_file.txt, "} )
     void should_return_directory_name_when_filename(String fullFilename, String expectedDirname) {
         
-        var expectedDirPath = Path.of(Utils.strip(expectedDirname));
+        var expectedDirPath = Path.of(Strings.strip(expectedDirname));
         
         var dirname = PathUtils.dirname(fullFilename);
         

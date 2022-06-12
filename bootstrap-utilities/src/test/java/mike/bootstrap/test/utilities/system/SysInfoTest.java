@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
-import mike.bootstrap.utilities.helpers.Utils;
+import mike.bootstrap.utilities.helpers.Strings;
 import mike.bootstrap.utilities.system.SysInfo;
 
 @DisplayName("Helpers::SysInfo")
@@ -80,16 +80,16 @@ class SysInfoTest {
 
         InetAddress localhost = InetAddress.getByName(hostname);
 
-        try (ServerSocket socket = new ServerSocket(Utils.toInteger(port), 0, localhost);) {
+        try (ServerSocket socket = new ServerSocket(Strings.toInteger(port), 0, localhost);) {
         	assertThatExceptionOfType(ApplicationErrorException.class)
         		.isThrownBy( () -> SysInfo.hostAddressAlreadyBound(hostname, port) );
         }
     }
-}
-
-class FooAppTest {
     
-    public static void main(String[] args) {
-        // Foo application
-    } 
+    private static final class FooAppTest {
+	
+	public static void main(String[] args) {
+	    // Foo application
+	} 
+    }
 }

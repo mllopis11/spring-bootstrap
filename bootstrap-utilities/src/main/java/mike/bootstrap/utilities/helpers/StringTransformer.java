@@ -32,7 +32,7 @@ public class StringTransformer {
 	    
 	    PreConditions.notBlank(expression, "no such replacement expression");
 	    
-	    this.regexName = Optional.of(pattern.matcher(Utils.strip(value)))
+	    this.regexName = Optional.of(pattern.matcher(Strings.strip(value)))
 			.filter(Matcher::matches)
 			.map(m -> m.replaceAll(expression))
 			.orElseThrow(() -> new IllegalArgumentException(

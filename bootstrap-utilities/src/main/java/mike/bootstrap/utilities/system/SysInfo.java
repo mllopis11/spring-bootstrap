@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 import mike.bootstrap.utilities.exceptions.ApplicationErrorException;
+import mike.bootstrap.utilities.helpers.Strings;
 import mike.bootstrap.utilities.helpers.Utils;
 
 /**
@@ -181,8 +182,8 @@ public class SysInfo {
      */
     public static void hostAddressAlreadyBound(String hostname, String port) {
 
-	String myHost = Utils.strip(hostname);
-	var myPort = Utils.toInteger(port, 0);
+	String myHost = Strings.strip(hostname);
+	var myPort = Strings.toInteger(port, 0);
 
 	if (myHost.isBlank() || Utils.isPortNotValid(myPort)) {
 	    throw new ApplicationErrorException("bindHostAddress: invalid hostname or port argument");

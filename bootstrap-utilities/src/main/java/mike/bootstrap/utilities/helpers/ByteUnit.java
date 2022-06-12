@@ -59,7 +59,7 @@ public enum ByteUnit {
      *         2048)
      */
     public static long from(String sizeWithUnit) {
-	String sizeUnit = Utils.strip(sizeWithUnit).toLowerCase();
+	String sizeUnit = Strings.strip(sizeWithUnit).toLowerCase();
 
 	var matcher = sizePattern.matcher(sizeUnit);
 
