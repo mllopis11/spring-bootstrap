@@ -51,7 +51,7 @@ class PathUtilsTest {
         var first = paths[0];
         var more = paths.length >= 2 ? Arrays.copyOfRange(paths, 1, paths.length) : new String[] {};
         
-        var path = PathUtils.toPath(first, more);
+        var path = PathUtils.of(first, more);
         var expectedPath = Path.of(expectedPathname);
                 
         assertThat(path).isEqualTo(expectedPath);

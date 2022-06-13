@@ -14,8 +14,7 @@ import mike.bootstrap.utilities.system.SysInfo;
  */
 public class PathUtils {
 
-    private PathUtils() {
-}
+    private PathUtils() {}
 
     /**
      * @param path filename
@@ -60,7 +59,7 @@ public class PathUtils {
      * @return the resulting Path
      * @see java.nio.file.Paths#get(String, String...)
      */
-    public static Path toPath(String first, String... more) {
+    public static Path of(String first, String... more) {
 	return Path.of(first, more);
     }
 
@@ -70,10 +69,10 @@ public class PathUtils {
      * @param first the path or initial part of the path
      * @param more  additional strings to be joined
      * @return the resulting Path
-     * @see PathUtils#toPath(String, String...)
+     * @see PathUtils#of(String, String...)
      */
-    public static Path toPath(Path first, String... more) {
-	return PathUtils.toPath(first.toString(), more);
+    public static Path of(Path first, String... more) {
+	return PathUtils.of(first.toString(), more);
     }
 
     /**
@@ -82,10 +81,10 @@ public class PathUtils {
      * @param first the path or initial part of the path
      * @param more  additional paths to be joined
      * @return the resulting Path
-     * @see PathUtils#toPath(String, Path...)
+     * @see PathUtils#of(String, Path...)
      */
-    public static Path toPath(Path first, Path... more) {
-	return PathUtils.toPath(first.toString(), more);
+    public static Path of(Path first, Path... more) {
+	return PathUtils.of(first.toString(), more);
     }
 
     /**
@@ -94,11 +93,11 @@ public class PathUtils {
      * @param first the path string or initial part of the path string
      * @param more  additional strings to be joined
      * @return the resulting Path
-     * @see PathUtils#toPath(String, String...)
+     * @see PathUtils#of(String, String...)
      */
-    public static Path toPath(String first, Path... more) {
+    public static Path of(String first, Path... more) {
 	String[] others = Stream.of(more).map(Path::toString).toArray(String[]::new);
-	return PathUtils.toPath(first, others);
+	return PathUtils.of(first, others);
     }
 
     /**

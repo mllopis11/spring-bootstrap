@@ -34,7 +34,7 @@ class SSLCertificateConfigurationTest {
 	tempDir = Path.of(PathUtils.dirname(cacertsFile));
 	Files.createDirectories(tempDir);
 
-	sslTempFile = Files.createFile(PathUtils.toPath(tempDir, "ssl_config.properties"));
+	sslTempFile = Files.createFile(PathUtils.of(tempDir, "ssl_config.properties"));
 	Files.createFile(cacertsFile);
     }
 
