@@ -15,14 +15,14 @@
 
     <properties>
         <!-- Maven plugins -->
-        <maven.plugin.compiler.version>3.9.0</maven.plugin.compiler.version>
+        <maven.plugin.compiler.version>3.10.1</maven.plugin.compiler.version>
         <maven.plugin.jar.version>3.2.2</maven.plugin.jar.version>
         <maven.plugin.resources.version>3.2.0</maven.plugin.resources.version>
         <maven.plugin.source.version>3.2.1</maven.plugin.source.version>
-        <maven.plugin.javadoc.version>3.3.1</maven.plugin.javadoc.version>
-        <maven.plugin.release.version>3.0.0-M5</maven.plugin.release.version>
-        <maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
-        <maven.plugin.failsafe.version>3.0.0-M5</maven.plugin.failsafe.version>
+        <maven.plugin.javadoc.version>3.4.0</maven.plugin.javadoc.version>
+        <maven.plugin.release.version>3.0.0-M6</maven.plugin.release.version>
+        <maven.plugin.surefire.version>3.0.0-M6</maven.plugin.surefire.version>
+        <maven.plugin.failsafe.version>3.0.0-M6</maven.plugin.failsafe.version>
 
         <!-- Java -->
         <javax.inject.version>1</javax.inject.version>
@@ -33,10 +33,10 @@
         <logback.version>1.2.11</logback.version>
 
         <!-- Spring Release Train -->
-        <spring-boot.version>2.6.6</spring-boot.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <spring-boot.version>2.7.0</spring-boot.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
 
-        <springdoc.openapi.version>1.6.7</springdoc.openapi.version>
+        <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
         <springdoc.openapi.maven.plugin.version>1.4</springdoc.openapi.maven.plugin.version>
 
         <zalando.problem.version>0.27.0</zalando.problem.version>
@@ -45,11 +45,11 @@
         <apache-text.version>1.9</apache-text.version>
         <apache-compress.version>1.21</apache-compress.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <apache.tika.version>2.3.0</apache.tika.version>
+        <apache.tika.version>2.4.0</apache.tika.version>
 
         <!-- Tests -->
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <assertj.version>3.22.0</assertj.version>
+        <assertj.version>3.23.1</assertj.version>
     </properties>
 
     <dependencyManagement>
