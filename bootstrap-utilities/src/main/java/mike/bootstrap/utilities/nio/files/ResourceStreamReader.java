@@ -45,7 +45,7 @@ class ResourceStreamReader implements StreamReader {
     }
     
     @Override
-    public void close() {
+    public void close() throws IOException {
 	log.debug("Resource::close: closing resources ...");
 	
 	if (this.reader != null ) {

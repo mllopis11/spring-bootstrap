@@ -138,11 +138,11 @@ public class Resource {
 	return new ResourceStreamReader(this, filter, StandardCharsets.ISO_8859_1);
     }
     
-    public List<String> readContent() throws Exception {
+    public List<String> readContent() throws IOException {
 	return this.readContent(s -> true);
     }
     
-    public List<String> readContent(Predicate<String> filter) throws Exception {
+    public List<String> readContent(Predicate<String> filter) throws IOException {
 	try (var reader = this.streamReader(filter)) {
 	    return reader.lines().toList();
 	}
