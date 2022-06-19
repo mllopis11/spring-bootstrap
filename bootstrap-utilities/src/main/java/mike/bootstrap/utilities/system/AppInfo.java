@@ -61,7 +61,7 @@ public class AppInfo {
 	 */
 	final String buildInfoFile = System.getProperty(KW_APP_BUILD_INFO, "BOOT-INF/classes/build-info.properties");
 
-	Stream.of(buildInfoFile, "META-INF/build-info.properties").map(Resource::new).filter(Resource::found)
+	Stream.of(buildInfoFile, "META-INF/build-info.properties").map(Resource::of).filter(Resource::exists)
 		.findFirst().ifPresentOrElse(res -> {
 		    try {
 			var infos = res.getProperties();

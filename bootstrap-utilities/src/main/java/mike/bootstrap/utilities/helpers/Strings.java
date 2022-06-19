@@ -15,6 +15,7 @@ public interface Strings {
      * @param value    The original value (may be null)
      * @param defValue Optional default value if original is null (default: empty string)
      * @return The resulting {@code String} or the default value if present.
+     * @see Strings#nullAs(Object, String, String...)
      */
     public static String nullAs(String value, String... defValue) {
 	return value != null ? value : Strings.defaultValue(defValue);

@@ -18,16 +18,16 @@ class ResourceTest {
     @Test
     void should_throw_IllegalArgumentException_when_null_or_blank() {
 
-	assertThatIllegalArgumentException().isThrownBy(() -> new Resource("   "));
+	assertThatIllegalArgumentException().isThrownBy(() -> Resource.of("   "));
 
 	assertThatIllegalArgumentException().isThrownBy(() -> {
 	    String s = null;
-	    new Resource(s);
+	    Resource.of(s);
 	});
 
 	assertThatIllegalArgumentException().isThrownBy(() -> {
 	    Path p = null;
-	    new Resource(p);
+	    Resource.of(p);
 	});
     }
 
@@ -36,16 +36,15 @@ class ResourceTest {
 
 	String name = "./data/my-props.properties";
 
-	Resource resource = new Resource(name);
+	Resource resource = Resource.of(name);
 
-	assertThat(resource.notFound()).isTrue();
-	assertThat(resource.getTarget()).isEqualTo(name);
+	assertThat(resource.notExists()).isTrue();
+	assertThat(resource.getName()).isEqualTo(name);
 	assertThat(resource.getURL()).isNull();
 	assertThat(resource.getURI()).isNull();
 	assertThatNoException().isThrownBy(() -> resource.getProperties());
 	assertThatIOException().isThrownBy(() -> {
-	    try (InputStream is = resource.getInputStream();) {
-	    }
+	    try (InputStream is = resource.getInputStream();) {}
 	});
     }
 
@@ -54,10 +53,10 @@ class ResourceTest {
 
 	String name = "data/my-test-properties.txt";
 
-	Resource resource = new Resource(name);
+	Resource resource = Resource.of(name);
 
-	assertThat(resource.found()).isTrue();
-	assertThat(resource.getTarget()).isEqualTo(name);
+	assertThat(resource.exists()).isTrue();
+	assertThat(resource.getName()).isEqualTo(name);
 	assertThat(resource.getURL()).isNotNull();
 	assertThat(resource.getURI()).isNotNull();
 	assertThat(resource.getProperties()).isNotEmpty();
@@ -70,25 +69,26 @@ class ResourceTest {
 	Path tempTestFile = Files.createTempFile("test-file", null);
 	Files.write(tempTestFile, "my.prop=value".getBytes());
 
-	Resource resource = new Resource(tempTestFile);
+	Resource resource = Resource.of(tempTestFile);
 
-	assertThat(resource.found()).isTrue();
-	assertThat(resource.getTarget()).isNotEmpty();
+	assertThat(resource.exists()).isTrue();
+	assertThat(resource.getName()).isNotEmpty();
 	assertThat(resource.getURL()).isNotNull();
 	assertThat(resource.getProperties()).isNotEmpty();
     }
 
     @Test
-    void should_return_resource_content_when_classpath_resource() throws IOException {
+    void should_return_resource_content_when_classpath_resource() throws Exception {
 
 	String name = "data/my-test-properties.txt";
 
-	Resource resource = new Resource(name);
+	Resource resource = Resource.of(name);
 
-	assertThat(resource.found()).isTrue();
-	assertThat(resource.getTarget()).isEqualTo(name);
+	assertThat(resource.exists()).isTrue();
+	assertThat(resource.getName()).isEqualTo(name);
 	assertThat(resource.getURL()).isNotNull();
 	assertThat(resource.getURI()).isNotNull();
-	assertThat(resource.getContent()).isNotEmpty().hasSize(8);
+
+	assertThat(resource.readContent()).isNotEmpty().hasSize(10);
     }
 }

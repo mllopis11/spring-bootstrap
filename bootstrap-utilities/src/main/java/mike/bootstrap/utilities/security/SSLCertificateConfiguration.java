@@ -76,9 +76,9 @@ public class SSLCertificateConfiguration {
      */
     public static void configure(Path file) {
 	try {
-	    var resource = new Resource(file);
+	    var resource = Resource.of(file);
 
-	    if (resource.found()) {
+	    if (resource.exists()) {
 		SSLCertificateConfiguration.configure(resource.getProperties());
 	    }
 	} catch (IOException ioe) {

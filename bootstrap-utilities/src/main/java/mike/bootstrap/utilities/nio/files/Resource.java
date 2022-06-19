@@ -1,21 +1,20 @@
 package mike.bootstrap.utilities.nio.files;
 
-import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Stream;
+import java.util.function.Predicate;
 
+import mike.bootstrap.utilities.helpers.PreConditions;
 import mike.bootstrap.utilities.helpers.Strings;
 
 /**
@@ -26,68 +25,74 @@ import mike.bootstrap.utilities.helpers.Strings;
  */
 public class Resource {
 
-    private String target = null;
-    private URL url = null;
-    private boolean fileSystem = false;
-    private boolean found = false;
+    private final String name;
+    private final URL url;
+    private final boolean localResource;
+    private final boolean exists;
 
     /**
-     * Constructor.
-     * 
-     * @param resoure resource target location (FileSystem, Classpath or URL)
+     * @param file    resource file path
+     * @return Resource instance
      */
-    public Resource(String target) {
-
-	this.target = Strings.strip(target);
-
-	if (this.target.isEmpty()) {
-	    throw new IllegalArgumentException("no such filename provided (blank)");
-	}
-
-	var path = Path.of(target);
-	this.fileSystem = Files.isReadable(path);
-
-	if (fileSystem) {
-	    try {
-		this.url = path.toUri().toURL();
-		this.found = true;
-	    } catch (MalformedURLException mue) {
-		throw new IllegalArgumentException("convert target path to URL: " + target, mue);
-	    }
-	} else {
-	    this.url = ClassLoader.getSystemResource(this.target);
-	    this.found = this.url != null;
-	}
+    public static Resource of(Path file) {
+	var name = file != null ? file.toString() : Strings.EMPTY;
+	return Resource.of(name);
+    }
+    
+    /**
+     * @param resoure resource name (FileSystem, Classpath or URL)
+     * @return Resource instance
+     */
+    public static Resource of(String name) {
+	return new Resource(name);
     }
 
     /**
-     * Constructor
+     * Private Constructor.
      * 
-     * @param file resource file
+     * @param resoure resource target location (FileSystem, Classpath or URL)
      */
-    public Resource(Path file) {
-	this(file != null ? file.toString() : "");
+    private Resource(String name) {
+	
+	this.name = PreConditions
+			.notBlank(name, "no such resource provided")
+			.strip();
+	
+	var path = Path.of(this.name);
+	this.localResource = Files.isReadable(path);
+
+	if (localResource) {
+	    try {
+		this.url = path.toUri().toURL();
+		this.exists = true;
+	    } catch (MalformedURLException mue) {
+		throw new IllegalArgumentException("convert target path to URL: " + name, mue);
+	    }
+	} else {
+	    this.url = ClassLoader.getSystemResource(this.name);
+	    this.exists = this.url != null;
+	}
     }
 
     /**
      * @return true if the resource exists
      */
-    public boolean found() {
-	return this.found;
+    public boolean exists() {
+	return this.exists;
     }
 
     /**
      * @return true if the resource not exists
      */
-    public boolean notFound() {
-	return !this.found();
+    public boolean notExists() {
+	return !this.exists();
     }
 
     /**
      * @return the given target resource
      */
-    public String getTarget() {
-	return this.target;
+    public String getName() {
+	return this.name;
     }
 
     /**
@@ -114,49 +119,44 @@ public class Resource {
      */
     public InputStream getInputStream() throws IOException {
 
-	if (!this.found()) {
-	    throw new IOException("resource does not exists: " + this.target);
+	if (!this.exists()) {
+	    throw new FileNotFoundException("resource does not exists: " + this.name);
 	}
 
-	if (fileSystem) {
-	    return Files.newInputStream(Path.of(target));
+	if (localResource) {
+	    return Files.newInputStream(Path.of(name));
 	} else {
 	    return url.openStream();
 	}
     }
-
-    /**
-     * @return return all non blank lines with default charset UTF_8.
-     * @throws IOException if any IO errors occurs
-     */
-    public List<String> getContent() throws IOException {
-	return this.getContent(StandardCharsets.UTF_8);
+    
+    public StreamReader streamReader() {
+	return this.streamReader(s -> true);
     }
-
-    /**
-     * @return return all non blank lines
-     * @throws IOException if any IO errors occurs
-     */
-    public List<String> getContent(Charset charset) throws IOException {
-
-	try (var is = this.getInputStream();
-		var isr = new InputStreamReader(is, charset);
-		var reader = new BufferedReader(isr);
-		Stream<String> lines = reader.lines().filter(l -> !l.isBlank())) {
-	    return lines.toList();
+    
+    public StreamReader streamReader(Predicate<String> filter) {
+	return new ResourceStreamReader(this, filter, StandardCharsets.ISO_8859_1);
+    }
+    
+    public List<String> readContent() throws Exception {
+	return this.readContent(s -> true);
+    }
+    
+    public List<String> readContent(Predicate<String> filter) throws Exception {
+	try (var reader = this.streamReader(filter)) {
+	    return reader.lines().toList();
 	}
     }
-
+    
     /**
-     * @return resource as properties object. the resource must be a properties
-     *         file.
+     * @return resource as properties object. the resource must be a properties file.
      * @throws IOException if any IO errors occurs
      */
     public Properties getProperties() throws IOException {
 
 	var properties = new Properties();
 
-	if (this.found()) {
+	if (this.exists()) {
 	    try (var is = this.getInputStream();) {
 		properties.load(is);
 	    }
@@ -167,6 +167,6 @@ public class Resource {
 
     @Override
     public String toString() {
-	return this.getTarget();
+	return this.getName();
     }
 }
