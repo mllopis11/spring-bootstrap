@@ -22,6 +22,15 @@ public interface Strings {
     }
     
     /**
+     * @param value    The original value (may be null)
+     * @param defValue Optional default value if original is null, empty or blank (default: empty string)
+     * @return The resulting {@code String} or the default value if present.
+     */
+    public static String blankAs(String value, String... defValue) {
+	return value != null && ! value.isBlank() ? value : Strings.defaultValue(defValue);
+    }
+    
+    /**
      * Remove all leading and trailing white space.
      * 
      * @param str      String to strip (may be null)
@@ -189,7 +198,7 @@ public interface Strings {
      * @param defValue optional default value
      * @return return the default value if present otherwise an empty value
      */
-    public static String defaultValue(String... defValue) {
+    private static String defaultValue(String... defValue) {
 	return defValue.length > 0 && defValue[0] != null ? defValue[0] : EMPTY;
     }
 }

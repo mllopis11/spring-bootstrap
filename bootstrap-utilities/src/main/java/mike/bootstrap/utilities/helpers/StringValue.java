@@ -10,7 +10,7 @@ public class StringValue {
      * Create a new String value instance.
      * 
      * @param value    original {@code String} (may be null)
-     * @param defValue default value to set if the origin value is null (default is an empty String)
+     * @param defValue default value to set if the origin value is null, empty or blank (default is an empty String)
      * @return
      */
     public static StringValue of(String value, String... defValue) {
@@ -40,7 +40,7 @@ public class StringValue {
      * </pre>
      * 
      * @return string value instance
-     * @see String#strip()
+     * @see Strings#strip()
      */
     public StringValue strip() {
 	this.value = Strings.strip(this.value);
@@ -48,9 +48,26 @@ public class StringValue {
     }
     
     /**
+     * Set default value (default: empty) if null, empty or blank.
+     * <pre>
+     * StringValue.blankAs() => ""
+     * StringValue.blankAs("foo") => "foo"
+     * </pre>
+     * 
+     * @param defValue The default value to set
+     * @return string value instance
+     * @see Strings#blankAs(String, String...)
+     */
+    public StringValue blankAs(String... defValue) {
+	this.value = Strings.blankAs(value, defValue);
+	return this;
+    }
+    
+    /**
      * Removes all newline(s) from a String
      * 
      * @return string value instance
+     * @see Strings#chomp(String)
      */
     public StringValue chomp() {
 	this.value = Strings.chomp(this.value);
@@ -65,6 +82,7 @@ public class StringValue {
      * </pre>
      * 
      * @return string value instance
+     * @see Strings#shrink(String)
      */
     public StringValue shrink() {
 	this.value = Strings.shrink(this.value);
@@ -80,6 +98,7 @@ public class StringValue {
      * </pre>
      * 
      * @return string value instance
+     * @see Strings#sanitize(String)
      */
     public StringValue sanitize() {
 	this.value = Strings.sanitize(this.value);
@@ -104,6 +123,7 @@ public class StringValue {
      * @param pattern The matching pattern
      * @param replacement The replacement string (default: single white space)
      * @return string value instance
+     * @see Strings#sanitize(String, Pattern, String...)
      */
     public StringValue sanitize(Pattern pattern, String... replacement) {
 	this.value = Strings.sanitize(this.value, pattern, replacement);
