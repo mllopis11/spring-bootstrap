@@ -15,24 +15,24 @@ import io.swagger.v3.core.util.Yaml;
 public class DefaultProblemJsonSerializer extends JsonSerializer<DefaultProblem> {
 
     public DefaultProblemJsonSerializer() {
-	var module = new SimpleModule();
-	module.addSerializer(DefaultProblem.class, this);
-	Json.mapper().registerModule(module);
-	Yaml.mapper().registerModule(module);
+        var module = new SimpleModule();
+        module.addSerializer(DefaultProblem.class, this);
+        Json.mapper().registerModule(module);
+        Yaml.mapper().registerModule(module);
     }
 
     @Override
     public void serialize(DefaultProblem problem, JsonGenerator jsonGenerator, SerializerProvider serializers)
-	    throws IOException {
+            throws IOException {
 
-	jsonGenerator.writeStartObject();
-	jsonGenerator.writeStringField("title", problem.getTitle());
-	jsonGenerator.writeNumberField("status", problem.getStatus().getStatusCode());
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("title", problem.getTitle());
+        jsonGenerator.writeNumberField("status", problem.getStatus().getStatusCode());
 
-	if (problem.getDetail() != null) {
-	    jsonGenerator.writeStringField("detail", problem.getDetail());
-	}
+        if (problem.getDetail() != null) {
+            jsonGenerator.writeStringField("detail", problem.getDetail());
+        }
 
-	jsonGenerator.writeEndObject();
+        jsonGenerator.writeEndObject();
     }
 }

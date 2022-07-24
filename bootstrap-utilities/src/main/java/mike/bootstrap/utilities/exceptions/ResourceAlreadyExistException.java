@@ -14,7 +14,7 @@ public class ResourceAlreadyExistException extends RuntimeException {
      * @param args    optional message arguments
      */
     public ResourceAlreadyExistException(String message, Object... args) {
-	super(String.format(message, args));
+        super(String.format(message, args));
     }
 
     /**
@@ -23,6 +23,6 @@ public class ResourceAlreadyExistException extends RuntimeException {
      * @param args      optional message arguments
      */
     public ResourceAlreadyExistException(Throwable throwable, String message, Object... args) {
-	super(String.format(message, args), throwable);
+        super(String.format(message, args), throwable);
     }
 }

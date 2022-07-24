@@ -14,7 +14,7 @@ public class ResourceNotAvailableException extends RuntimeException {
      * @param args    optional message arguments
      */
     public ResourceNotAvailableException(String message, Object... args) {
-	super(String.format(message, args));
+        super(String.format(message, args));
     }
 
     /**
@@ -23,6 +23,6 @@ public class ResourceNotAvailableException extends RuntimeException {
      * @param args      optional message arguments
      */
     public ResourceNotAvailableException(Throwable throwable, String message, Object... args) {
-	super(String.format(message, args), throwable);
+        super(String.format(message, args), throwable);
     }
 }

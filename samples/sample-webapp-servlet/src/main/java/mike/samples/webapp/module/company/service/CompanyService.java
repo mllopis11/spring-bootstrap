@@ -19,17 +19,17 @@ public class CompanyService {
     private static final Logger log = LoggerFactory.getLogger(CompanyService.class);
 
     private final CompanyRepository companyRepository;
-    
+
     public CompanyService(CompanyRepository companyRepository) {
-	this.companyRepository = companyRepository;
+        this.companyRepository = companyRepository;
     }
-    
+
     /**
      * @return all companies
      */
     public Collection<Company> findAll() {
-	log.info("findAll: retrieve all companies ...");
-	return this.companyRepository.findAll();
+        log.info("findAll: retrieve all companies ...");
+        return this.companyRepository.findAll();
     }
 
     /**
@@ -37,9 +37,9 @@ public class CompanyService {
      * @return the company if exist otherwise an empty value.
      */
     public Optional<Company> findByName(String name) {
-	log.info("findByName: name={}", name);
+        log.info("findByName: name={}", name);
 
-	return this.companyRepository.findByName(name);
+        return this.companyRepository.findByName(name);
     }
 
     /**
@@ -49,12 +49,13 @@ public class CompanyService {
      */
     public Company create(CompanyForm form) {
 
-	log.info("create: {}", form);
+        log.info("create: {}", form);
 
-	this.findByName(form.getName())
-		.ifPresent(c -> { throw new CompanyAlreadyExistException(c.getName()); } );
+        this.findByName(form.getName()).ifPresent(c -> {
+            throw new CompanyAlreadyExistException(c.getName());
+        });
 
-	return this.companyRepository.create(new Company(form.getName(), form.getDescription()));
+        return this.companyRepository.create(new Company(form.getName(), form.getDescription()));
     }
 
     /**
@@ -63,13 +64,12 @@ public class CompanyService {
      */
     public Company update(CompanyForm form) {
 
-	log.info("update: {}", form);
+        log.info("update: {}", form);
 
-	var company = this.findByName(form.getName())
-		.map(c -> new Company(form.getName(), form.getDescription()))
-		.orElseThrow(() -> new CompanyNotFoundException(form.getName()));
+        var company = this.findByName(form.getName()).map(c -> new Company(form.getName(), form.getDescription()))
+                .orElseThrow(() -> new CompanyNotFoundException(form.getName()));
 
-	return this.companyRepository.update(company);
+        return this.companyRepository.update(company);
     }
 
     /**
@@ -77,8 +77,8 @@ public class CompanyService {
      * @return true if the company has been deleted othawise false
      */
     public boolean delete(String name) {
-	log.info("delete: name={}", name);
+        log.info("delete: name={}", name);
 
-	return companyRepository.delete(name);
+        return companyRepository.delete(name);
     }
 }

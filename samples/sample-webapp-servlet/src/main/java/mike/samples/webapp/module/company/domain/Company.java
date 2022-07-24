@@ -28,33 +28,34 @@ public class Company {
      * Constructor
      */
     public Company(String name, String description) {
-	this.name = name;
-	this.description = description;
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public String getDescription() {
-	return description;
+        return description;
     }
 
     public void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
     public LocalDateTime getCreatedDttm() {
-	return createdDttm;
+        return createdDttm;
     }
 
     public void setCreatedDttm(LocalDateTime createdDttm) {
-	this.createdDttm = createdDttm;
+        this.createdDttm = createdDttm;
     }
 
     @Override
     public String toString() {
-	return String.format("Company [name=%s, description=%s, createdDttm=%s]", name, description,
-		Dates.format(createdDttm));
+        return String
+                .format("Company [name=%s, description=%s, createdDttm=%s]", name, description,
+                        Dates.format(createdDttm));
     }
 }

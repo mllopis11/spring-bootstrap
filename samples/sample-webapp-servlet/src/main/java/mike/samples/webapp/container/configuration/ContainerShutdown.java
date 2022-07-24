@@ -6,5 +6,5 @@ import mike.bootstrap.springboot.application.ContainerBootstrapShutdown;
 
 @Component
 class ContainerShutdown implements ContainerBootstrapShutdown {
-	
+
 }

@@ -35,7 +35,7 @@ public class SSLCertificateConfiguration {
     public static final String KW_DEFAULT_CERTIFICATES_CONFIG = "certificates.properties";
 
     static {
-	SSLCertificateConfiguration.setHttpsProtocols();
+        SSLCertificateConfiguration.setHttpsProtocols();
     }
 
     /**
@@ -44,46 +44,43 @@ public class SSLCertificateConfiguration {
     private SSLCertificateConfiguration() {}
 
     /**
-     * Configure SSL from the filename read from the JVM system property
-     * 'ssl.properties' if exists otherwise from the default certificates filename
-     * 'certificates.properties'.
+     * Configure SSL from the filename read from the JVM system property 'ssl.properties' if exists
+     * otherwise from the default certificates filename 'certificates.properties'.
      * 
-     * @throws UncheckedIOException in case of any error occurs while reading the
-     *                              file
+     * @throws UncheckedIOException in case of any error occurs while reading the file
      */
     public static void configure() {
-	var filename = System.getProperty(KW_JVM_PROP_NAME, KW_DEFAULT_CERTIFICATES_CONFIG);
-	SSLCertificateConfiguration.configure(filename);
+        var filename = System.getProperty(KW_JVM_PROP_NAME, KW_DEFAULT_CERTIFICATES_CONFIG);
+        SSLCertificateConfiguration.configure(filename);
     }
 
     /**
      * Configure SSL from the provided properties filename.
      * 
      * @param filename certificates properties filename
-     * @throws UncheckedIOException in case of any error occurs while reading the
-     *                              file
+     * @throws UncheckedIOException in case of any error occurs while reading the file
      */
     public static void configure(String filename) {
-	SSLCertificateConfiguration.configure(Paths.get(filename));
+        SSLCertificateConfiguration.configure(Paths.get(filename));
     }
 
     /**
      * Configure SSL from the provided properties file.
      * 
      * @param file certificates properties file
-     * @throws UncheckedIOException in case of any error occurs while reading the
-     *                              file
+     * @throws UncheckedIOException in case of any error occurs while reading the file
      */
     public static void configure(Path file) {
-	try {
-	    var resource = Resource.of(file);
 
-	    if (resource.exists()) {
-		SSLCertificateConfiguration.configure(resource.getProperties());
-	    }
-	} catch (IOException ioe) {
-	    throw new UncheckedIOException("SSL configuration exception", ioe);
-	}
+        try {
+            var resource = Resource.of(file);
+
+            if (resource.exists()) {
+                SSLCertificateConfiguration.configure(resource.getProperties());
+            }
+        } catch (IOException ioe) {
+            throw new UncheckedIOException("SSL configuration exception", ioe);
+        }
     }
 
     /**
@@ -93,19 +90,21 @@ public class SSLCertificateConfiguration {
      */
     public static void configure(Properties properties) {
 
-	if (!properties.isEmpty()) {
-	    SSLCertificateConfiguration.setHttpsProtocols();
-	    SSLCertificateConfiguration.setTrustStore(properties.getProperty(KW_TRUSTSTORE));
-	    SSLCertificateConfiguration.setTrustStorePassword(properties.getProperty(KW_TRUSTSTORE_SECRET));
-	}
+        if (!properties.isEmpty()) {
+            SSLCertificateConfiguration.setHttpsProtocols();
+            SSLCertificateConfiguration.setTrustStore(properties.getProperty(KW_TRUSTSTORE));
+            SSLCertificateConfiguration
+                    .setTrustStorePassword(properties.getProperty(KW_TRUSTSTORE_SECRET));
+        }
     }
 
     public static String getHttpsProtocols() {
-	try {
-	    return SSLContext.getDefault().getProtocol();
-	} catch (NoSuchAlgorithmException e) {
-	    return System.getProperty(KW_HTTPS_PROTOCOLS, "");
-	}
+
+        try {
+            return SSLContext.getDefault().getProtocol();
+        } catch (NoSuchAlgorithmException e) {
+            return System.getProperty(KW_HTTPS_PROTOCOLS, "");
+        }
     }
 
     /**
@@ -113,42 +112,42 @@ public class SSLCertificateConfiguration {
      */
     public static void setHttpsProtocols() {
 
-	try {
-	    var sslCtx = SSLContext.getInstance(KW_HTTPS_PROTOCOL_DEFAULT);
-	    SSLContext.setDefault(sslCtx);
-	} catch (NoSuchAlgorithmException e) {
-	    throw new ApplicationErrorException("SSL configuration HTTPs protocol: ", KW_HTTPS_PROTOCOL_DEFAULT);
-	}
+        try {
+            var sslCtx = SSLContext.getInstance(KW_HTTPS_PROTOCOL_DEFAULT);
+            SSLContext.setDefault(sslCtx);
+        } catch (NoSuchAlgorithmException e) {
+            throw new ApplicationErrorException("SSL configuration HTTPs protocol: ",
+                    KW_HTTPS_PROTOCOL_DEFAULT);
+        }
     }
 
     /**
-     * Set the JVM system property "javax.net.ssl.trustStore" with its default
-     * password.
+     * Set the JVM system property "javax.net.ssl.trustStore" with its default password.
      * 
      * @param trustStore trust store filename
      * @throws ApplicationErrorException if truststore file is not readable
      */
     public static void setTrustStore(String trustStore) {
-	var store = Strings.strip(trustStore);
+        var store = Strings.strip(trustStore);
 
-	if (!store.isEmpty()) {
-	    var absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
+        if (!store.isEmpty()) {
+            var absoluteStorePath = Paths.get(store).toAbsolutePath().normalize();
 
-	    if (Files.isReadable(absoluteStorePath)) {
-		System.setProperty(KW_TRUSTSTORE, PathUtils.toUnixPath(absoluteStorePath));
-		SSLCertificateConfiguration.setTrustStorePassword("changeit");
-	    } else {
-		throw new ApplicationErrorException("no such readable SSL certificate truststore: %s",
-			absoluteStorePath);
-	    }
-	}
+            if (Files.isReadable(absoluteStorePath)) {
+                System.setProperty(KW_TRUSTSTORE, PathUtils.toUnixPath(absoluteStorePath));
+                SSLCertificateConfiguration.setTrustStorePassword("changeit");
+            } else {
+                throw new ApplicationErrorException(
+                        "no such readable SSL certificate truststore: %s", absoluteStorePath);
+            }
+        }
     }
 
     /**
      * @return the trust store filename or an empty string if not set
      */
     public static String getTrustStore() {
-	return System.getProperty(KW_TRUSTSTORE, "");
+        return System.getProperty(KW_TRUSTSTORE, "");
     }
 
     /**
@@ -157,18 +156,18 @@ public class SSLCertificateConfiguration {
      * @param trustStorePassword trust store password
      */
     public static void setTrustStorePassword(String trustStorePassword) {
-	var pass = Strings.strip(trustStorePassword);
+        var pass = Strings.strip(trustStorePassword);
 
-	if (!pass.isEmpty()) {
-	    System.setProperty(KW_TRUSTSTORE_SECRET, pass);
-	}
+        if (!pass.isEmpty()) {
+            System.setProperty(KW_TRUSTSTORE_SECRET, pass);
+        }
     }
 
     /**
-     * @return true if the trustStore JVM system property (javax.net.ssl.trustStore)
-     *         is set otherwise false
+     * @return true if the trustStore JVM system property (javax.net.ssl.trustStore) is set
+     *         otherwise false
      */
     public static boolean isSSLConfigured() {
-	return !SSLCertificateConfiguration.getTrustStore().isEmpty();
+        return !SSLCertificateConfiguration.getTrustStore().isEmpty();
     }
 }

@@ -19,23 +19,23 @@ public class CompanyForm {
     private String description;
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-	return description;
+        return description;
     }
 
     public void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
     @Override
     public String toString() {
-	return String.format("CompanyForm [name=%s, description=%s]", name, description);
+        return String.format("CompanyForm [name=%s, description=%s]", name, description);
     }
 }

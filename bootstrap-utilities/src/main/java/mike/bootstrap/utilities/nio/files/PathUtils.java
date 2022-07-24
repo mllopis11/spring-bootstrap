@@ -18,21 +18,19 @@ public class PathUtils {
 
     /**
      * @param path filename
-     * @return the directory of the file or an empty String if no directory is
-     *         present.
+     * @return the directory of the file or an empty String if no directory is present.
      */
     public static String dirname(final String path) {
-	return PathUtils.dirname(Path.of(path));
+        return PathUtils.dirname(Path.of(path));
     }
 
     /**
      * @param path filename
-     * @return the directory of the file or an empty String if no directory is
-     *         present.
+     * @return the directory of the file or an empty String if no directory is present.
      */
     public static String dirname(final Path path) {
-	var dir = path.getParent();
-	return dir != null ? dir.toString() : "";
+        var dir = path.getParent();
+        return dir != null ? dir.toString() : "";
     }
 
     /**
@@ -40,7 +38,7 @@ public class PathUtils {
      * @return the basic filename (without the directory)
      */
     public static String basename(final String path) {
-	return PathUtils.basename(Path.of(path));
+        return PathUtils.basename(Path.of(path));
     }
 
     /**
@@ -48,7 +46,7 @@ public class PathUtils {
      * @return the basic filename (without the directory)
      */
     public static String basename(final Path path) {
-	return path.getFileName().toString();
+        return path.getFileName().toString();
     }
 
     /**
@@ -60,7 +58,7 @@ public class PathUtils {
      * @see java.nio.file.Paths#get(String, String...)
      */
     public static Path of(String first, String... more) {
-	return Path.of(first, more);
+        return Path.of(first, more);
     }
 
     /**
@@ -72,7 +70,7 @@ public class PathUtils {
      * @see PathUtils#of(String, String...)
      */
     public static Path of(Path first, String... more) {
-	return PathUtils.of(first.toString(), more);
+        return PathUtils.of(first.toString(), more);
     }
 
     /**
@@ -84,7 +82,7 @@ public class PathUtils {
      * @see PathUtils#of(String, Path...)
      */
     public static Path of(Path first, Path... more) {
-	return PathUtils.of(first.toString(), more);
+        return PathUtils.of(first.toString(), more);
     }
 
     /**
@@ -96,24 +94,25 @@ public class PathUtils {
      * @see PathUtils#of(String, String...)
      */
     public static Path of(String first, Path... more) {
-	String[] others = Stream.of(more).map(Path::toString).toArray(String[]::new);
-	return PathUtils.of(first, others);
+        String[] others = Stream.of(more).map(Path::toString).toArray(String[]::new);
+        return PathUtils.of(first, others);
     }
 
     /**
      * Substitute all backslashes with slash for a Windows path.<br>
-     * The substitution is only done for Windows OS. In all cases, the result is the
-     * String representation of the path
+     * The substitution is only done for Windows OS. In all cases, the result is the String
+     * representation of the path
      * 
      * @param path a path
      * @return the string representation of the path with slash.
      * @see Path#toString()
      */
     public static String toUnixPath(Path path) {
-	if (SysInfo.isWindows()) {
-	    return path.toString().replace("\\", "/");
-	}
 
-	return path.toString();
+        if (SysInfo.isWindows()) {
+            return path.toString().replace("\\", "/");
+        }
+
+        return path.toString();
     }
 }

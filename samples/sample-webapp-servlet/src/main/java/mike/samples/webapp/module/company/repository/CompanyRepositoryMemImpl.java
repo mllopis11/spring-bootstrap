@@ -14,33 +14,31 @@ import mike.samples.webapp.module.company.domain.CompanyFactory;
 class CompanyRepositoryMemImpl implements CompanyRepository {
 
     private static final ConcurrentMap<String, Company> companies = CompanyFactory.defaultCompanies();
-    
+
     @Override
     public Collection<Company> findAll() {
-	return companies.values();
+        return companies.values();
     }
 
     @Override
     public Optional<Company> findByName(String name) {
-	return companies.entrySet().stream()
-		.filter(e -> e.getKey().equalsIgnoreCase(name))
-		.map(Map.Entry::getValue)
-		.findFirst();
+        return companies.entrySet().stream().filter(e -> e.getKey().equalsIgnoreCase(name)).map(Map.Entry::getValue)
+                .findFirst();
     }
 
     @Override
     public Company create(Company company) {
-	return this.saveCompany(company);
+        return this.saveCompany(company);
     }
 
     @Override
     public Company update(Company company) {
-	return this.saveCompany(company);
+        return this.saveCompany(company);
     }
 
     @Override
     public boolean delete(String name) {
-	return Optional.ofNullable(companies.remove(name)).isPresent();
+        return Optional.ofNullable(companies.remove(name)).isPresent();
     }
 
     /**
@@ -50,7 +48,7 @@ class CompanyRepositoryMemImpl implements CompanyRepository {
      * @return the saved company
      */
     private Company saveCompany(Company company) {
-	companies.put(company.getName(), company);
-	return company;
+        companies.put(company.getName(), company);
+        return company;
     }
 }

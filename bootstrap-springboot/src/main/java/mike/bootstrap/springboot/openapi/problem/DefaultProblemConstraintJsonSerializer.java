@@ -16,27 +16,27 @@ import io.swagger.v3.core.util.Yaml;
 public class DefaultProblemConstraintJsonSerializer extends JsonSerializer<ConstraintViolationProblem> {
 
     public DefaultProblemConstraintJsonSerializer() {
-	var module = new SimpleModule();
-	module.addSerializer(ConstraintViolationProblem.class, this);
-	Json.mapper().registerModule(module);
-	Yaml.mapper().registerModule(module);
+        var module = new SimpleModule();
+        module.addSerializer(ConstraintViolationProblem.class, this);
+        Json.mapper().registerModule(module);
+        Yaml.mapper().registerModule(module);
     }
 
     @Override
     public void serialize(ConstraintViolationProblem problem, JsonGenerator jsonGenerator,
-	    SerializerProvider serializers) throws IOException {
+            SerializerProvider serializers) throws IOException {
 
-	jsonGenerator.writeStartObject();
-	jsonGenerator.writeStringField("title", problem.getTitle());
-	jsonGenerator.writeNumberField("status", problem.getStatus().getStatusCode());
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("title", problem.getTitle());
+        jsonGenerator.writeNumberField("status", problem.getStatus().getStatusCode());
 
-	jsonGenerator.writeArrayFieldStart("violations");
+        jsonGenerator.writeArrayFieldStart("violations");
 
-	for (Violation violation : problem.getViolations()) {
-	    jsonGenerator.writeObject(violation);
-	}
+        for (Violation violation : problem.getViolations()) {
+            jsonGenerator.writeObject(violation);
+        }
 
-	jsonGenerator.writeEndArray();
-	jsonGenerator.writeEndObject();
+        jsonGenerator.writeEndArray();
+        jsonGenerator.writeEndObject();
     }
 }

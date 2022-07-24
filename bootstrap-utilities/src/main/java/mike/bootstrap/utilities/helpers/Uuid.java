@@ -19,14 +19,14 @@ public class Uuid {
     /**
      * Get UUID type 4 (Secure Random UUID).
      * <p>
-     * The Java implementation is SecureRandom, which uses an unpredictable value as
-     * the seed to generate random numbers to reduce the chance of collisions.
+     * The Java implementation is SecureRandom, which uses an unpredictable value as the seed to
+     * generate random numbers to reduce the chance of collisions.
      * 
      * @return a random UUID.
      * @see UUID#randomUUID
      */
     public static String uuidV4() {
-	return UUID.randomUUID().toString();
+        return UUID.randomUUID().toString();
     }
 
     /**
@@ -35,7 +35,7 @@ public class Uuid {
      * @return the first symbol of the random UUID
      */
     public static String uuidV4Short() {
-	return Uuid.first(Uuid.uuidV4());
+        return Uuid.first(Uuid.uuidV4());
     }
 
     /**
@@ -44,7 +44,7 @@ public class Uuid {
      * @return a random UUID without dash.
      */
     public static String uuidV4Stripped() {
-	return Uuid.strip(Uuid.uuidV4());
+        return Uuid.strip(Uuid.uuidV4());
     }
 
     /**
@@ -54,7 +54,7 @@ public class Uuid {
      * @return the source name UUID.
      */
     public static String uuidV3(String name) {
-	return Uuid.uuidV3("", name);
+        return Uuid.uuidV3("", name);
     }
 
     /**
@@ -67,9 +67,9 @@ public class Uuid {
      * @return the source name UUID.
      */
     public static String uuidV3(String namespace, String name) {
-	var source = namespace + name;
-	var bytes = source.getBytes(StandardCharsets.UTF_8);
-	return UUID.nameUUIDFromBytes(bytes).toString();
+        var source = namespace + name;
+        var bytes = source.getBytes(StandardCharsets.UTF_8);
+        return UUID.nameUUIDFromBytes(bytes).toString();
     }
 
     /**
@@ -79,7 +79,7 @@ public class Uuid {
      * @return the UUID without dash.
      */
     public static String strip(String uuid) {
-	return uuid.replace("-", "");
+        return uuid.replace("-", "");
     }
 
     /**
@@ -89,6 +89,6 @@ public class Uuid {
      * @return the first item of the UUID.
      */
     public static String first(String uuid) {
-	return uuid.split("-", 2)[0];
+        return uuid.split("-", 2)[0];
     }
 }

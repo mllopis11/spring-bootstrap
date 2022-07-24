@@ -19,42 +19,42 @@ class OpenApiDocProperties {
     private String licenseUrl;
 
     public String getContactName() {
-	return contactName;
+        return contactName;
     }
 
     public void setContactName(String contactName) {
-	this.contactName = contactName;
+        this.contactName = contactName;
     }
 
     public String getContactUrl() {
-	return contactUrl;
+        return contactUrl;
     }
 
     public void setContactUrl(String contactUrl) {
-	this.contactUrl = contactUrl;
+        this.contactUrl = contactUrl;
     }
 
     public String getContactEmail() {
-	return contactEmail;
+        return contactEmail;
     }
 
     public void setContactEmail(String contactEmail) {
-	this.contactEmail = contactEmail;
+        this.contactEmail = contactEmail;
     }
 
     public String getLicenseName() {
-	return licenseName;
+        return licenseName;
     }
 
     public void setLicenseName(String licenseName) {
-	this.licenseName = licenseName;
+        this.licenseName = licenseName;
     }
 
     public String getLicenseUrl() {
-	return licenseUrl;
+        return licenseUrl;
     }
 
     public void setLicenseUrl(String licenseUrl) {
-	this.licenseUrl = licenseUrl;
+        this.licenseUrl = licenseUrl;
     }
 }

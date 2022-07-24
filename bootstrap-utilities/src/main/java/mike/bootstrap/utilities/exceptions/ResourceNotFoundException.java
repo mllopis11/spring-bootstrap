@@ -14,7 +14,7 @@ public class ResourceNotFoundException extends RuntimeException {
      * @param args    optional message arguments
      */
     public ResourceNotFoundException(String message, Object... args) {
-	super(String.format(message, args));
+        super(String.format(message, args));
     }
 
     /**
@@ -23,6 +23,6 @@ public class ResourceNotFoundException extends RuntimeException {
      * @param args      optional message arguments
      */
     public ResourceNotFoundException(Throwable throwable, String message, Object... args) {
-	super(String.format(message, args), throwable);
+        super(String.format(message, args), throwable);
     }
 }

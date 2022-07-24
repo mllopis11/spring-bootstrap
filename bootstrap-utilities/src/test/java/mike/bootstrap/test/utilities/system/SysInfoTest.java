@@ -27,69 +27,71 @@ class SysInfoTest {
     @Order(1)
     void should_return_main_class_informations() {
 
-	assertThat(SysInfo.mainClass()).isEmpty();
-	assertThat(SysInfo.mainClassName()).isEmpty();
-	assertThat(SysInfo.mainClassPackage()).isEmpty();
+        assertThat(SysInfo.mainClass()).isEmpty();
+        assertThat(SysInfo.mainClassName()).isEmpty();
+        assertThat(SysInfo.mainClassPackage()).isEmpty();
 
-	assertThatExceptionOfType(ClassCastException.class).isThrownBy(() -> SysInfo.setMainClass(SysInfo.class));
+        assertThatExceptionOfType(ClassCastException.class)
+                .isThrownBy(() -> SysInfo.setMainClass(SysInfo.class));
 
-	assertThatNoException().isThrownBy(() -> SysInfo.setMainClass(FooAppTest.class));
-	assertThat(FooAppTest.class.getCanonicalName()).isEqualTo(SysInfo.mainClass());
-	assertThat(FooAppTest.class.getSimpleName()).isEqualTo(SysInfo.mainClassName());
-	assertThat(FooAppTest.class.getPackage().getName()).isEqualTo(SysInfo.mainClassPackage());
+        assertThatNoException().isThrownBy(() -> SysInfo.setMainClass(FooAppTest.class));
+        assertThat(FooAppTest.class.getCanonicalName()).isEqualTo(SysInfo.mainClass());
+        assertThat(FooAppTest.class.getSimpleName()).isEqualTo(SysInfo.mainClassName());
+        assertThat(FooAppTest.class.getPackage().getName()).isEqualTo(SysInfo.mainClassPackage());
     }
 
     @Test
     void should_return_system_informations() {
-	assertThat(SysInfo.platform()).isNotEmpty();
-	assertThat(SysInfo.isUnix() || SysInfo.isWindows()).isTrue();
-	assertThat(SysInfo.cores()).isPositive();
-	assertThat(SysInfo.hostIP()).isNotEmpty();
-	assertThat(SysInfo.hostname()).isNotEmpty();
-	assertThat(SysInfo.pid()).isNotEmpty();
-	assertThat(SysInfo.localhost()).isNotEmpty();
-	assertThat(SysInfo.machine()).isNotEmpty();
+        assertThat(SysInfo.platform()).isNotEmpty();
+        assertThat(SysInfo.isUnix() || SysInfo.isWindows()).isTrue();
+        assertThat(SysInfo.cores()).isPositive();
+        assertThat(SysInfo.hostIP()).isNotEmpty();
+        assertThat(SysInfo.hostname()).isNotEmpty();
+        assertThat(SysInfo.pid()).isNotEmpty();
+        assertThat(SysInfo.localhost()).isNotEmpty();
+        assertThat(SysInfo.machine()).isNotEmpty();
     }
 
     @Test
     void should_throw_application_error_exception_when_host_address_invalid_args() {
 
-	assertThatExceptionOfType(ApplicationErrorException.class)
-		.isThrownBy(() -> SysInfo.hostAddressAlreadyBound(" ", null));
+        assertThatExceptionOfType(ApplicationErrorException.class)
+                .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(" ", null));
 
-	assertThatExceptionOfType(ApplicationErrorException.class)
-		.isThrownBy(() -> SysInfo.hostAddressAlreadyBound(null, port));
+        assertThatExceptionOfType(ApplicationErrorException.class)
+                .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(null, port));
 
-	assertThatExceptionOfType(ApplicationErrorException.class)
-		.isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, null));
+        assertThatExceptionOfType(ApplicationErrorException.class)
+                .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, null));
 
-	assertThatExceptionOfType(ApplicationErrorException.class)
-		.isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, "aa"));
+        assertThatExceptionOfType(ApplicationErrorException.class)
+                .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, "aa"));
 
-	assertThatExceptionOfType(ApplicationErrorException.class)
-		.isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, "999"));
+        assertThatExceptionOfType(ApplicationErrorException.class)
+                .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, "999"));
     }
 
     @Test
     void should_not_throw_application_error_exception_when_host_address_not_already_bound() {
-	assertThatNoException().isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, port));
+        assertThatNoException().isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, port));
     }
 
     @Test
-    void should_throw_application_error_exception_when_host_address_already_bound() throws IOException {
+    void should_throw_application_error_exception_when_host_address_already_bound()
+            throws IOException {
 
-	InetAddress localhost = InetAddress.getByName(hostname);
+        InetAddress localhost = InetAddress.getByName(hostname);
 
-	try (ServerSocket socket = new ServerSocket(Strings.toInteger(port), 0, localhost);) {
-	    assertThatExceptionOfType(ApplicationErrorException.class)
-		    .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, port));
-	}
+        try (ServerSocket socket = new ServerSocket(Strings.toInteger(port), 0, localhost);) {
+            assertThatExceptionOfType(ApplicationErrorException.class)
+                    .isThrownBy(() -> SysInfo.hostAddressAlreadyBound(hostname, port));
+        }
     }
 }
 
 final class FooAppTest {
 
     public static void main(String[] args) {
-	// Foo application
+        // Foo application
     }
 }

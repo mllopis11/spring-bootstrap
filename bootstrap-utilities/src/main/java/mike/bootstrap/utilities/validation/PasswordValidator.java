@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * Password validation constraints:
+ * 
  * <pre>
  * ^                  start-of-string
  * (?=.*[0-9])        a digit at least once
@@ -22,12 +23,12 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class PasswordValidator implements ConstraintValidator<Password, String> {
 
-    private static final Pattern regex = Pattern
-	    .compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?@#$%&\\-])(?=\\S+$)[0-9a-zA-Z!?@#$%&\\-]{8,20}");
+    private static final Pattern regex = Pattern.compile(
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?@#$%&\\-])(?=\\S+$)[0-9a-zA-Z!?@#$%&\\-]{8,20}");
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-	return value != null ? regex.matcher(value).matches() : Boolean.FALSE;
+        return value != null ? regex.matcher(value).matches() : Boolean.FALSE;
     }
 
 }

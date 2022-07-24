@@ -15,8 +15,7 @@ import mike.bootstrap.utilities.system.AppInfo;
 import mike.bootstrap.utilities.system.SysInfo;
 
 /**
- * Application bootstrap that normalize the SpringBoot application configuration
- * and startup.
+ * Application bootstrap that normalize the SpringBoot application configuration and startup.
  * 
  * @author Mike (2021-02)
  * 
@@ -66,7 +65,8 @@ class ApplicationBootstrap {
      * @param appType Web application type
      * @return org.springframework.boot#SpringApplication
      */
-    private static SpringApplication configure(Class<?> clazz, String[] args, WebApplicationType appType) {
+    private static SpringApplication configure(Class<?> clazz, String[] args,
+            WebApplicationType appType) {
 
         List<String> options = args != null ? List.of(args) : List.of();
 
@@ -85,14 +85,12 @@ class ApplicationBootstrap {
         SSLCertificateConfiguration.configure();
 
         /* *** Build Spring Application *** */
-        SpringApplication application = new SpringApplicationBuilder(clazz)
-                .logStartupInfo(true).bannerMode(Mode.OFF)
-                .properties(configuration)
-                .initializers(new ApplicationBootstrapInitializer())
-                .web(appType)
-                .build();
+        SpringApplication application = new SpringApplicationBuilder(clazz).logStartupInfo(true)
+                .bannerMode(Mode.OFF).properties(configuration)
+                .initializers(new ApplicationBootstrapInitializer()).web(appType).build();
 
-        System.setProperty(AppInfo.KW_APP_WEBAPP, String.valueOf(appType != WebApplicationType.NONE));
+        System.setProperty(AppInfo.KW_APP_WEBAPP,
+                String.valueOf(appType != WebApplicationType.NONE));
 
         return application;
     }

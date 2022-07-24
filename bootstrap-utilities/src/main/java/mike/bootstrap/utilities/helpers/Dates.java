@@ -21,12 +21,14 @@ public class Dates {
     /**
      * ZonedDateTimeFormatter as '2020-10-04T15:34:56.345+01:00'
      */
-    public static final DateTimeFormatter ISO_DTTM_NANO_OFFSET = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX");
+    public static final DateTimeFormatter ISO_DTTM_NANO_OFFSET = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX");
 
     /**
      * DateTimeFormatter as '2020-10-04 15:34:56.345'
      */
-    public static final DateTimeFormatter LOG_DTTM_NANO = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+    public static final DateTimeFormatter LOG_DTTM_NANO = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     /**
      * Private constructor (Prevent any instantiation)
@@ -34,12 +36,11 @@ public class Dates {
     private Dates() {}
 
     /**
-     * @return current LocalDateTime as
-     *         {@link DateTimeFormatter#ISO_LOCAL_DATE_TIME}
+     * @return current LocalDateTime as {@link DateTimeFormatter#ISO_LOCAL_DATE_TIME}
      * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME
      */
     public static String dNow() {
-	return Dates.dNow(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        return Dates.dNow(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     /**
@@ -47,7 +48,7 @@ public class Dates {
      * @see #LOG_DTTM_NANO
      */
     public static String dLogNano() {
-	return Dates.dNow(LOG_DTTM_NANO);
+        return Dates.dNow(LOG_DTTM_NANO);
     }
 
     /**
@@ -55,7 +56,7 @@ public class Dates {
      * @return current LocalDateTime with the given format
      */
     public static String dNow(DateTimeFormatter formatter) {
-	return LocalDateTime.now().format(formatter);
+        return LocalDateTime.now().format(formatter);
     }
 
     /**
@@ -63,7 +64,7 @@ public class Dates {
      * @see DateTimeFormatter#BASIC_ISO_DATE
      */
     public static String dIso() {
-	return Dates.dLocal(DateTimeFormatter.BASIC_ISO_DATE);
+        return Dates.dLocal(DateTimeFormatter.BASIC_ISO_DATE);
     }
 
     /**
@@ -71,7 +72,7 @@ public class Dates {
      * @see DateTimeFormatter#ISO_LOCAL_DATE
      */
     public static String dLocal() {
-	return Dates.dLocal(DateTimeFormatter.ISO_LOCAL_DATE);
+        return Dates.dLocal(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     /**
@@ -79,7 +80,7 @@ public class Dates {
      * @return current LocalDate with the given format
      */
     public static String dLocal(DateTimeFormatter formatter) {
-	return LocalDate.now().format(formatter);
+        return LocalDate.now().format(formatter);
     }
 
     /**
@@ -87,7 +88,7 @@ public class Dates {
      * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String zNow() {
-	return Dates.zNow(ISO_DTTM_NANO_OFFSET);
+        return Dates.zNow(ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -95,7 +96,7 @@ public class Dates {
      * @return current ZonedDateTime with the given format
      */
     public static String zNow(DateTimeFormatter formatter) {
-	return ZonedDateTime.now().format(formatter);
+        return ZonedDateTime.now().format(formatter);
     }
 
     /**
@@ -104,7 +105,7 @@ public class Dates {
      * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME
      */
     public static String format(LocalDate localDate) {
-	return Dates.format(localDate, DateTimeFormatter.ISO_LOCAL_DATE);
+        return Dates.format(localDate, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     /**
@@ -113,17 +114,16 @@ public class Dates {
      * @return the given LocalDate with the given format
      */
     public static String format(LocalDate localDate, DateTimeFormatter formatter) {
-	return localDate.format(formatter);
+        return localDate.format(formatter);
     }
 
     /**
      * @param localDateTime local date time
-     * @return the given LocalDateTime as
-     *         {@link DateTimeFormatter.ISO_LOCAL_DATE_TIME}
+     * @return the given LocalDateTime as {@link DateTimeFormatter.ISO_LOCAL_DATE_TIME}
      * @see DateTimeFormatter#ISO_LOCAL_DATE_TIME
      */
     public static String format(LocalDateTime localDateTime) {
-	return Dates.format(localDateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        return Dates.format(localDateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     /**
@@ -132,7 +132,7 @@ public class Dates {
      * @return the given LocalDateTime with the given format
      */
     public static String format(LocalDateTime localDateTime, DateTimeFormatter formatter) {
-	return localDateTime.format(formatter);
+        return localDateTime.format(formatter);
     }
 
     /**
@@ -141,7 +141,7 @@ public class Dates {
      * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(ZonedDateTime zonedDateTime) {
-	return Dates.format(zonedDateTime, ISO_DTTM_NANO_OFFSET);
+        return Dates.format(zonedDateTime, ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -150,7 +150,7 @@ public class Dates {
      * @return the given ZonedDateTime with the given format
      */
     public static String format(ZonedDateTime zonedDateTime, DateTimeFormatter formatter) {
-	return zonedDateTime.format(formatter);
+        return zonedDateTime.format(formatter);
     }
 
     /**
@@ -159,7 +159,7 @@ public class Dates {
      * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(FileTime fileTime) {
-	return Dates.format(fileTime, Dates.ISO_DTTM_NANO_OFFSET);
+        return Dates.format(fileTime, Dates.ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -168,7 +168,7 @@ public class Dates {
      * @return the given FileTime formatted with the given format
      */
     public static String format(FileTime fileTime, DateTimeFormatter formatter) {
-	return formatter.withZone(ZoneId.systemDefault()).format(fileTime.toInstant());
+        return formatter.withZone(ZoneId.systemDefault()).format(fileTime.toInstant());
     }
 
     /**
@@ -177,7 +177,7 @@ public class Dates {
      * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(Date date) {
-	return Dates.format(date, Dates.ISO_DTTM_NANO_OFFSET);
+        return Dates.format(date, Dates.ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -186,7 +186,7 @@ public class Dates {
      * @return the given Date with the given format
      */
     public static String format(Date date, DateTimeFormatter formatter) {
-	return formatter.withZone(ZoneId.systemDefault()).format(date.toInstant());
+        return formatter.withZone(ZoneId.systemDefault()).format(date.toInstant());
     }
 
     /**
@@ -195,7 +195,7 @@ public class Dates {
      * @see Dates#ISO_DTTM_NANO_OFFSET
      */
     public static String format(long epochMillis) {
-	return Dates.format(epochMillis, Dates.ISO_DTTM_NANO_OFFSET);
+        return Dates.format(epochMillis, Dates.ISO_DTTM_NANO_OFFSET);
     }
 
     /**
@@ -203,7 +203,7 @@ public class Dates {
      * @return the given Epoch formatted with the given format
      */
     public static String format(long epochMillis, DateTimeFormatter formatter) {
-	return formatter.withZone(ZoneId.systemDefault()).format(Instant.ofEpochMilli(epochMillis));
+        return formatter.withZone(ZoneId.systemDefault()).format(Instant.ofEpochMilli(epochMillis));
     }
 
     /**
@@ -211,7 +211,7 @@ public class Dates {
      * @return the given date converted
      */
     public static LocalDate toLocalDate(Date date) {
-	return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     /**
@@ -219,7 +219,7 @@ public class Dates {
      * @return the given date converted
      */
     public static LocalDateTime toLocalDateTime(Date date) {
-	return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
@@ -227,7 +227,7 @@ public class Dates {
      * @return the given date converted
      */
     public static LocalDateTime toLocalDateTime(FileTime fileTime) {
-	return fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
@@ -235,14 +235,14 @@ public class Dates {
      * @return the given epoch converted
      */
     public static LocalDateTime toLocalDateTime(long millis) {
-	return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
      * @return the EPOCH local datetime (1970-01-01T01:00:00Z)
      */
     public static LocalDateTime toLocalDateTimeEpoch() {
-	return LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
+        return LocalDateTime.ofInstant(Instant.EPOCH, ZoneId.systemDefault());
     }
 
     /**
@@ -250,7 +250,7 @@ public class Dates {
      * @return the given date converted
      */
     public static ZonedDateTime toZonedDateTime(Date date) {
-	return date.toInstant().atZone(ZoneId.systemDefault());
+        return date.toInstant().atZone(ZoneId.systemDefault());
     }
 
     /**
@@ -258,7 +258,7 @@ public class Dates {
      * @return the given date converted
      */
     public static ZonedDateTime toZonedDateTime(FileTime fileTime) {
-	return fileTime.toInstant().atZone(ZoneId.systemDefault());
+        return fileTime.toInstant().atZone(ZoneId.systemDefault());
     }
 
     /**
@@ -266,28 +266,28 @@ public class Dates {
      * @return the given date converted
      */
     public static ZonedDateTime toZonedDateTime(long millis) {
-	return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault());
+        return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault());
     }
 
     /**
      * @return the EPOCH zoned datetime (1970-01-01T01:00:00Z)
      */
     public static ZonedDateTime toZonedDateTimeEpoch() {
-	return Instant.EPOCH.atZone(ZoneId.systemDefault());
+        return Instant.EPOCH.atZone(ZoneId.systemDefault());
     }
 
     /**
      * @return SQL Timestamp from instant now.
      */
     public static Timestamp timestamp() {
-	return Timestamp.from(Instant.now());
+        return Timestamp.from(Instant.now());
     }
 
     /**
      * @return SQL Timestamp from instant EPOCH (1970-01-01T01:00:00Z).
      */
     public static Timestamp timestampEpoch() {
-	return Timestamp.from(Instant.EPOCH);
+        return Timestamp.from(Instant.EPOCH);
     }
 
     /**
@@ -295,7 +295,7 @@ public class Dates {
      * @return the number of milliseconds from the epoch of 1970-01-01T01:00:00Z
      */
     public static long toEpochMillis(LocalDateTime localDateTime) {
-	return Dates.toEpochMillis(localDateTime.atZone(ZoneId.systemDefault()));
+        return Dates.toEpochMillis(localDateTime.atZone(ZoneId.systemDefault()));
     }
 
     /**
@@ -303,7 +303,7 @@ public class Dates {
      * @return the number of milliseconds from the epoch of 1970-01-01T01:00:00Z
      */
     public static long toEpochMillis(ZonedDateTime zonedDateTime) {
-	return zonedDateTime.toEpochSecond() * 1000;
+        return zonedDateTime.toEpochSecond() * 1000;
     }
 
     /**
@@ -316,12 +316,12 @@ public class Dates {
      */
     public static boolean isValid(String value, DateTimeFormatter formatter) {
 
-	try {
-	    formatter.parse(value);
-	} catch (DateTimeParseException ex) {
-	    return false;
-	}
+        try {
+            formatter.parse(value);
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
 
-	return true;
+        return true;
     }
 }

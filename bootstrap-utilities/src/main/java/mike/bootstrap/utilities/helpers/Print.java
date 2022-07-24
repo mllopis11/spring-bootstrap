@@ -13,14 +13,13 @@ public class Print {
     private static boolean enabled = false;
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
-    private Print() {
-    }
+    private Print() {}
 
     /**
      * Toggle timestamp on message
      */
     public static void timestamp(boolean enabled) {
-	Print.enabled = enabled;
+        Print.enabled = enabled;
     }
 
     /**
@@ -29,18 +28,17 @@ public class Print {
      * @param format timestamp format
      */
     public static void timestamp(DateTimeFormatter format) {
-	dtf = format;
-	Print.enabled = true;
+        dtf = format;
+        Print.enabled = true;
     }
 
     /**
-     * Set timestamp format. If an invalid format is provided, the default format is
-     * kept.
+     * Set timestamp format. If an invalid format is provided, the default format is kept.
      * 
      * @param format timestamp format
      */
     public static void timestamp(String format) {
-	Print.timestamp(DateTimeFormatter.ofPattern(format));
+        Print.timestamp(DateTimeFormatter.ofPattern(format));
     }
 
     /**
@@ -49,7 +47,7 @@ public class Print {
      * @param o object to print
      */
     public static void out(Object o) {
-	System.out.println(o);
+        System.out.println(o);
     }
 
     /**
@@ -59,7 +57,7 @@ public class Print {
      * @param arg    message arguments
      */
     public static void out(String format, Object... arg) {
-	System.out.println(String.format(format, arg));
+        System.out.println(String.format(format, arg));
     }
 
     /**
@@ -68,7 +66,7 @@ public class Print {
      * @param o object to print
      */
     public static void info(Object o) {
-	Print.out(prefix("INFO :  ") + o);
+        Print.out(prefix("INFO :  ") + o);
     }
 
     /**
@@ -78,7 +76,7 @@ public class Print {
      * @param arg    message arguments
      */
     public static void info(String format, Object... arg) {
-	Print.out(prefix("INFO :  ") + format, arg);
+        Print.out(prefix("INFO :  ") + format, arg);
     }
 
     /**
@@ -87,7 +85,7 @@ public class Print {
      * @param o object to print
      */
     public static void warn(Object o) {
-	Print.out(prefix("WARN :  ") + o);
+        Print.out(prefix("WARN :  ") + o);
     }
 
     /**
@@ -97,7 +95,7 @@ public class Print {
      * @param arg    message arguments
      */
     public static void warn(String format, Object... arg) {
-	Print.out(prefix("WARN :  ") + format, arg);
+        Print.out(prefix("WARN :  ") + format, arg);
     }
 
     /**
@@ -106,7 +104,7 @@ public class Print {
      * @param o object to print
      */
     public static void error(Object o) {
-	Print.out(prefix("ERROR:  ") + o);
+        Print.out(prefix("ERROR:  ") + o);
     }
 
     /**
@@ -116,7 +114,7 @@ public class Print {
      * @param arg    message arguments
      */
     public static void error(String format, Object... arg) {
-	Print.out(prefix("ERROR:  ") + format, arg);
+        Print.out(prefix("ERROR:  ") + format, arg);
     }
 
     /**
@@ -125,7 +123,7 @@ public class Print {
      * @param o object to print
      */
     public static void fatal(Object o) {
-	Print.out(prefix("FATAL:  ") + o);
+        Print.out(prefix("FATAL:  ") + o);
     }
 
     /**
@@ -135,7 +133,7 @@ public class Print {
      * @param arg    message arguments
      */
     public static void fatal(String format, Object... arg) {
-	Print.out(prefix("FATAL:  ") + format, arg);
+        Print.out(prefix("FATAL:  ") + format, arg);
     }
 
     /**
@@ -145,6 +143,6 @@ public class Print {
      * @return message prefix
      */
     private static String prefix(String level) {
-	return enabled ? dtf.format(ZonedDateTime.now()) + " - " + level : level;
+        return enabled ? dtf.format(ZonedDateTime.now()) + " - " + level : level;
     }
 }

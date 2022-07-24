@@ -18,10 +18,10 @@ class ApplicationDefaultConfiguration {
 
     @Bean
     public LocaleResolver localeResolver() {
-	var fixedLocale = Locale.ENGLISH;
+        var fixedLocale = Locale.ENGLISH;
 
-	log.info("Application locale (fixed): {}", fixedLocale.getDisplayName());
+        log.info("Application locale (fixed): {}", fixedLocale.getDisplayName());
 
-	return new FixedLocaleResolver(fixedLocale);
+        return new FixedLocaleResolver(fixedLocale);
     }
 }

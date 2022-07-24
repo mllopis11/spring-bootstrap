@@ -1,8 +1,8 @@
 package mike.bootstrap.utilities.exceptions;
 
 /**
- * ApplicationErrorException represents non recoverable exceptions and are not
- * supposed to be handled by the caller.
+ * ApplicationErrorException represents non recoverable exceptions and are not supposed to be
+ * handled by the caller.
  * 
  * @author Mike (2021-02)
  *
@@ -16,7 +16,7 @@ public class ApplicationErrorException extends RuntimeException {
      * @param args    optional message arguments
      */
     public ApplicationErrorException(String message, Object... args) {
-	super(String.format(message, args));
+        super(String.format(message, args));
     }
 
     /**
@@ -25,6 +25,6 @@ public class ApplicationErrorException extends RuntimeException {
      * @param args      optional message arguments
      */
     public ApplicationErrorException(Throwable throwable, String message, Object... args) {
-	super(String.format(message, args), throwable);
+        super(String.format(message, args), throwable);
     }
 }

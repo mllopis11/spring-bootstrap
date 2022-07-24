@@ -39,6 +39,7 @@ class ResourceStreamReader implements StreamReader {
 	    
 	    return reader.lines().filter(filter);
 	} catch (IOException ioe) {
+	    log.error("Resource::read: ");
 	    this.close();
 	    throw ioe;
 	}
@@ -52,7 +53,7 @@ class ResourceStreamReader implements StreamReader {
 	    try {
 		this.reader.close();
 	    } catch (IOException ioe) {
-		log.warn("Resource::close: bufferedReader (reason: {})", ioe.getMessage());
+		log.warn("Resource::close: bufferedReader: {} - causedBy:", ioe.getMessage(), ioe);
 	    }
 	}
 	
@@ -60,7 +61,7 @@ class ResourceStreamReader implements StreamReader {
 	    try {
 		this.isr.close();
 	    } catch (IOException ioe) {
-		log.warn("Resource::close: inputStreamReader (reason: {})", ioe.getMessage());
+		log.warn("Resource::close: inputStreamReader: {} - causedBy:", ioe.getMessage(), ioe);
 	    }
 	}
 	
@@ -68,7 +69,7 @@ class ResourceStreamReader implements StreamReader {
 	    try {
 		this.is.close();
 	    } catch (IOException ioe) {
-		log.warn("Resource::close: inputStream (reason: {})", ioe.getMessage());
+		log.warn("Resource::close: inputStream: {} - causedBy:", ioe.getMessage(), ioe);
 	    }
 	}
     }

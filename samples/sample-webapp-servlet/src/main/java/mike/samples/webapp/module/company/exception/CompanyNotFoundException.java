@@ -7,6 +7,6 @@ public class CompanyNotFoundException extends ResourceNotFoundException {
     private static final long serialVersionUID = 2320104538411483080L;
 
     public CompanyNotFoundException(String name) {
-	super("no such company: " + name);
+        super("no such company: " + name);
     }
 }

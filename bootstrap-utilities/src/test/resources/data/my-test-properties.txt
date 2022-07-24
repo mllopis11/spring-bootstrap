@@ -1,3 +1,5 @@
+# Test properties
+
 my.first.prop=one
 my.second.prop=${my.first.prop}, two
 my.third.prop=${my.first.prop}, ${my.first.prop}, three
