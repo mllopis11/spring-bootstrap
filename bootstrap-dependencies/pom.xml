@@ -21,8 +21,9 @@
         <maven.plugin.source.version>3.2.1</maven.plugin.source.version>
         <maven.plugin.javadoc.version>3.4.0</maven.plugin.javadoc.version>
         <maven.plugin.release.version>3.0.0-M6</maven.plugin.release.version>
-        <maven.plugin.surefire.version>3.0.0-M6</maven.plugin.surefire.version>
-        <maven.plugin.failsafe.version>3.0.0-M6</maven.plugin.failsafe.version>
+        <maven.plugin.surefire.version>3.0.0-M7</maven.plugin.surefire.version>
+        <maven.plugin.failsafe.version>3.0.0-M7</maven.plugin.failsafe.version>
+        <maven.plugin.enforcer-plugin>3.1.0</maven.plugin.enforcer-plugin>
 
         <!-- Java -->
         <javax.inject.version>1</javax.inject.version>
@@ -33,7 +34,7 @@
         <logback.version>1.2.11</logback.version>
 
         <!-- Spring Release Train -->
-        <spring-boot.version>2.7.0</spring-boot.version>
+        <spring-boot.version>2.7.2</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
 
         <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
@@ -261,7 +262,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${maven.plugin.enforcer-plugin}</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -271,7 +272,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.2.5</version>
+                                    <version>3.8.0</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
