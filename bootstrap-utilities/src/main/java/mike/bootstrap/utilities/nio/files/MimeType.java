@@ -18,7 +18,7 @@ public enum MimeType {
     ZIP("application/zip"),
     GZIP("application/gzip"),
     TEXT("text/plain"),
-    JSON("application/gzip"),
+    JSON("application/json"),
     UNKOWN("application/unknown");
 
     private final String media;
