@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>mike.bootstrap</groupId>
+        <artifactId>bootstrap-builder</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../bootstrap-builder</relativePath>
+    </parent>
+
+    <artifactId>bootstrap-storage</artifactId>
+    <name>bootstrap-storage</name>
+    <description>Object storage module</description>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- AWS S3 SDK (v2) -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.17.261</version>
+        </dependency>
+
+    </dependencies>
+</project>

@@ -29,6 +29,7 @@
     <modules>
         <module>../bootstrap-utilities</module>
         <module>../bootstrap-springboot</module>
+        <module>../bootstrap-storage</module>
     </modules>
     
     <dependencies>
