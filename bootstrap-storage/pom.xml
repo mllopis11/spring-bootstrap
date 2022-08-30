@@ -12,11 +12,15 @@
     </parent>
 
     <artifactId>bootstrap-storage</artifactId>
-    <name>bootstrap-storage</name>
     <description>Object storage module</description>
     <packaging>jar</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>mike.bootstrap</groupId>
+            <artifactId>bootstrap-utilities</artifactId>
+        </dependency>
+        
         <!-- AWS S3 SDK (v2) -->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>

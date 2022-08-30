@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -100,5 +101,26 @@ class PreConditionsTest {
         assertThatExceptionOfType(UnsupportedOperationException.class)
                 .isThrownBy(() -> PreConditions.notEmpty(0, "variable '%s' is Zero", "myVar"))
                 .withMessageContaining("object type not supported");
+    }
+    
+    @Test
+    void match_should_return_tested_value_when_string_match_pattern() {
+        var pattern = Pattern.compile("[a-z0-9]{2,5}");
+        
+        var rv = PreConditions.match("test", pattern, "invalid string: %s", "test");
+        
+        assertThat(rv).isEqualTo("test");
+    }
+    
+    
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = { "MyValue" })
+    void match_should_throw_illegalArgumentException_when_string_dont_match_pattern(String value) {
+        var pattern = Pattern.compile("[a-z0-9]{2,5}");
+        
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> PreConditions.match(value, pattern, "invalid string: %s", "MyValue"))
+            .withMessage("invalid string: MyValue");
     }
 }

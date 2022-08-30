@@ -2,6 +2,7 @@ package mike.bootstrap.utilities.helpers;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Static convenience methods that help a method or constructor check whether it was invoked
@@ -28,6 +29,22 @@ public class PreConditions {
         if (!condition) {
             throw new IllegalArgumentException(String.format(message, args));
         }
+    }
+    
+    /**
+     * The string value must match the given pattern.
+     * 
+     * @param str     value to assert
+     * @param pattern regex pattern used for evaluation
+     * @param message exception message used if the test fails; will be converted to a string
+     * @param args    optional exception message arguments
+     * @return the original string if conditions have been met.
+     * @see {@link PreConditions#test(boolean, String, Object...)}
+     */
+    public static String match(String str, Pattern pattern, String message, Object... args) {
+        PreConditions.notNull(str, message, args);
+        PreConditions.test(pattern.asMatchPredicate().test(str), message, args);
+        return str;
     }
 
     /**
