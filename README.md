@@ -4,8 +4,8 @@ Utility library for the most common operations used in java projects.
 
 Components | Versions
 ---------- | --------
-[OpenJDK](https://adoptium.net/fr/temurin/releases/) | 17
-[Maven](https://maven.apache.org) | 3.8.0 or higher
+[OpenJDK](https://adoptium.net/fr/temurin/releases/) | 21
+[Maven](https://maven.apache.org) | 3.9.0 or higher
 [GIT for Windows](https://gitforwindows.org) | Git Tooling (bash on windows)
 
 **Notes:** 
