@@ -4,8 +4,8 @@ Utility library for the most common operations used in java projects.
 
 Components | Versions
 ---------- | --------
-[JDK](https://adoptopenjdk.net) | 17
-[Maven](https://maven.apache.org) | 3.6.3 or higher
+[OpenJDK](https://adoptium.net/fr/temurin/releases/) | 17
+[Maven](https://maven.apache.org) | 3.8.0 or higher
 [GIT for Windows](https://gitforwindows.org) | Git Tooling (bash on windows)
 
 **Notes:** 
@@ -26,7 +26,7 @@ samples | Implementation examples
 
 ```bash
 $ git clone https://github.com/mllopis11/spring-bootstrap.git [--branch <branchname>]
-$ cd java-bootstrap
+$ cd spring-bootstrap
 $ mvn clean install
 ```
 
@@ -36,7 +36,7 @@ $ mvn clean install
 
 ```bash
 $ # Set the next development version if needed (do not set for auto versioning)
-$ nextSnapshotVersion=2.0-SNAPSHOT
+$ nextSnapshotVersion=2.0.0-SNAPSHOT
 ```
 
 2) (Optional) Execute dry-run to verify the release then clean
