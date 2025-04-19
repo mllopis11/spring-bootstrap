@@ -6,7 +6,7 @@
     <parent>
         <groupId>mike.bootstrap</groupId>
         <artifactId>bootstrap-builder</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../bootstrap-builder</relativePath>
     </parent>
     
@@ -43,19 +43,5 @@
             <artifactId>problem-spring-web-starter</artifactId>
             <scope>provided</scope>
         </dependency>
-        
-        <!--
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-        </dependency>
-        -->
-
     </dependencies>
 </project>

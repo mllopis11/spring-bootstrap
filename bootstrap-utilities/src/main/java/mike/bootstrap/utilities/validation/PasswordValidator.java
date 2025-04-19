@@ -2,8 +2,8 @@ package mike.bootstrap.utilities.validation;
 
 import java.util.regex.Pattern;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Password validation constraints:
@@ -24,7 +24,7 @@ import javax.validation.ConstraintValidatorContext;
 public class PasswordValidator implements ConstraintValidator<Password, String> {
 
     private static final Pattern regex = Pattern.compile(
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?@#$%&\\-])(?=\\S+$)[0-9a-zA-Z!?@#$%&\\-]{8,20}");
+            "^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?@#$%&\\-])(?=\\S+$)[0-9a-zA-Z!?@#$%&\\-]{8,20}");
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
