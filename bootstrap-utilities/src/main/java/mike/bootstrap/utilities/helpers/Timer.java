@@ -3,6 +3,7 @@ package mike.bootstrap.utilities.helpers;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * Timer allows to evaluate elapsed time between two check-points.
@@ -101,9 +102,8 @@ public class Timer {
     /**
      * @return Split duration formatted as: 0.000 second(s)
      */
-    public String splitToSeconds() {
-        return String.format(SECONDS_FORMAT, this.toSeconds(this.split()));
-    }
+    public final Supplier<String> splitInSeconds = () ->
+            String.format(SECONDS_FORMAT, this.toSeconds(this.split()));
 
     /**
      * @return Cuurent elapsed duration
@@ -120,25 +120,24 @@ public class Timer {
     /**
      * @return current elapsed time formatted as: 0.000 second(s)
      */
-    public String elapsToSeconds() {
-        return String.format(SECONDS_FORMAT, this.toSeconds(this.elaps()));
-    }
+    public final Supplier<String> elapsInSeconds = () ->
+            String.format(SECONDS_FORMAT, this.toSeconds(this.elaps()));
 
     /**
      * @return elapsed time (format: hh:mm:ss:ms)
      */
-    public String elapsTime() {
+    public final Supplier<String> elapsTime = () -> {
         var millis = this.elaps().toMillis();
         return String.format("%02d:%02d:%02d",
                 TimeUnit.MILLISECONDS.toHours(millis) % TimeUnit.DAYS.toHours(1),
                 TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
-    }
+    };
 
     /**
      * @return elapsed time (format: days, hours, min., sec.)
      */
-    public String upTime() {
+    public final Supplier<String> upTime = () -> {
         var millis = this.elaps().toMillis();
 
         return String.format("%d day(s), %d hour(s), %d min., %d sec.",
@@ -146,7 +145,7 @@ public class Timer {
                 TimeUnit.MILLISECONDS.toHours(millis) % TimeUnit.DAYS.toHours(1),
                 TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
-    }
+    };
 
     /* ****************************** PRIVATE METHODS ****************************** */
 

@@ -36,10 +36,10 @@ class TimerTest {
 
         assertThat(tm.isStopped()).isTrue();
         assertThat(tm.elaps()).isEqualByComparingTo(elaps);
-        assertThat(tm.elapsToSeconds()).matches(ELAPSED_PATTERN)
+        assertThat(tm.elapsInSeconds.get()).matches(ELAPSED_PATTERN)
                 .startsWith(String.valueOf(elaps.getSeconds()));
-        assertThat(tm.elapsTime()).matches("00:00:0[0-9]");
-        assertThat(tm.upTime()).matches("0 day\\(s\\), 0 hour\\(s\\), 0 min\\., [0-9] sec\\.");
+        assertThat(tm.elapsTime.get()).matches("00:00:0[0-9]");
+        assertThat(tm.upTime.get()).matches("0 day\\(s\\), 0 hour\\(s\\), 0 min\\., [0-9] sec\\.");
 
         tm.reset();
 
@@ -59,7 +59,7 @@ class TimerTest {
         assertThat(tm.elaps().getSeconds()).isEqualTo(2);
         assertThat(split.getSeconds()).isEqualTo(1);
 
-        assertThat(tm.splitToSeconds()).matches(ELAPSED_PATTERN)
+        assertThat(tm.splitInSeconds.get()).matches(ELAPSED_PATTERN)
                 .startsWith(String.valueOf(split.getSeconds()));
     }
 }

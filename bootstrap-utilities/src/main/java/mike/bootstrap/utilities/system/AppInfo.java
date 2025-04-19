@@ -165,7 +165,7 @@ public class AppInfo {
      * @return completion message
      */
     public static String footer() {
-        String uptime = isWebApplication() ? tm.upTime() : tm.elapsTime();
+        String uptime = isWebApplication() ? tm.upTime.get() : tm.elapsTime.get();
         return String.format("%s (node: %s) terminated at %s (uptime: %s)", module(), node(),
                 Dates.zNow(), uptime);
     }
@@ -175,7 +175,7 @@ public class AppInfo {
      * @see mike.commons.utilities.Timer#upTime()
      */
     public static String uptime() {
-        return tm.upTime();
+        return tm.upTime.get();
     }
 
     /*
