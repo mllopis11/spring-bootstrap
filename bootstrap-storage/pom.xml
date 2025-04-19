@@ -13,7 +13,6 @@
 
     <artifactId>bootstrap-storage</artifactId>
     <description>Object storage module</description>
-    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

@@ -11,7 +11,6 @@
     </parent>
     
     <artifactId>bootstrap-springboot</artifactId>
-    <packaging>jar</packaging>
     <description>SprinBoot application bootstrap</description>
     
     <dependencies>

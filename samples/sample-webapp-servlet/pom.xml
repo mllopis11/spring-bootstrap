@@ -11,8 +11,6 @@
     </parent>
 
     <artifactId>sample-webapp-servlet</artifactId>
-    <name>${project.artifactId}</name>
-    <packaging>jar</packaging>
     <description>Simple Servlet Web Application</description>
 
     <properties>

@@ -11,8 +11,6 @@
     </parent>
 
     <artifactId>sample-basic-app</artifactId>
-    <name>${project.artifactId}</name>
-    <packaging>jar</packaging>
     <description>Simple Basic Application</description>
 
     <properties>

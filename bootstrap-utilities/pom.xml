@@ -12,7 +12,6 @@
 
     <artifactId>bootstrap-utilities</artifactId>
     <description>Utilities library (usable independently of other projects)</description>
-    <packaging>jar</packaging>
   
     <dependencies>
         <dependency>
