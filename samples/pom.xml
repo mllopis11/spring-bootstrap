@@ -13,7 +13,6 @@
 
     <groupId>mike.bootstrap.samples</groupId>
     <artifactId>sample-parent</artifactId>
-    <name>${project.artifactId}</name>
     <description>Samples parent project</description>
     <packaging>pom</packaging>
     

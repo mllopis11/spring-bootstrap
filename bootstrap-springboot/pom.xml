@@ -33,6 +33,12 @@
 
         <dependency>
             <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webmvc-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <scope>provided</scope>
         </dependency>
