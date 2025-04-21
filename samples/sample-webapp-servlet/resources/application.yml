@@ -19,6 +19,9 @@ logging:
 springdoc:
   api-docs:
     enabled: true
+  info:
+    contact-name: John Doe
+    contact-email: john.doe@foo.com
   swagger-ui:
     enabled: true
     display-request-duration: true
