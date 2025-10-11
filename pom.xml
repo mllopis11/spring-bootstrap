@@ -32,6 +32,7 @@
         <module>./bootstrap-builder</module>
         <module>./bootstrap-parent</module>
         <module>./samples</module>
+        <module>./bootstrap-coverage</module>
     </modules>
 
     <dependencyManagement>
@@ -66,7 +67,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -75,6 +76,9 @@
                         </goals>
                         <configuration>
                             <rules>
+                                <requireJavaVersion>
+                                    <version>21</version>
+                                </requireJavaVersion>
                                 <requireMavenVersion>
                                     <version>3.9.0</version>
                                 </requireMavenVersion>

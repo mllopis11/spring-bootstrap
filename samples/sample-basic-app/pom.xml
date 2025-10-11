@@ -18,5 +18,9 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>mike.bootstrap</groupId>
+            <artifactId>bootstrap-spring-app</artifactId>
+        </dependency>
     </dependencies>
 </project>

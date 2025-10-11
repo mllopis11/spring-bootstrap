@@ -51,8 +51,10 @@ public class AppInfo {
         // Set JVM Locale to English
         Locale.setDefault(Locale.ENGLISH);
 
-        node = StringValue.of(System.getProperty(KW_APP_NODE, "local")).sanitize("-").value()
+        node = StringValue.of(System.getProperty(KW_APP_NODE, "local"))
+                .value()
                 .toLowerCase();
+        
         runtimeBaseDirectory = System.getProperty(KW_APP_RUNDIR, String.format("./run/%s", node));
 
         /*

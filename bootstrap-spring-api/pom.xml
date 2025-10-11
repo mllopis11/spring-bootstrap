@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -9,28 +10,27 @@
         <version>2.0.0-SNAPSHOT</version>
         <relativePath>../bootstrap-builder</relativePath>
     </parent>
-    
-    <artifactId>bootstrap-springboot</artifactId>
-    <description>SprinBoot application bootstrap</description>
-    
+
+    <artifactId>bootstrap-spring-api</artifactId>
+    <description>SpringBoot rest-api bootstrap</description>
+
     <dependencies>
         <dependency>
             <groupId>mike.bootstrap</groupId>
-            <artifactId>bootstrap-utilities</artifactId>
+            <artifactId>bootstrap-spring-app</artifactId>
         </dependency>
 
         <!-- SpringBoot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
+        
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -44,8 +44,6 @@
         <dependency>
             <groupId>org.zalando</groupId>
             <artifactId>problem-spring-web-starter</artifactId>
-            <scope>provided</scope>
         </dependency>
-        
     </dependencies>
 </project>

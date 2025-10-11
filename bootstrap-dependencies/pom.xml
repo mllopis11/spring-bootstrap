@@ -14,44 +14,45 @@
     </organization>
 
     <properties>
+        <java.version>21</java.version>
+        
         <!-- Maven plugins -->
-        <maven.plugin.compiler.version>3.14.0</maven.plugin.compiler.version>
-        <maven.plugin.jar.version>3.4.2</maven.plugin.jar.version>
-        <maven.plugin.resources.version>3.3.1</maven.plugin.resources.version>
-        <maven.plugin.source.version>3.3.1</maven.plugin.source.version>
-        <maven.plugin.javadoc.version>3.11.2</maven.plugin.javadoc.version>
-        <maven.plugin.release.version>3.1.1</maven.plugin.release.version>
-        <maven.plugin.surefire.version>3.5.3</maven.plugin.surefire.version>
-        <maven.plugin.failsafe.version>3.5.3</maven.plugin.failsafe.version>
-        <maven.plugin.enforcer-plugin>3.5.0</maven.plugin.enforcer-plugin>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
+
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
 
         <!-- Java -->
-        <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
-        <jakarta.validation.version>3.1.1</jakarta.validation.version>
+        <jakarta.validation-api.version>3.1.1</jakarta.validation-api.version>
 
         <!-- Loggers -->
-        <slf4j.version>2.0.17</slf4j.version>
-        <logback.version>1.5.18</logback.version>
+        <slf4j-api.version>2.0.17</slf4j-api.version>
+        <logback-classic.version>1.5.18</logback-classic.version>
 
         <!-- Spring Release Train -->
-        <spring-boot.version>3.4.4</spring-boot.version>
-        <spring-cloud.version>2024.0.1</spring-cloud.version>
+        <spring-boot.version>3.5.5</spring-boot.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
 
-        <springdoc.openapi.version>1.8.0</springdoc.openapi.version>
-        <springdoc.openapi.starter.version>2.8.6</springdoc.openapi.starter.version>
-        <springdoc.openapi.maven.plugin.version>1.4</springdoc.openapi.maven.plugin.version>
+        <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
+        <springdoc-openapi-starter.version>2.8.13</springdoc-openapi-starter.version>
+        <springdoc-openapi-maven-plugin.version>1.5</springdoc-openapi-maven-plugin.version>
 
-        <zalando.problem.version>0.29.1</zalando.problem.version>
+        <problem-spring-web-starter.version>0.29.1</problem-spring-web-starter.version>
 
         <!-- Utilities (Apache) -->
-        <apache-text.version>1.13.1</apache-text.version>
-        <apache-compress.version>1.27.1</apache-compress.version>
-        <commons-io.version>2.19.0</commons-io.version>
-        <apache.tika.version>3.1.0</apache.tika.version>
+        <commons-text.version>1.14.0</commons-text.version>
+        <commons-compress.version>1.28.0</commons-compress.version>
+        <commons-io.version>2.20.0</commons-io.version>
+        <tika-core.version>3.2.2</tika-core.version>
 
         <!-- Tests -->
-        <junit-jupiter.version>5.12.2</junit-jupiter.version>
-        <assertj.version>3.27.3</assertj.version>
+        <junit-jupiter.version>5.13.4</junit-jupiter.version>
+        <assertj-core.version>3.27.4</assertj-core.version>
     </properties>
 
     <dependencyManagement>
@@ -65,15 +66,27 @@
 
             <dependency>
                 <groupId>mike.bootstrap</groupId>
-                <artifactId>bootstrap-springboot</artifactId>
+                <artifactId>bootstrap-storage</artifactId>
                 <version>2.0.0-SNAPSHOT</version>
             </dependency>
+
+            <dependency>
+                <groupId>mike.bootstrap</groupId>
+                <artifactId>bootstrap-spring-app</artifactId>
+                <version>2.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mike.bootstrap</groupId>
+                <artifactId>bootstrap-spring-api</artifactId>
+                <version>2.0.0-SNAPSHOT</version>
+            </dependency> 
 
             <!-- Java -->
             <dependency>
                 <groupId>jakarta.validation</groupId>
                 <artifactId>jakarta.validation-api</artifactId>
-                <version>${jakarta.validation.version}</version>
+                <version>${jakarta.validation-api.version}</version>
             </dependency>
 
             <!-- Spring Boot BOM -->
@@ -98,52 +111,52 @@
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>${springdoc.openapi.starter.version}</version>
+                <version>${springdoc-openapi-starter.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdoc.openapi.version}</version>
+                <version>${springdoc-openapi.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-security</artifactId>
-                <version>${springdoc.openapi.version}</version>
+                <version>${springdoc-openapi.version}</version>
             </dependency>
 
             <!-- Zalando Problem details -->
             <dependency>
                 <groupId>org.zalando</groupId>
                 <artifactId>problem-spring-web-starter</artifactId>
-                <version>${zalando.problem.version}</version>
+                <version>${problem-spring-web-starter.version}</version>
             </dependency>
 
             <!-- Loggers -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
+                <version>${slf4j-api.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
+                <version>${logback-classic.version}</version>
             </dependency>
 
             <!-- Apache Utilities -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
-                <version>${apache-text.version}</version>
+                <version>${commons-text.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
-                <version>${apache-compress.version}</version>
+                <version>${commons-compress.version}</version>
             </dependency>
 
             <dependency>
@@ -155,7 +168,7 @@
             <dependency>
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-core</artifactId>
-                <version>${apache.tika.version}</version>
+                <version>${tika-core.version}</version>
             </dependency>
 
             <!-- Tests -->
@@ -169,7 +182,7 @@
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
-                <version>${assertj.version}</version>
+                <version>${assertj-core.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -182,37 +195,41 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.plugin.compiler.version}</version>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.plugin.resources.version}</version>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <escapeString>\</escapeString>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven.plugin.jar.version}</version>
+                    <version>${maven-jar-plugin.version}</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven.plugin.source.version}</version>
+                    <version>${maven-source-plugin.version}</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven.plugin.javadoc.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven.plugin.release.version}</version>
+                    <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
 
                 <!-- Spring maven plugins -->
@@ -229,9 +246,9 @@
 
                             <configuration>
                                 <additionalProperties>
+                                    <organization.name>${project.organization.name}</organization.name>
                                     <application.name>${application.name}</application.name>
                                     <module.name>${module.name}</module.name>
-                                    <organization.name>${project.organization.name}</organization.name>
                                 </additionalProperties>
                             </configuration>
                         </execution>
@@ -241,45 +258,36 @@
                 <plugin>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                    <version>${springdoc.openapi.maven.plugin.version}</version>
+                    <version>${springdoc-openapi-maven-plugin.version}</version>
                 </plugin>
 
-                <!-- For JUnit5 -->
+                <!-- Tests -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.plugin.surefire.version}</version>
+                    <version>${maven-surefire-plugin.version}</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven.plugin.failsafe.version}</version>
+                    <version>${maven-failsafe-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven.plugin.enforcer-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.9.0</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 </project>
