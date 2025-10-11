@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mike.bootstrap.springboot.openapi.problem.ProblemResponsesReference;
+import mike.bootstrap.web.openapi.problem.ProblemResponsesReference;
 import mike.samples.webapp.module.company.domain.Company;
 import mike.samples.webapp.module.company.exception.CompanyNotFoundException;
 import mike.samples.webapp.module.company.service.CompanyService;

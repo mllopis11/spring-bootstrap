@@ -7,7 +7,8 @@ package mike.bootstrap.app;
  */
 public class Application {
 
-    public static final String BOOT_BASE_PACKAGE = "mike.bootstrap.app";
+    public static final String BOOT_APP_PACKAGE = "mike.bootstrap.app";
+    public static final String BOOT_API_PACKAGE = "mike.bootstrap.api";
 
     private Application() {}
 

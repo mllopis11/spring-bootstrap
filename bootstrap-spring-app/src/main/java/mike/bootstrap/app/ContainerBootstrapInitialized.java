@@ -3,6 +3,7 @@ package mike.bootstrap.app;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.lang.NonNull;
 
 import mike.bootstrap.utilities.helpers.Dates;
 import mike.bootstrap.utilities.system.AppInfo;
@@ -23,7 +24,7 @@ public interface ContainerBootstrapInitialized extends ApplicationListener<Conte
     }
 
     @Override
-    default void onApplicationEvent(ContextRefreshedEvent event) {
+    default void onApplicationEvent(@NonNull ContextRefreshedEvent event) {
 
         final var logger = LoggerFactory.getLogger(ContainerBootstrapInitialized.class);
 

@@ -7,9 +7,10 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
+import mike.bootstrap.app.Application;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { Application.BOOT_BASE_PACKAGE, "mike.samples.webapp" })
+@ComponentScan(basePackages = { Application.BOOT_API_PACKAGE, "mike.samples.webapp" })
 @OpenAPIDefinition(
         info = @Info(
                 title = "Basic Web (Servlet) Application Sample",
