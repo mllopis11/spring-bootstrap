@@ -10,6 +10,6 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <logger name="mike.bootstrap" level="DEBUG"/>
+    <logger name="mike.bootstrap" level="INFO"/>
     <logger name="mike.bootstrap.test" level="DEBUG"/>
 </configuration>

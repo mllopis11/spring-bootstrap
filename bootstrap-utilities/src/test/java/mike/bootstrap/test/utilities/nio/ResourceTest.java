@@ -34,7 +34,7 @@ class ResourceTest {
     }
 
     @Nested
-    @DisplayName("Classpath-Resources")
+    @DisplayName("Nio::Resource::Classpath-Resources")
     class ClasspathResources {
 
         @Test
@@ -60,7 +60,7 @@ class ResourceTest {
     }
 
     @Nested
-    @DisplayName("FileSystem-Resources")
+    @DisplayName("Nio::Resource::FileSystem-Resources")
     class FileSystemResources {
 
         @Test
